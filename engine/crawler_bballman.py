@@ -22,4 +22,3 @@ def scrapArtical(url):
 
 # url = 'http://www.bballman.com/category/news'
 # print(scrapArtical(url))
-
