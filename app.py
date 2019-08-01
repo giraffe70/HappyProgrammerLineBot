@@ -42,7 +42,7 @@ def handle_message(event):
     if userSend == '你好'：
         message = TextSendMessage(text='Hello, ' + userId)
     elif userSend == '再見'：
-        message = TextSendMessage(text='GoodBye')
+        message = StickerSendMessage(package_id='11537',sticker_id='52002758')
     else：
         message = TextSendMessage(text=userSend)
     line_bot_api.reply_message(event.reply_token, message)
