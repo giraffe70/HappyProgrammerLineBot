@@ -11,6 +11,8 @@ def currencySearch(search):
 	reply = '日期：{}\n即期賣出價：{}\n'.format(dollorTuple[0], dollorTuple[4])
 	return reply
 
+
+
 # print(twder.currencies())
 # userInput = input("請輸入幣別(大寫)：")
 # print(twder_result(userInput))

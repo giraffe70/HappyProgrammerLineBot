@@ -4,7 +4,7 @@ from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 
-from engine.currenciesSearch import *
+from engine.currencySearch import *
 
 app = Flask(__name__)
 
@@ -40,9 +40,9 @@ def handle_message(event):
 
     if userSend == '你好':
         message = TextSendMessage(text='Hello, ' + userId)
-    elif userSend == '美金' or '美元':
+    elif userSend == '美金' or userSend == '美元':
         message = TextSendMessage(text=currencySearch('USD'))
-    elif userSend == '日幣' or '日元':
+    elif userSend == '日幣' or userSend == '日元':
         message = TextSendMessage(text=currencySearch('JPY'))
     elif userSend in ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']:
         message = TextSendMessage(text=currencySearch(userSend))
