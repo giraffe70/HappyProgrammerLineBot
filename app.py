@@ -26,6 +26,10 @@ def callback():
         abort(400)
     return 'OK'
 
+@app.route("/web")
+def showweb():
+    return '<h1>Hello everyone</h1>'
+
 #處理訊息
 #當訊息種類為TextMessage時，從event中取出訊息內容，藉由TextSendMessage()包裝成符合格式的物件，並貼上message的標籤方便之後取用。
 #接著透過LineBotApi物件中reply_message()方法，回傳相同的訊息內容
@@ -33,6 +37,12 @@ def callback():
 def handle_message(event):
     message = TextSendMessage(text='Hi')
     line_bot_api.reply_message(event.reply_token, message)
+
+@handler.add(MessageEvent, message=StickerMessage)
+def handle_message(event):
+    message = TextSendMessage(text='我看不懂貼圖')
+    line_bot_api.reply_message(event.reply_token, message)
+
 
 import os
 if __name__ == "__main__":
