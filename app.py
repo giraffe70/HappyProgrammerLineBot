@@ -37,12 +37,13 @@ def handle_message(event):
 
     userSend = event.message.text
     userId = event.source.user_id
-
+    USDlist = ['美金', '美元', 'USD', 'usd', 'Usd']
+    JPYlist = ['日幣', '日元', 'JPY', 'jpy', 'Jpy', '日圓']
     if userSend == '你好':
         message = TextSendMessage(text='Hello, ' + userId)
-    elif userSend == '美金' or userSend == '美元':
+    elif userSend in USDlist:
         message = TextSendMessage(text=currencySearch('USD'))
-    elif userSend == '日幣' or userSend == '日元':
+    elif userSend in JPYlist:
         message = TextSendMessage(text=currencySearch('JPY'))
     elif userSend in ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']:
         message = TextSendMessage(text=currencySearch(userSend))
