@@ -7,7 +7,7 @@ def currenvySearch(userInput):
 	# text += '時間：{}\n即期買入：{}\n即期賣出：{}\n'.format(result[0], result[3], result[4])
 	# return text
 	
-	DollerList = twder.now(search)
+	dollorTuple = twder.now(search)
 	reply = '日期：{}\n即期賣出價：{}'format(dollorTuple[0], dollorTuple[4])
 	return reply
 
