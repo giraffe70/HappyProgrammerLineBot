@@ -37,9 +37,10 @@ def showweb():
 def handle_message(event):
 
     userSend = event.message.text
-    
+    userId = event.source.user_id
+
     if userSend == '你好'：
-        message = TextSendMessage(text='Hello')
+        message = TextSendMessage(text='Hello, ' + userId)
     elif userSend == '再見'：
         message = TextSendMessage(text='GoodBye')
     else：
