@@ -34,7 +34,7 @@ def handle_message(event):
 
     userSend = event.message.text
     userId = event.source.user_id
-
+    line_bot_api.reply_message(event.reply_token, 'Hi')
     if userSend == '你好'：
         message = TextSendMessage(text='Hello, ' + userId)
     elif userSend == '再見'：
