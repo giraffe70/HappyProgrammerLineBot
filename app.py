@@ -50,7 +50,7 @@ def handle_message(event):
     elif userSend == '匯率':
         message = TextSendMessage(text=currency)
     elif userSend == '籃球':
-        message = TextSendMessage(text=crapArtical())
+        message = TextSendMessage(text=scrapArtical('http://www.bballman.com/category/news'))
     elif userSend in USDlist:
         message = TextSendMessage(text=currencySearch('USD'))
     elif userSend in JPYlist:

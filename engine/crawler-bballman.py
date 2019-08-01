@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # url = 'http://www.bballman.com/' 
-def scrapArtical(url='http://www.bballman.com/category/news'):
+def scrapArtical(url):
  	
 	webContent = requests.get(url)
 	webContent.encoding ='utf-8'
