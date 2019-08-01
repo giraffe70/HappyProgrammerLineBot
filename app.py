@@ -46,8 +46,10 @@ def handle_message(event):
     userSend = event.message.text
     userId = event.source.user_id
 
-    if userSend == '匯率':
-        message = TextSendMessage(text='請輸入幣別')
+    if userSend == '美金' or 'usd' or 'USD' or '美元':
+        dollorTuple = twder.now('USD')
+        reply = '日期：{}\n即期賣出價：{}'format(dollorTuple[0], dollorTuple[4])
+        message = TextSendMessage(text=reply)
 
     if userSend == '你好':
         message = TextSendMessage(text='Hello, ' + userId)
