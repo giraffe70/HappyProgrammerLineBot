@@ -40,11 +40,11 @@ def handle_message(event):
 
     if userSend == '你好':
         message = TextSendMessage(text='Hello, ' + userId)
-    elif userSend == '美金' or 'usd' or 'USD' or '美元':
+    elif userSend == '美金' or '美元':
         message = TextSendMessage(text=currencySearch('USD'))
-    elif userSend == '日幣' or 'JPY' or 'jpy' or '日元':
+    elif userSend == '日幣' or '日元':
         message = TextSendMessage(text=currencySearch('JPY'))
-    elif userSend in ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
+    elif userSend in ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']:
         message = TextSendMessage(text=currencySearch(userSend))
     elif userSend == '再見':
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
