@@ -6,6 +6,16 @@ from linebot.models import *
 
 app = Flask(__name__)
 
+
+def twder_result(userInput):
+    result = twder.now(userInput)
+    print('時間：{}\n現金買入：{}\n現金賣出：{}\n即期買入：{}\n即期賣出：{}\n'.
+           format(result[0], result[1], result[2], result[3],result[4]))
+
+# print(twder.currencies())
+# userInput = input("請輸入幣別(大寫)：")
+# twder_result(userInput)
+
 # 設定你的Channel Access Token
 line_bot_api = LineBotApi('kxyKN1dmIBxDNcfm6ZHFkIBbSwpN/inhArVJP6TyBqUXL1S0EmHI5R+DsgRV+GGUNrJxHwgcKi14HcXS3HYGuLYuJrkc5YCF0P/M9Wnpus3afvEi/NqcRVfWOD19LbtKmE9iGbgf5OB38wrRktwnHwdB04t89/1O/w1cDnyilFU=')
 # 設定你的Channel Secret
@@ -34,6 +44,9 @@ def handle_message(event):
 
     userSend = event.message.text
     userId = event.source.user_id
+
+    if userSend == '匯率':
+        message = TextSendMessage(text='twder.currencies()')
 
     if userSend == '你好':
         message = TextSendMessage(text='Hello, ' + userId)
