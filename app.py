@@ -40,7 +40,7 @@ def handle_message(event):
     USDlist = ['美金', '美元', 'USD', 'usd', 'Usd', '美']
     JPYlist = ['日幣', '日元', 'JPY', 'jpy', 'Jpy', '日圓', '日']
     byeList = ['goodbye', 'good bye', 'Good bye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
-    currency = '1.USD 2.HKD 3.GBP 4.AUD 5.CAD\n 6.SGD 7.CHF 8.JPY 9.ZAR  10.SEK\n11.NZD 12.THB 13.PHP 14.IDR 15.EUR\n 16.KRW 17.VND 18.MYR 19.CNY\n'
+    currency = '請輸入你要查詢的匯率：\n1.USD 2.HKD 3.GBP 4.AUD 5.CAD\n 6.SGD 7.CHF 8.JPY 9.ZAR  10.SEK\n11.NZD 12.THB 13.PHP 14.IDR 15.EUR\n 16.KRW 17.VND 18.MYR 19.CNY\n'
     if userSend == '你好':
         message = TextSendMessage(text='Hello, ' + userId)
     elif userSend == '匯率':
