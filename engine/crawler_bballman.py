@@ -17,9 +17,9 @@ def scrapArtical(url):
 			result += row.select('a')[0]['title'] + '\n'
 			result += row.select('a')[0]['href']
 			result += '\n------------------------------------------------------------\n'
+			
 	return result
 
-
 # url = 'http://www.bballman.com/category/news'
-# print(scrapArtical())
+# print(scrapArtical(url))
 
