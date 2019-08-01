@@ -35,9 +35,9 @@ def showweb():
 #接著透過LineBotApi物件中reply_message()方法，回傳相同的訊息內容
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    print('執行TextMessage')
-    print('使用者傳的訊息：{}'.format(event.message.text))
+
     userSend = event.message.text
+    
     if userSend == '你好'：
         message = TextSendMessage(text='Hello')
     elif userSend == '再見'：
