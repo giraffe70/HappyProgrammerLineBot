@@ -57,7 +57,7 @@ def handle_message(event):
         message = TextSendMessage(text=currencySearch(userSend))
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
-    elif userSend == '籃球' 
+    elif userSend == '籃球':
         message = TextSendMessage(text=crapArtical())
     else:
         message = TextSendMessage(text=userSend)
