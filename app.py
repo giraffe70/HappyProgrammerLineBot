@@ -49,6 +49,8 @@ def handle_message(event):
         message = TextSendMessage(text='Hello, ' + userId)
     elif userSend == '匯率':
         message = TextSendMessage(text=currency)
+    elif userSend == '籃球':
+        message = TextSendMessage(text=crapArtical())
     elif userSend in USDlist:
         message = TextSendMessage(text=currencySearch('USD'))
     elif userSend in JPYlist:
@@ -57,8 +59,6 @@ def handle_message(event):
         message = TextSendMessage(text=currencySearch(userSend))
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
-    elif userSend == '籃球':
-        message = TextSendMessage(text=crapArtical())
     else:
         message = TextSendMessage(text=userSend)
     line_bot_api.reply_message(event.reply_token, message)
