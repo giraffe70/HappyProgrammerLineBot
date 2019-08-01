@@ -5,7 +5,6 @@ from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 
 from engine.currencySearch import *
-from engine.crawler_bballman import *
 
 app = Flask(__name__)
 
@@ -49,8 +48,6 @@ def handle_message(event):
         message = TextSendMessage(text='Hello, ' + userId)
     elif userSend == '匯率':
         message = TextSendMessage(text=currency)
-    elif userSend == 'nba':
-        message = TextSendMessage(text=scrapArtical('http://www.bballman.com/category/news'))
     elif userSend in USDlist:
         message = TextSendMessage(text=currencySearch('USD'))
     elif userSend in JPYlist:
