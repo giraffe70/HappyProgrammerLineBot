@@ -4,18 +4,10 @@ from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 
+from engin.currenciesSearch import *
+
 app = Flask(__name__)
 
-
-def twder_result(userInput):
-    result = twder.now(userInput)
-    text = ''
-    text += '時間：{}\n即期買入：{}\n即期賣出：{}\n'.format(result[0], result[3], result[4])
-    return text
-
-# print(twder.currencies())
-# userInput = input("請輸入幣別(大寫)：")
-# twder_result(userInput)
 
 # 設定你的Channel Access Token
 line_bot_api = LineBotApi('kxyKN1dmIBxDNcfm6ZHFkIBbSwpN/inhArVJP6TyBqUXL1S0EmHI5R+DsgRV+GGUNrJxHwgcKi14HcXS3HYGuLYuJrkc5YCF0P/M9Wnpus3afvEi/NqcRVfWOD19LbtKmE9iGbgf5OB38wrRktwnHwdB04t89/1O/w1cDnyilFU=')
@@ -46,13 +38,10 @@ def handle_message(event):
     userSend = event.message.text
     userId = event.source.user_id
 
-    if userSend == '美金' or 'usd' or 'USD' or '美元':
-        dollorTuple = twder.now('USD')
-        reply = '日期：{}\n即期賣出價：{}'format(dollorTuple[0], dollorTuple[4])
-        message = TextSendMessage(text=reply)
-
     if userSend == '你好':
         message = TextSendMessage(text='Hello, ' + userId)
+    elif userSend == '美金' or 'usd' or 'USD' or '美元':
+        message = TextSendMessage(text=currencySearch('USD'))
     elif userSend == '再見':
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
     else:
