@@ -37,17 +37,22 @@ def showweb():
 def handle_message(event):
     print('執行TextMessage')
     print('使用者傳的訊息：{}'.format(event.message.text))
-    message = TextSendMessage(text=event.message.text)
+    userSend = event.message.text
+    if userSend == '你好'：
+        message = TextSendMessage(text='Hello')
+    elif userSend == '再見'：
+        message = TextSendMessage(text='GoodBye')
+    else：
+        message = TextSendMessage(text=userSend)
     line_bot_api.reply_message(event.reply_token, message)
 
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_message(event):
-    print('執行StickerMessage')
     message = TextSendMessage(text='我看不懂貼圖')
     line_bot_api.reply_message(event.reply_token, message)
-
 
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
