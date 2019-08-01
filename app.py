@@ -46,7 +46,7 @@ def handle_message(event):
     userId = event.source.user_id
 
     if userSend == '匯率':
-        message = TextSendMessage(text='twder.currencies()')
+        message = TextSendMessage(text=twder.currencies())
 
     if userSend == '你好':
         message = TextSendMessage(text='Hello, ' + userId)
