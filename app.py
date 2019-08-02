@@ -57,6 +57,30 @@ def handle_message(event):
         message = TextSendMessage(text=currencySearch(userSend))
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
+    elif userSend == '按鈕':
+        message = TemplateSendMessage(
+        alt_text='Buttons template',
+        template=ButtonsTemplate(
+        thumbnail_image_url='https://cdn2.ettoday.net/images/3017/d3017273.jpg',
+        title='Menu',
+        text='Please select',
+        actions=[
+            # PostbackAction(
+            #     label='postback',
+            #     display_text='postback text',
+            #     data='action=buy&itemid=1'
+            # ),
+            MessageAction(
+                label='你好',   # 顯示在畫面上的字
+                text='你好'
+            ),
+            URIAction(          # 超連結
+                label='帶我去高師大',
+                uri='https://w3.nknu.edu.tw'
+            )
+        ]
+    )
+)
     else:
         message = TextSendMessage(text=userSend)
     line_bot_api.reply_message(event.reply_token, message)
@@ -76,7 +100,7 @@ def handle_message(event):
     AQIResult = AQImonitor(userLon,userLat)
     gammaResult = gammamonitor(userLon,userLat)
     # message = TextSendMessage(text='地址：{}\n緯度：{}\n經度：{}\n'.format(userAdd,userLat,userLon))
-    message = TextSendMessage(text='☼天氣狀況：\n{}\n☁空氣品質：\n{}\n☀輻射值：\n{}\n'.format(weatherResult, AQIResult, gammaResult))
+    message = TextSendMessage(text='⛅天氣狀況：\n{}\n☁空氣品質：\n{}\n☀輻射值：\n{}\n'.format(weatherResult, AQIResult, gammaResult))
     line_bot_api.reply_message(event.reply_token, message)
 
 import os
@@ -84,3 +108,30 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
 
+
+
+'''
+buttons_template_message = TemplateSendMessage(
+    alt_text='Buttons template',
+    template=ButtonsTemplate(
+        thumbnail_image_url='https://example.com/image.jpg',
+        title='Menu',
+        text='Please select',
+        actions=[
+            PostbackAction(
+                label='postback',
+                display_text='postback text',
+                data='action=buy&itemid=1'
+            ),
+            MessageAction(
+                label='message',
+                text='message text'
+            ),
+            URIAction(
+                label='uri',
+                uri='http://example.com/'
+            )
+        ]
+    )
+)
+'''
