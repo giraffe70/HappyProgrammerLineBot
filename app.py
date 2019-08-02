@@ -9,6 +9,7 @@ from engine.OpenWeatherMap import OWMLonLatsearch
 from engine.AQI import AQImonitor
 from engine.gamma import gammamonitor
 from engine.SpotifyScrap import scrapSpotify
+from engine.crawlerArtical import *
 
 app = Flask(__name__)
 
@@ -55,12 +56,14 @@ def handle_message(event):
         message = TextSendMessage(text=currency)
     elif userSend in currencyList:
         message = TextSendMessage(text=currencySearch(userSend))
+    elif userSend == 'NBA'
+        message = TextSendMessage(text=pttSearch('https://www.ptt.cc/bbs/NBA/index.html'))
 
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
     elif userSend == '匯率':
         message = TemplateSendMessage(
-            alt_text='這是個按鈕選單',   
+            alt_text='匯率清單',   
             template=ButtonsTemplate(
                 thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
                 title='匯率查詢',
@@ -85,6 +88,35 @@ def handle_message(event):
                 ]
             )
         )
+
+    elif userSend == 'PTT':
+        message = TemplateSendMessage(
+            alt_text='網站清單',   
+            template=ButtonsTemplate(
+                thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
+                title='新聞網',
+                text='請選擇動作',
+                actions=[
+                    MessageAction(
+                        label='NBA',
+                        text='NBA'
+                    ),
+                    MessageAction(
+                        label='Badminton',
+                        text='Badminton'
+                    ),
+                    MessageAction(
+                        label='Gossiping',
+                        text='Gossiping'
+                    ),
+                    URIAction(
+                        label='HatePolitics',
+                        uri='HatePolitics'
+                    )
+                ]
+            )
+        )
+
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
         columnReply, textReply = scrapSpotify()
         message = TemplateSendMessage(
