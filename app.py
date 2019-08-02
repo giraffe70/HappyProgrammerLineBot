@@ -43,27 +43,25 @@ def handle_message(event):
     userId = event.source.user_id
 
     currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
-    USDlist = ['美金', '美元', 'USD', 'usd', 'Usd', '美']
     byeList = ['goodbye', 'good bye', 'Good bye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
     currency = '請輸入你要查詢的匯率：\n1.USD 2.HKD 3.GBP 4.AUD\n 5.CAD 6.SGD 7.CHF 8.JPY\n 9.ZAR  10.SEK 11.NZD 12.THB\n 13.PHP 14.IDR 15.EUR 16.KRW\n 17.VND 18.MYR 19.CNY\n'
     sayHelloList = ['hello', 'Hello', 'Hey', 'hey', 'Hi','hi','哈囉','你好']
 
     if userSend in sayHelloList:
         message = TextSendMessage(text='Hello, ' + userId)
-    elif userSend == '匯率':
-        message = TextSendMessage(text=currency)
-    elif userSend in USDlist:
-        message = TextSendMessage(text=currencySearch('USD'))
+    # elif userSend == '匯率':
+    #     message = TextSendMessage(text=currency)
     elif userSend in currencyList:
         message = TextSendMessage(text=currencySearch(userSend))
+
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
-    elif userSend == '高師大':
+    elif userSend == '匯率':
         message = TemplateSendMessage(
-            alt_text='這是個按鈕選單',
+            alt_text='這是個按鈕選單',   
             template=ButtonsTemplate(
-                thumbnail_image_url='https://w3.nknu.edu.tw/images/sampledata/imageshow/_20190102-4.jpg',
-                title='國立高雄師範大學',
+                thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
+                title='匯率查詢',
                 text='請選擇動作',
                 actions=[
                     MessageAction(
@@ -75,12 +73,12 @@ def handle_message(event):
                         text='JPY'
                     ),
                     MessageAction(
-                        label='匯率',
-                        text='匯率'
+                        label='查詢其他匯率',
+                        text=currency
                     ),
                     URIAction(
-                        label='帶我去高師大',
-                        uri='https://w3.nknu.edu.tw'
+                        label='連結網址',
+                        uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
                     )
                 ]
             )
