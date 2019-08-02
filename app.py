@@ -56,9 +56,9 @@ def handle_message(event):
         message = TextSendMessage(text=currency)
     elif userSend in currencyList:
         message = TextSendMessage(text=currencySearch(userSend))
-    elif userSend == 'NBA':
-        url = 'https://www.ptt.cc/bbs/NBA/index.html'
-        message = TextSendMessage(text=pttSearch(url))
+    # elif userSend == 'NBA':
+    #     url = 'https://www.ptt.cc/bbs/NBA/index.html'
+    #     message = TextSendMessage(text=pttSearch(url))
 
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
