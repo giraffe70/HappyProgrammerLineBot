@@ -5,9 +5,9 @@ from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 
 from engine.currencySearch import *
-from engine.OpenWeatherMap import *
-from engine.AQI import *
-from engine.gamma import *
+from engine.OpenWeatherMap import OWMLonLatsearch
+from engine.AQI import AQImonitor
+from engine.gamma import gammamonitor
 
 app = Flask(__name__)
 

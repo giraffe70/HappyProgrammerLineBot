@@ -50,8 +50,9 @@ def OWMLonLatsearch(lon,lat):
 			result += ('天氣狀況：{}\n'.format(r['weather'][0]['description']))
 			result += ('溫度：{}\n最高溫：{}\t最低溫：{}\n'.format(r['main']['temp'],r['main']['temp_max'],r['main']['temp_min']))
 			result += ('風速：{}\n'.format(r['wind']['speed']))
-			result += '日出時間：{}\n'.format(time.strftime('%H:%M:%S', time.localtime(r['sys']['sunrise'])))
-			result += '日落時間：{}\n'.format(time.strftime('%H:%M:%S', time.localtime(r['sys']['sunset'])))
+			# gmtime 回傳中央標準時間，再算出時差
+			result += '日出時間：{}\n'.format(time.strftime('%H:%M:%S', time.gmtime(r['sys']['sunrise']+r['timezone'])))
+			result += '日落時間：{}\n'.format(time.strftime('%H:%M:%S', time.gmtime(r['sys']['sunset']+r['timezone'])))
 		elif r['cod'] == '404':
 			result += r['message']
 	except:
