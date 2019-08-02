@@ -86,10 +86,11 @@ def handle_message(event):
             )
         )
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
+        columnReply, textReply = scrapSpotify()
         message = TemplateSendMessage(
         alt_text='歌曲清單',
         template=ImageCarouselTemplate(
-            columns=scrapSpotify()
+            columns=columnReply
             )
         )
     else:
