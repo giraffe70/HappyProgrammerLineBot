@@ -1,5 +1,5 @@
 import requests
-import time
+import time  
 
 #函式封裝
 def OWMsearch(city):
