@@ -8,6 +8,8 @@ from engine.currencySearch import *
 from engine.OpenWeatherMap import OWMLonLatsearch
 from engine.AQI import AQImonitor
 from engine.gamma import gammamonitor
+from engine.SpotifyScrap import *
+from linebot.models import *
 
 app = Flask(__name__)
 
@@ -71,18 +73,36 @@ def handle_message(event):
             #     data='action=buy&itemid=1'
             # ),
             # label='你好',   # 顯示在畫面上的字
-            MessageAction(label='你好', text='你好'),
-            MessageAction(label='查詢美金匯率', text='USD'),
-            MessageAction(label='查詢日幣匯率', text='JPY'),
-            MessageAction(label='查詢其他匯率', text='匯率'),
-            MessageAction(label='再見', text='再見'),
+            MessageAction(
+                label='你好', 
+                text='你好'
+            ),
+            MessageAction(
+                label='查詢美金匯率',   
+                text='USD'
+            ),
+            MessageAction(
+                label='查詢日幣匯率',   
+                text='JPY'
+            ),
+            MessageAction(
+                label='再見',   
+                text='再見'
+            ),
             URIAction(          # 超連結
                 label='帶我去高師大',
                 uri='https://w3.nknu.edu.tw'
             )
-        ]
+            ]
+        )
     )
-)
+    elif userSend in ['Spotify', 'spotify', 'music','音樂']:
+        message = TemplateSendMessage(
+        alt_text='ImageCarousel template',
+        template=ImageCarouselTemplate(
+            columns=[reply]
+            )
+        )
     else:
         message = TextSendMessage(text=userSend)
     line_bot_api.reply_message(event.reply_token, message)
