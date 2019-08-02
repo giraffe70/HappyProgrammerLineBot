@@ -49,8 +49,8 @@ def handle_message(event):
 
     if userSend in sayHelloList:
         message = TextSendMessage(text='Hello, ' + userId)
-    # elif userSend == '匯率':
-    #     message = TextSendMessage(text=currency)
+    elif userSend == '匯率清單':
+        message = TextSendMessage(text=currency)
     elif userSend in currencyList:
         message = TextSendMessage(text=currencySearch(userSend))
 
@@ -74,7 +74,7 @@ def handle_message(event):
                     ),
                     MessageAction(
                         label='查詢其他匯率',
-                        text=currency
+                        text='匯率清單'
                     ),
                     URIAction(
                         label='連結網址',
