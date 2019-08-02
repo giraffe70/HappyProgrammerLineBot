@@ -79,6 +79,10 @@ def handle_message(event):
                         text='你好'
                     ),
                     MessageAction(
+                        label='匯率',
+                        text='匯率'
+                    ),
+                    MessageAction(
                         label='再見',
                         text='再見'
                     ),
