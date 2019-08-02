@@ -37,6 +37,7 @@ def handle_message(event):
 
     userSend = event.message.text
     userId = event.source.user_id
+    currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
     USDlist = ['美金', '美元', 'USD', 'usd', 'Usd', '美']
     JPYlist = ['日幣', '日元', 'JPY', 'jpy', 'Jpy', '日圓', '日']
     byeList = ['goodbye', 'good bye', 'Good bye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
@@ -52,7 +53,7 @@ def handle_message(event):
         message = TextSendMessage(text=currencySearch('USD'))
     elif userSend in JPYlist:
         message = TextSendMessage(text=currencySearch('JPY'))
-    elif userSend in ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']:
+    elif userSend in currencyList:
         message = TextSendMessage(text=currencySearch(userSend))
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
