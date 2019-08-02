@@ -75,16 +75,8 @@ def handle_message(event):
                         text='JPY'
                     ),
                     MessageAction(
-                        label='你好',
-                        text='你好'
-                    ),
-                    MessageAction(
                         label='匯率',
                         text='匯率'
-                    ),
-                    MessageAction(
-                        label='再見',
-                        text='再見'
                     ),
                     URIAction(
                         label='帶我去高師大',
