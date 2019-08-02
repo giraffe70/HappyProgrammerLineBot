@@ -60,35 +60,25 @@ def handle_message(event):
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
     elif userSend == '高師大':
         message = TemplateSendMessage(
-        alt_text='Buttons template',
-        template=ButtonsTemplate(
-            thumbnail_image_url='https://cdn2.ettoday.net/images/3017/d3017273.jpg',
-            title='國立高雄師範大學',
-            text='請選擇動作',
-            actions=[
-                # PostbackAction(
-                #     label='postback',
-                #     display_text='postback text',
-                #     data='action=buy&itemid=1'
-                # ),
-                # label='你好',   # 顯示在畫面上的字
+            alt_text='這是個按鈕選單',
+            template=ButtonsTemplate(
+                thumbnail_image_url='https://w3.nknu.edu.tw/images/sampledata/imageshow/_20190102-4.jpg',
+                title='國立高雄師範大學',
+                text='請選擇動作',
+                actions=[
                     MessageAction(
-                        label='你好', 
-                        text='你好'
-                    ),
-                    MessageAction(
-                        label='查詢美金匯率',   
+                        label='美金',
                         text='USD'
                     ),
                     MessageAction(
-                        label='查詢日幣匯率',   
+                        label='日幣',
                         text='JPY'
                     ),
                     MessageAction(
-                        label='再見',   
-                        text='再見'
+                        label='你好',
+                        text='你好'
                     ),
-                    URIAction(          # 超連結
+                    URIAction(
                         label='帶我去高師大',
                         uri='https://w3.nknu.edu.tw'
                     )
@@ -97,9 +87,9 @@ def handle_message(event):
         )
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
         message = TemplateSendMessage(
-        alt_text='ImageCarousel template',
+        alt_text='歌曲清單',
         template=ImageCarouselTemplate(
-            columns=scrapSpotify
+            columns=scrapSpotify()
             )
         )
     else:
