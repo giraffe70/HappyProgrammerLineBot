@@ -137,7 +137,7 @@ def handle_message(event):
         message = TemplateSendMessage(
             alt_text='新聞清單',   
             template=ButtonsTemplate(
-                thumbnail_image_url='http://www.cooperindustries.com/content/dam/public/Corporate/Resources/news.jpg',
+                thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
                 title='新聞網',
                 text='請選擇新聞網',
                 actions=[
