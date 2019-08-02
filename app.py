@@ -49,6 +49,8 @@ def handle_message(event):
 
     if userSend in sayHelloList:
         message = TextSendMessage(text='Hello, ' + userId)
+    elif userSend == '功能':
+        message = TextSendMessage(text='目前的功能有：匯率、音樂、天氣')
     elif userSend == '匯率清單':
         message = TextSendMessage(text=currency)
     elif userSend in currencyList:
