@@ -93,7 +93,7 @@ def handle_message(event):
         message = TemplateSendMessage(
             alt_text='網站清單',   
             template=ButtonsTemplate(
-                thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
+                thumbnail_image_url='http://www2.siit.tu.ac.th/crd/wp-content/uploads/2012/10/b2e5a1124c870a55ef80ede875001b76.jpg',
                 title='新聞網',
                 text='請選擇動作',
                 actions=[
@@ -109,7 +109,7 @@ def handle_message(event):
                         label='Gossiping',
                         text='Gossiping'
                     ),
-                    URIAction(
+                    MessageAction(
                         label='HatePolitics',
                         uri='HatePolitics'
                     )
