@@ -70,18 +70,12 @@ def handle_message(event):
             #     display_text='postback text',
             #     data='action=buy&itemid=1'
             # ),
-            MessageAction(
-                label='你好',   # 顯示在畫面上的字
-                text='你好'
-            ),
-            MessageAction(
-                label='查詢美金匯率',   # 顯示在畫面上的字
-                text='USD'
-            ),
-            MessageAction(
-                label='查詢日幣匯率',   # 顯示在畫面上的字
-                text='JPY'
-            ),
+            # label='你好',   # 顯示在畫面上的字
+            MessageAction(label='你好', text='你好'),
+            MessageAction(label='查詢美金匯率', text='USD'),
+            MessageAction(label='查詢日幣匯率', text='JPY'),
+            MessageAction(label='查詢其他匯率', text='匯率'),
+            MessageAction(label='再見', text='再見'),
             URIAction(          # 超連結
                 label='帶我去高師大',
                 uri='https://w3.nknu.edu.tw'
@@ -117,29 +111,3 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0', port=port)
 
 
-
-'''
-buttons_template_message = TemplateSendMessage(
-    alt_text='Buttons template',
-    template=ButtonsTemplate(
-        thumbnail_image_url='https://example.com/image.jpg',
-        title='Menu',
-        text='Please select',
-        actions=[
-            PostbackAction(
-                label='postback',
-                display_text='postback text',
-                data='action=buy&itemid=1'
-            ),
-            MessageAction(
-                label='message',
-                text='message text'
-            ),
-            URIAction(
-                label='uri',
-                uri='http://example.com/'
-            )
-        ]
-    )
-)
-'''
