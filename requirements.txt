@@ -5,3 +5,5 @@ six
 requests
 bs4
 geopy
+gspread
+oauth2client

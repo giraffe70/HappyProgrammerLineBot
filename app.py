@@ -67,16 +67,20 @@ def handle_message(event):
                 text='請選擇動作',
                 actions=[
                     MessageAction(
-                        label='美金',
+                        label='查詢美金匯率',
                         text='USD'
                     ),
                     MessageAction(
-                        label='日幣',
+                        label='查詢日幣匯率',
                         text='JPY'
                     ),
                     MessageAction(
                         label='你好',
                         text='你好'
+                    ),
+                    MessageAction(
+                        label='再見',
+                        text='再見'
                     ),
                     URIAction(
                         label='帶我去高師大',
