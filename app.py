@@ -5,6 +5,7 @@ from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 
 from engine.currencySearch import *
+from engine.OpenWeatherMap import *
 
 app = Flask(__name__)
 
@@ -72,6 +73,7 @@ def handle_message(event):
     userLat = event.message.latitude
     userLon = event.message.longitude
     message = TextSendMessage(text='地址：{}\n緯度：{}\n經度：{}\n'.format(userAdd,userLat,userLon))
+    message = TextSendMessage(text=OWMLonLatsearch(userLon,userLat))
     line_bot_api.reply_message(event.reply_token, message)
 
 import os
