@@ -68,10 +68,10 @@ def handle_message(event):
     elif userSend == 'HatePolitics':
         url = 'https://www.ptt.cc/bbs/HatePolitics/index.html'
         message = TextSendMessage(text=pttSearch(url))
-    elif userSend == '科技新報':
+    elif userSend == 'TechNews':
         url = 'https://technews.tw/tn-rss/'
         message = TextSendMessage(text=rssTechNews(url))
-    elif userSend == '籃球圈':
+    elif userSend == 'bballman':
         url = 'http://www.bballman.com/category/news'
         message = TextSendMessage(text=bballman_news(url))
 
