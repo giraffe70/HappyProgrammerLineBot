@@ -111,7 +111,7 @@ def handle_message(event):
                     ),
                     MessageAction(
                         label='HatePolitics',
-                        uri='HatePolitics'
+                        text='HatePolitics'
                     )
                 ]
             )
