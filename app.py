@@ -51,7 +51,7 @@ def handle_message(event):
     if userSend in sayHelloList:
         message = TextSendMessage(text='Hello, ' + userId)
     elif userSend == '功能':
-        message = TextSendMessage(text='目前的功能有：匯率、音樂、天氣')
+        message = TextSendMessage(text='目前的功能有：匯率、音樂、天氣、批踢踢')
     elif userSend == '匯率清單':
         message = TextSendMessage(text=currency)
     elif userSend in currencyList:
@@ -59,6 +59,21 @@ def handle_message(event):
     elif userSend == 'NBA':
         url = 'https://www.ptt.cc/bbs/NBA/index.html'
         message = TextSendMessage(text=pttSearch(url))
+    elif userSend == 'Badminton':
+        url = 'https://www.ptt.cc/bbs/Badminton/index.html'
+        message = TextSendMessage(text=pttSearch(url))
+    elif userSend == 'Gossiping':
+        url = 'https://www.ptt.cc/bbs/Gossiping/index.html'
+        message = TextSendMessage(text=pttSearch(url))
+    elif userSend == 'HatePolitics':
+        url = 'https://www.ptt.cc/bbs/HatePolitics/index.html'
+        message = TextSendMessage(text=pttSearch(url))
+    elif userSend == '科技新報':
+        url = 'https://technews.tw/tn-rss/'
+        message = TextSendMessage(text=rssTechNews(url))
+    elif userSend == '籃球圈':
+        url = 'http://www.bballman.com/category/news'
+        message = TextSendMessage(text=bballman_news(url))
 
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
@@ -92,11 +107,11 @@ def handle_message(event):
 
     elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
         message = TemplateSendMessage(
-            alt_text='網站清單',   
+            alt_text='PTT清單',   
             template=ButtonsTemplate(
                 thumbnail_image_url='https://static.newmobilelife.com/wp-content/uploads/2018/09/Shortcuts-PTT.jpg',
-                title='新聞網',
-                text='請選擇動作',
+                title='PTT',
+                text='請選擇看版',
                 actions=[
                     MessageAction(
                         label='NBA',
@@ -114,6 +129,27 @@ def handle_message(event):
                         label='HatePolitics',
                         text='HatePolitics'
                     )
+                ]
+            )
+        )
+
+    elif userSend in ['新聞', 'news', 'News']:
+        message = TemplateSendMessage(
+            alt_text='新聞清單',   
+            template=ButtonsTemplate(
+                thumbnail_image_url='http://www.cooperindustries.com/content/dam/public/Corporate/Resources/news.jpg',
+                title='新聞網',
+                text='請選擇新聞網',
+                actions=[
+                    MessageAction(
+                        label='科技新報',
+                        text='TechNews'
+                    ),
+                    MessageAction(
+                        label='籃球圈',
+                        text='bballman'
+                    )
+                    
                 ]
             )
         )
