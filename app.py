@@ -57,13 +57,13 @@ def handle_message(event):
         message = TextSendMessage(text=currencySearch(userSend))
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
-    elif userSend == '按鈕':
+    elif userSend == '高師大':
         message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
         thumbnail_image_url='https://cdn2.ettoday.net/images/3017/d3017273.jpg',
-        title='Menu',
-        text='Please select',
+        title='國立高雄師範大學',
+        text='請選擇動作',
         actions=[
             # PostbackAction(
             #     label='postback',
@@ -73,6 +73,14 @@ def handle_message(event):
             MessageAction(
                 label='你好',   # 顯示在畫面上的字
                 text='你好'
+            ),
+            MessageAction(
+                label='查詢美金匯率',   # 顯示在畫面上的字
+                text='USD'
+            ),
+            MessageAction(
+                label='查詢日幣匯率',   # 顯示在畫面上的字
+                text='JPY'
             ),
             URIAction(          # 超連結
                 label='帶我去高師大',
