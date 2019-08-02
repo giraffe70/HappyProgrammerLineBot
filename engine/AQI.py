@@ -31,5 +31,5 @@ def AQImonitor(lon,lat):
 				elif 251 <= row['AQI']:
 					row['AQI'] = '棗紅色'
 				result = [row['Status'],row['PM2.5'],row['PM10']]
-
+		result = '{}警戒，PM2.5為{}，PM10為{}'.format(result[0], result[1], result[2])
 	return result
