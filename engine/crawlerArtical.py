@@ -73,6 +73,7 @@ def spotify_top30(url):
 # TechNews
 def rssTechNews(url):
 	webContent = requests.get(url)
+	webContent.encoding ='utf-8'
 	rss_feed = BeautifulSoup(webContent.text, 'xml')
 	result = ''
 	for news in rss_feed.select('item'):
