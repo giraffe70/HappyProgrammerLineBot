@@ -1,7 +1,7 @@
 import requests
 import random
 from bs4 import BeautifulSoup
-
+from linebot.models import *
 
 def bigImgLink(songlink):
 	songContent = requests.get(songlink)
