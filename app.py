@@ -8,8 +8,7 @@ from engine.currencySearch import *
 from engine.OpenWeatherMap import OWMLonLatsearch
 from engine.AQI import AQImonitor
 from engine.gamma import gammamonitor
-from engine.SpotifyScrap import *
-from linebot.models import *
+from engine.SpotifyScrap import scrapSpotify
 
 app = Flask(__name__)
 
@@ -63,44 +62,44 @@ def handle_message(event):
         message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
-        thumbnail_image_url='https://cdn2.ettoday.net/images/3017/d3017273.jpg',
-        title='國立高雄師範大學',
-        text='請選擇動作',
-        actions=[
-            # PostbackAction(
-            #     label='postback',
-            #     display_text='postback text',
-            #     data='action=buy&itemid=1'
-            # ),
-            # label='你好',   # 顯示在畫面上的字
-            MessageAction(
-                label='你好', 
-                text='你好'
-            ),
-            MessageAction(
-                label='查詢美金匯率',   
-                text='USD'
-            ),
-            MessageAction(
-                label='查詢日幣匯率',   
-                text='JPY'
-            ),
-            MessageAction(
-                label='再見',   
-                text='再見'
-            ),
-            URIAction(          # 超連結
-                label='帶我去高師大',
-                uri='https://w3.nknu.edu.tw'
+            thumbnail_image_url='https://cdn2.ettoday.net/images/3017/d3017273.jpg',
+            title='國立高雄師範大學',
+            text='請選擇動作',
+            actions=[
+                # PostbackAction(
+                #     label='postback',
+                #     display_text='postback text',
+                #     data='action=buy&itemid=1'
+                # ),
+                # label='你好',   # 顯示在畫面上的字
+                    MessageAction(
+                        label='你好', 
+                        text='你好'
+                    ),
+                    MessageAction(
+                        label='查詢美金匯率',   
+                        text='USD'
+                    ),
+                    MessageAction(
+                        label='查詢日幣匯率',   
+                        text='JPY'
+                    ),
+                    MessageAction(
+                        label='再見',   
+                        text='再見'
+                    ),
+                    URIAction(          # 超連結
+                        label='帶我去高師大',
+                        uri='https://w3.nknu.edu.tw'
+                    )
+                ]
             )
-            ]
         )
-    )
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
         message = TemplateSendMessage(
         alt_text='ImageCarousel template',
         template=ImageCarouselTemplate(
-            columns=[reply]
+            columns=scrapSpotify
             )
         )
     else:

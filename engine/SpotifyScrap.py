@@ -40,4 +40,3 @@ def scrapSpotify():
 			)
 		)
 	return reply
-print(scrapSpotify())
