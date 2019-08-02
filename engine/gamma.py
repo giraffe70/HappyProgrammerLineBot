@@ -16,5 +16,5 @@ def gammamonitor(lon,lat):
 		if geodesic(placeTuple,stationTuple).km < distance:
 			distance = geodesic(placeTuple,stationTuple).km
 			result = [row['監測值(微西弗/時)'],row['監測站']]
-
+	result = '監測值：{}(微西弗/時)\n在{}監測站\n'.format(row[0], row[1])
 	return result

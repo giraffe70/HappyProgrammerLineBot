@@ -73,8 +73,8 @@ def handle_message(event):
     userLon = event.message.longitude
     
     weatherResult = OWMLonLatsearch(userLon,userLat)
-    AQIResult = AQImonitor(lon,lat)
-    gammaResult = gammamonitor(lon,lat)
+    AQIResult = AQImonitor(userLon,userLat)
+    gammaResult = gammamonitor(userLon,userLat)
     message = TextSendMessage(text='地址：{}\n緯度：{}\n經度：{}\n'.format(userAdd,userLat,userLon))
     message = TextSendMessage(text='天氣狀況：\n{}\n空氣品質：\n{}\n輻射值：\n{}\n'.format(weatherResult, AQIResult, gammaResult))
     line_bot_api.reply_message(event.reply_token, message)
