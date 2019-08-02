@@ -44,7 +44,7 @@ def handle_message(event):
     userId = event.source.user_id
 
     currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
-    byeList = ['goodbye', 'good bye', 'Good bye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
+    byeList = ['goodbye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
     currency = '請輸入你要查詢的匯率：\n1.USD 2.HKD 3.GBP 4.AUD\n 5.CAD 6.SGD 7.CHF 8.JPY\n 9.ZAR  10.SEK 11.NZD 12.THB\n 13.PHP 14.IDR 15.EUR 16.KRW\n 17.VND 18.MYR 19.CNY\n'
     sayHelloList = ['hello', 'Hello', 'Hey', 'hey', 'Hi','hi','哈囉','你好']
 
@@ -56,7 +56,7 @@ def handle_message(event):
         message = TextSendMessage(text=currency)
     elif userSend in currencyList:
         message = TextSendMessage(text=currencySearch(userSend))
-    elif userSend == 'NBA'
+    elif userSend == 'NBA':
         message = TextSendMessage(text=pttSearch('https://www.ptt.cc/bbs/NBA/index.html'))
 
     elif userSend in byeList:
@@ -89,7 +89,7 @@ def handle_message(event):
             )
         )
 
-    elif userSend == 'PTT':
+    elif userSend in ['PTT','Ptt', 'ptt']:
         message = TemplateSendMessage(
             alt_text='網站清單',   
             template=ButtonsTemplate(
