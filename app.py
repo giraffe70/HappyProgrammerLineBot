@@ -67,7 +67,10 @@ def handle_message(event):
 
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_message(event):
-    message = TextSendMessage(text='地圖訊息')
+    userAdd = event.message.address
+    userLat = event.message.latitude
+    userLon = event.message.longitude
+    message = TextSendMessage(text='地址：{}\n緯度：{}\n經度：{}\n'.format(userAdd,userLat,userLon))
     line_bot_api.reply_message(event.reply_token, message)
 
 import os
