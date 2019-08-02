@@ -90,7 +90,7 @@ def handle_message(event):
             )
         )
 
-    elif userSend in ['PTT','Ptt', 'ptt']:
+    elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
         message = TemplateSendMessage(
             alt_text='網站清單',   
             template=ButtonsTemplate(
