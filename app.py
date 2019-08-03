@@ -10,6 +10,7 @@ from engine.AQI import AQImonitor
 from engine.gamma import gammamonitor
 from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import *
+from engine.ibus import *
 
 app = Flask(__name__)
 
@@ -98,6 +99,17 @@ def handle_message(event):
     elif userSend == '排行榜':
         url = 'https://spotifycharts.com/regional'
         message = TextSendMessage(text=spotifyTop30(url))
+
+    # 公車
+    elif userSend == '公車':
+        message = TextSendMessage(text='請輸入查詢的路線：')
+        line_bot_api.reply_message(event.reply_token, message)
+        message = TextSendMessage(text=showRouteList(userSearch))
+        line_bot_api.reply_message(event.reply_token, message)
+        message = TextSendMessage(text='請輸入路線的選項編號：')
+        line_bot_api.reply_message(event.reply_token, message)
+        message = TextSendMessage(text=showRouteResult(userSelect))
+        line_bot_api.reply_message(event.reply_token, message)
 
     elif userSend == '匯率':
         message = TemplateSendMessage(
