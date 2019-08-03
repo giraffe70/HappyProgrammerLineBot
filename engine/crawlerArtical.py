@@ -53,7 +53,7 @@ def spotifyTop30(url):
 	webContent = requests.get(url)
 	webContent.encoding ='utf-8'
 	soup = BeautifulSoup(webContent.text, 'html.parser')
-	result = ''
+	result = 'Spotify Top20：\n'
 	for index,t in enumerate(soup.select('tbody tr')):
 		player = t.select('td')[3].text.split('by ')[1]
 		songName = t.select('td')[3].strong.text
@@ -69,7 +69,7 @@ def spotifyTop30(url):
 		# 下載圖片
 		# download(bigImgLink(imgLink_big), clearName(songName))
 		
-		if index == 29:
+		if index == 19:
 			break
 	return result
 
