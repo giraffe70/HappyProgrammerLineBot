@@ -62,9 +62,10 @@ def spotifyTop30(url):
 
 		result += '排名：{}\n'.format(t.select('td')[1].text)
 		result += '歌名：{}\n'.format(songName)
-		result += '歌手：{}\n圖片連結：{}\n'.format(player, imgLink)
+		# result += '歌手：{}\n圖片連結：{}\n'.format(player, imgLink)
+		result += '歌手：{}\n'.format(player)
 		result += '歌曲連結：{}\n'.format(imgLink_big)
-		result += '\n----------------------------------------------------------------------\n'
+		result += '\n------------------------------------------------------------\n'
 		# 下載圖片
 		# download(bigImgLink(imgLink_big), clearName(songName))
 		
