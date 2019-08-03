@@ -105,7 +105,7 @@ def handle_message(event):
         message = TextSendMessage(text=showRouteList(userSend[3:]))
 
     elif userSend == '{}'.format(userSend):
-        message = TextSendMessage(text=showRouteResult(int(userSend)))
+        message = TextSendMessage(text=showRouteResult(int(userSend,userSend[3:])))
 
         
 
