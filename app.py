@@ -148,8 +148,39 @@ def handle_message(event):
                     MessageAction(
                         label='籃球圈',
                         text='bballman'
+                    ),
+                    MessageAction(
+                        label='三立新聞',
+                        text='NewsLtn'
                     )
-                    
+                ]
+            )
+        )
+
+    elif userSend == 'NewsLtn':
+        message = TemplateSendMessage(
+            alt_text='三立新聞',   
+            template=ButtonsTemplate(
+                thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
+                title='新聞清單',
+                text='請選擇新聞',
+                actions=[
+                    MessageAction(
+                        label='即時',
+                        text='ltnAll'
+                    ),
+                    MessageAction(
+                        label='國際',
+                        text='ltnWorld'
+                    ),
+                    MessageAction(
+                        label='體育',
+                        text='ltnSports'
+                    ),
+                    MessageAction(
+                        label='政治',
+                        text='ltnPolitics'
+                    )
                 ]
             )
         )
