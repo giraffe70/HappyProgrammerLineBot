@@ -102,7 +102,7 @@ def handle_message(event):
 
     # 公車
     elif userSend == '公車-{}'.format(userSend[3:]):
-        message = TextSendMessage(text=showRouteList(event.message.text))
+        message = TextSendMessage(text=showRouteList(userSend[3:]))
 
         
 
