@@ -41,7 +41,7 @@ def bballman_news(url, articleNumber):
 	for index,row in enumerate(soup.select('.ajax-load-con')):
 		if row.a != None:
 			result += '☛' + row.select('a')[0]['title'] + '\n'
-			result += row.select('a')[0]['href'] + '\n'
+			result += row.select('a')[0]['href'] + '\n\n'
 			# result += '\n-----------------------------------------------------------------\n'
 		if index == articleNumber-1:
 			break
@@ -79,10 +79,10 @@ def rssTechNews(url, articleNumber):
 	rss_feed = BeautifulSoup(webContent.text, 'xml')
 	result = ''
 	for index, news in enumerate(rss_feed.select('item')):
-		result += news.find('title').text + '\n'
-		result += news.find('link').text + '\n'
+		result += '▸' + news.find('title').text + '\n'
+		result += news.find('link').text + '\n\n'
 		# result += news.find('pubDate').text + '\n'
-		result += '------------------------------------------------------------\n'
+		# result += '------------------------------------------------------------\n'
 		if index == articleNumber-1:
 			break
 	return result
