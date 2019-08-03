@@ -40,9 +40,9 @@ def bballman_news(url, articleNumber):
 	result = ''
 	for index,row in enumerate(soup.select('.ajax-load-con')):
 		if row.a != None:
-			result += row.select('a')[0]['title'] + '\n'
+			result += ☛row.select('a')[0]['title'] + '\n'
 			result += row.select('a')[0]['href'] + '\n'
-			result += '\n-----------------------------------------------------------------\n'
+			# result += '\n-----------------------------------------------------------------\n'
 		if index == articleNumber-1:
 			break
 	return result
@@ -53,7 +53,7 @@ def spotifyTop30(url):
 	webContent = requests.get(url)
 	webContent.encoding ='utf-8'
 	soup = BeautifulSoup(webContent.text, 'html.parser')
-	result = 'Spotify Top20：\n\n'
+	result = 'Spotify Top30：\n\n'
 	for index,t in enumerate(soup.select('tbody tr')):
 		player = t.select('td')[3].text.split('by ')[1]
 		songName = t.select('td')[3].strong.text
