@@ -101,14 +101,9 @@ def handle_message(event):
         message = TextSendMessage(text=spotifyTop30(url))
 
     # 公車
-    elif userSend == '公車':
-        message1 = TextSendMessage(text='請輸入查詢的路線：')
-        line_bot_api.reply_message(event.reply_token, message1)
-        message2 = TextSendMessage(text=showRouteList(event.message.text))
-        line_bot_api.reply_message(event.reply_token, message2)
-        message3 = TextSendMessage(text='請輸入路線的選項編號：')
-        line_bot_api.reply_message(event.reply_token, message3)
-        message = TextSendMessage(text=showRouteResult(event.message.text))
+    elif userSend == '公車-{}'.format(userSend[3:]):
+        message = TextSendMessage(text=showRouteList(event.message.text))
+
         
 
     elif userSend == '匯率':
