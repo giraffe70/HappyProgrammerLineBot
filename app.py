@@ -101,13 +101,13 @@ def handle_message(event):
         message = TextSendMessage(text=spotifyTop30(url))
 
     # 公車
-    elif userSend == '公車-{}'.format(userSend[3:]):
-        routeList = showRouteList(userSend[3:])
+    elif userSend == '公車-{}'.format(userSend.split('-')[1]):
+        routeList = showRouteList(userSend.split('-')[1])
         message = TextSendMessage(text=routeList)
     elif userSend == '公車-{},{}'.format(userSend.split('-')[1].split(',')[0], userSend.split(',')[1]):
-        # routeResult = showRouteResult(userSend.split('-')[1].split(',')[0], int(userSend.split(',')[1]))
-        route1 = userSend.split('-')[1].split(',')[0]
-        route2 = userSend.split(',')[1]
+        routeResult = showRouteResult(userSend.split('-')[1].split(',')[0], int(userSend.split(',')[1]))
+        # route1 = userSend.split('-')[1].split(',')[0]
+        # route2 = userSend.split(',')[1]
         message = TextSendMessage(text=route1+route2)
 
 
