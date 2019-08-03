@@ -40,7 +40,7 @@ def bballman_news(url, articleNumber):
 	result = ''
 	for index,row in enumerate(soup.select('.ajax-load-con')):
 		if row.a != None:
-			result += ☛row.select('a')[0]['title'] + '\n'
+			result += '☛' + row.select('a')[0]['title'] + '\n'
 			result += row.select('a')[0]['href'] + '\n'
 			# result += '\n-----------------------------------------------------------------\n'
 		if index == articleNumber-1:
