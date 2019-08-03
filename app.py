@@ -94,6 +94,11 @@ def handle_message(event):
     # 再見
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
+    # 排行榜
+    elif userSend == '排行榜':
+        url = 'https://spotifycharts.com/regional'
+        message = TextSendMessage(text=spotify_top30(url))
+
     elif userSend == '匯率':
         message = TemplateSendMessage(
             alt_text='匯率清單',   

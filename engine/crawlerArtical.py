@@ -42,7 +42,7 @@ def bballman_news(url, articleNumber):
 		if row.a != None:
 			result += row.select('a')[0]['title'] + '\n'
 			result += row.select('a')[0]['href'] + '\n'
-			result += '\n------------------------------------------------------------\n'
+			result += '\n-----------------------------------------------------------------\n'
 		if index == articleNumber-1:
 			break
 	return result
@@ -81,7 +81,7 @@ def rssTechNews(url, articleNumber):
 		result += news.find('title').text + '\n'
 		result += news.find('link').text + '\n'
 		# result += news.find('pubDate').text + '\n'
-		result += '-------------------------------------------------------\n'
+		result += '------------------------------------------------------------\n'
 		if index == articleNumber-1:
 			break
 	return result
@@ -95,7 +95,7 @@ def rssNewsLtn(url, articleNumber):
 		result += news.find('title').text + '\n'
 		result += news.find('link').text + '\n'
 		# result += news.find('pubDate').text + '\n'
-		result += '-------------------------------------------------------\n'
+		result += '------------------------------------------------------------\n'
 
 		if index == articleNumber-1:
 			break
