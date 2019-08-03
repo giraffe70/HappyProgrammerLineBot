@@ -75,6 +75,10 @@ def handle_message(event):
         url = 'http://www.bballman.com/category/news'
         message = TextSendMessage(text=bballman_news(url))
 
+    elif userSend == 'ltnAll':
+        url = 'https://news.ltn.com.tw/rss/all.xml'
+        message = TextSendMessage(text=rssNewsLtn(url, 10))
+
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
     elif userSend == '匯率':
@@ -159,10 +163,10 @@ def handle_message(event):
 
     elif userSend == 'NewsLtn':
         message = TemplateSendMessage(
-            alt_text='三立新聞',   
+            alt_text='三立新聞清單',   
             template=ButtonsTemplate(
                 thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
-                title='新聞清單',
+                title='三立新聞',
                 text='請選擇新聞',
                 actions=[
                     MessageAction(
