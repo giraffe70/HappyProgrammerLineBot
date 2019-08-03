@@ -29,13 +29,13 @@ def getRoute(routeid):
     reply = ''
     for route in webContent:
         if route['goback'] == '1':
-            reply += '\n去程：\n'
+            reply += '去程：\n'
         elif route['goback'] == '2':
             reply += '\n返程：\n'
 
         for stop in route['cometime']:
             reply += '{}：{}\n'.format(stop['stopname'], stop['cometime'])
-        reply += '\n------------------------------'
+        reply += '\n---------------------------------------------'
     return reply
 
 
