@@ -97,8 +97,8 @@ def showRouteResult(userSelect):
 
 
 
-userSearch = input('請輸入查詢的路線：')
-print(showRouteList(userSearch))
-userSelect = int(input('\n請輸入路線的選項編號：'))
-print(showRouteResult(userSelect))
+# userSearch = input('請輸入查詢的路線：')
+# print(showRouteList(userSearch))
+# userSelect = int(input('\n請輸入路線的選項編號：'))
+# print(showRouteResult(userSelect))
 

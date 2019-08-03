@@ -104,11 +104,11 @@ def handle_message(event):
     elif userSend == '公車':
         message = TextSendMessage(text='請輸入查詢的路線：')
         line_bot_api.reply_message(event.reply_token, message)
-        message = TextSendMessage(text=showRouteList(userSearch))
+        message = TextSendMessage(text=showRouteList(userSend))
         line_bot_api.reply_message(event.reply_token, message)
         message = TextSendMessage(text='請輸入路線的選項編號：')
         line_bot_api.reply_message(event.reply_token, message)
-        message = TextSendMessage(text=showRouteResult(userSelect))
+        message = TextSendMessage(text=showRouteResult(userSend))
         line_bot_api.reply_message(event.reply_token, message)
 
     elif userSend == '匯率':
