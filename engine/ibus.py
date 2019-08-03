@@ -79,7 +79,7 @@ def showRouteList(userSearch):
         result += '沒有這個路線'
         return result
 
-def showRouteResult(userSelect,userSearch):
+def showRouteResult(userSearch, userSelect):
     routeList = getRouteID(userSearch)
     result = ''
     if len(routeList) == 1:
@@ -100,5 +100,5 @@ def showRouteResult(userSelect,userSearch):
 # userSearch = input('請輸入查詢的路線：')
 # print(showRouteList(userSearch))
 # userSelect = int(input('\n請輸入路線的選項編號：'))
-# print(showRouteResult(userSelect, userSearch))
+# print(showRouteResult(userSearch,userSelect))
 

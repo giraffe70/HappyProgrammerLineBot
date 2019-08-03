@@ -105,7 +105,7 @@ def handle_message(event):
         routeList = showRouteList(userSend[3:])
         message = TextSendMessage(text=routeList)
     elif userSend == '公車-{},{}'.format(userSend.split('-')[1].split(','), userSend,split(',')[1]):
-        routeResult = showRouteList(userSend.split('-')[1].split(','), userSend,split(',')[1])
+        routeResult = showRouteList(userSend.split('-')[1].split(','), int(userSend,split(',')[1]))
         message = TextSendMessage(text=routeResult)
 
 
