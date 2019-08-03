@@ -33,16 +33,18 @@ def pttSearch(url, count=0, result=''):
 	
 
 # 籃球圈
-def bballman_news(url):
+def bballman_news(url, articleNumber):
 	webContent = requests.get(url)
 	webContent.encoding ='utf-8'
 	soup = BeautifulSoup(webContent.text ,  'html.parser')
 	result = ''
-	for row in soup.select('.ajax-load-con'):
+	for index,row in enumerate(soup.select('.ajax-load-con')):
 		if row.a != None:
 			result += row.select('a')[0]['title'] + '\n'
 			result += row.select('a')[0]['href'] + '\n'
 			result += '\n------------------------------------------------------------\n'
+		if index == articleNumber-1:
+			break
 	return result
 
 # spotify
@@ -71,7 +73,7 @@ def spotify_top30(url):
 	return result
 
 # TechNews
-def rssTechNews(url, numberInput):
+def rssTechNews(url, articleNumber):
 	webContent = requests.get(url)
 	rss_feed = BeautifulSoup(webContent.text, 'xml')
 	result = ''
@@ -79,13 +81,13 @@ def rssTechNews(url, numberInput):
 		result += news.find('title').text + '\n'
 		result += news.find('link').text + '\n'
 		# result += news.find('pubDate').text + '\n'
-		result += '----------------------------------------\n'
-		if index == numberInput-1:
+		result += '-------------------------------------------------------\n'
+		if index == articleNumber-1:
 			break
 	return result
 
 # 三立新聞
-def rssNewsLtn(url, numberInput):
+def rssNewsLtn(url, articleNumber):
 	webContent = requests.get(url)
 	rss_feed = BeautifulSoup(webContent.text, 'xml')
 	result = ''
@@ -93,9 +95,9 @@ def rssNewsLtn(url, numberInput):
 		result += news.find('title').text + '\n'
 		result += news.find('link').text + '\n'
 		# result += news.find('pubDate').text + '\n'
-		result += '----------------------------------------\n'
+		result += '-------------------------------------------------------\n'
 
-		if index == numberInput-1:
+		if index == articleNumber-1:
 			break
 	return result
 

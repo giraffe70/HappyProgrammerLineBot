@@ -77,7 +77,7 @@ def handle_message(event):
     # 籃球圈
     elif userSend == 'bballman':
         url = 'http://www.bballman.com/category/news'
-        message = TextSendMessage(text=bballman_news(url))
+        message = TextSendMessage(text=bballman_news(url, 10))
     # 三立新聞
     elif userSend == 'ltnAll':
         url = 'https://news.ltn.com.tw/rss/all.xml'
