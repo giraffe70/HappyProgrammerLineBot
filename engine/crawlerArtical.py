@@ -48,7 +48,7 @@ def bballman_news(url, articleNumber):
 	return result
 
 # spotify
-def spotify_top30(url):
+def spotifyTop30(url):
 	# url = 'https://spotifycharts.com/regional'
 	webContent = requests.get(url)
 	webContent.encoding ='utf-8'

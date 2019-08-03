@@ -97,7 +97,7 @@ def handle_message(event):
     # 排行榜
     elif userSend == '排行榜':
         url = 'https://spotifycharts.com/regional'
-        message = TextSendMessage(text=spotify_top30(url))
+        message = TextSendMessage(text=spotifyTop30(url))
 
     elif userSend == '匯率':
         message = TemplateSendMessage(
