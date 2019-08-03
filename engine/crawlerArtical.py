@@ -20,8 +20,8 @@ def pttSearch(url, count=0, result=''):
 			if push.isdigit() and int(push) > 50 or push=='爆':
 				link = artical.select('.title a')[0]['href']
 				count += 1
-				result += '{}https://www.ptt.cc{}\t{}\n'.format(title, link, date)
-				result += '\n------------------------------------------------------------\n'
+				result += '{}https://www.ptt.cc{}\t{}\n\n'.format(title, link, date)
+				# result += '\n------------------------------------------------------------\n'
 
 	if count < 10:
 		paging = soup.select('div .btn-group-paging a')
@@ -40,7 +40,7 @@ def bballman_news(url, articleNumber):
 	result = ''
 	for index,row in enumerate(soup.select('.ajax-load-con')):
 		if row.a != None:
-			result += '☛' + row.select('a')[0]['title'] + '\n'
+			result += row.select('a')[0]['title'] + '\n'
 			result += row.select('a')[0]['href'] + '\n\n'
 			# result += '\n-----------------------------------------------------------------\n'
 		if index == articleNumber-1:
@@ -79,7 +79,7 @@ def rssTechNews(url, articleNumber):
 	rss_feed = BeautifulSoup(webContent.text, 'xml')
 	result = ''
 	for index, news in enumerate(rss_feed.select('item')):
-		result += '▸' + news.find('title').text + '\n'
+		result += news.find('title').text + '\n'
 		result += news.find('link').text + '\n\n'
 		# result += news.find('pubDate').text + '\n'
 		# result += '------------------------------------------------------------\n'
@@ -94,9 +94,9 @@ def rssNewsLtn(url, articleNumber):
 	result = ''
 	for index, news in enumerate(rss_feed.select('item')):
 		result += news.find('title').text + '\n'
-		result += news.find('link').text + '\n'
+		result += news.find('link').text + '\n\n'
 		# result += news.find('pubDate').text + '\n'
-		result += '------------------------------------------------------------\n'
+		# result += '------------------------------------------------------------\n'
 
 		if index == articleNumber-1:
 			break
