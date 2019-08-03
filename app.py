@@ -56,6 +56,7 @@ def handle_message(event):
         message = TextSendMessage(text=currency)
     elif userSend in currencyList:
         message = TextSendMessage(text=currencySearch(userSend))
+    # PTT
     elif userSend == 'NBA':
         url = 'https://www.ptt.cc/bbs/NBA/index.html'
         message = TextSendMessage(text=pttSearch(url))
@@ -74,9 +75,18 @@ def handle_message(event):
     elif userSend == 'bballman':
         url = 'http://www.bballman.com/category/news'
         message = TextSendMessage(text=bballman_news(url))
-
+    # 三立新聞
     elif userSend == 'ltnAll':
         url = 'https://news.ltn.com.tw/rss/all.xml'
+        message = TextSendMessage(text=rssNewsLtn(url, 10))
+    elif userSend == 'ltnWorld':
+        url = 'https://news.ltn.com.tw/rss/world.xml'
+        message = TextSendMessage(text=rssNewsLtn(url, 10))
+    elif userSend == 'ltnSports':
+        url = 'https://news.ltn.com.tw/rss/sports.xml'
+        message = TextSendMessage(text=rssNewsLtn(url, 10))
+    elif userSend == 'ltnPolitics':
+        url = 'https://news.ltn.com.tw/rss/politics.xml'
         message = TextSendMessage(text=rssNewsLtn(url, 10))
 
     elif userSend in byeList:
