@@ -71,15 +71,17 @@ def spotify_top30(url):
 	return result
 
 # TechNews
-def rssTechNews(url):
+def rssTechNews(url, numberInput):
 	webContent = requests.get(url)
 	rss_feed = BeautifulSoup(webContent.text, 'xml')
 	result = ''
-	for news in rss_feed.select('item'):
-		result += '\n' + news.find('title').text + '\n'
+	for index, news in enumerate(rss_feed.select('item')):
+		result += news.find('title').text + '\n'
 		result += news.find('link').text + '\n'
 		# result += news.find('pubDate').text + '\n'
-		result += '\n----------------------------------------------------------------------\n'
+		result += '----------------------------------------\n'
+		if index == numberInput-1:
+			break
 	return result
 
 # 三立新聞
@@ -88,10 +90,10 @@ def rssNewsLtn(url, numberInput):
 	rss_feed = BeautifulSoup(webContent.text, 'xml')
 	result = ''
 	for index, news in enumerate(rss_feed.select('item')):
-		result += '\n' + news.find('title').text + '\n'
+		result += news.find('title').text + '\n'
 		result += news.find('link').text + '\n'
 		# result += news.find('pubDate').text + '\n'
-		result += '\n------------------------------------------------------------\n'
+		result += '----------------------------------------\n'
 
 		if index == numberInput-1:
 			break

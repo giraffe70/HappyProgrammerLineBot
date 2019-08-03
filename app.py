@@ -52,6 +52,7 @@ def handle_message(event):
         message = TextSendMessage(text='Hello, ' + userId)
     elif userSend == '功能':
         message = TextSendMessage(text='目前的功能有：匯率、音樂、天氣、批踢踢、新聞')
+    # 匯率
     elif userSend == '匯率清單':
         message = TextSendMessage(text=currency)
     elif userSend in currencyList:
@@ -69,9 +70,11 @@ def handle_message(event):
     elif userSend == 'HatePolitics':
         url = 'https://www.ptt.cc/bbs/HatePolitics/index.html'
         message = TextSendMessage(text=pttSearch(url))
+    # 科技新報
     elif userSend == 'TechNews':
         url = 'https://technews.tw/tn-rss/'
-        message = TextSendMessage(text=rssTechNews(url))
+        message = TextSendMessage(text=rssTechNews(url, 10))
+    # 籃球圈
     elif userSend == 'bballman':
         url = 'http://www.bballman.com/category/news'
         message = TextSendMessage(text=bballman_news(url))
@@ -88,7 +91,7 @@ def handle_message(event):
     elif userSend == 'ltnPolitics':
         url = 'https://news.ltn.com.tw/rss/politics.xml'
         message = TextSendMessage(text=rssNewsLtn(url, 10))
-
+    # 再見
     elif userSend in byeList:
         message = StickerSendMessage(package_id='11537',sticker_id='52002758')
     elif userSend == '匯率':
