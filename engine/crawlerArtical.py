@@ -69,7 +69,7 @@ def spotifyTop30(url):
 		# 下載圖片
 		# download(bigImgLink(imgLink_big), clearName(songName))
 		
-		if index == 19:
+		if index == 29:
 			break
 	return result
 
