@@ -104,6 +104,9 @@ def handle_message(event):
     elif userSend == '公車-{}'.format(userSend[3:]):
         message = TextSendMessage(text=showRouteList(userSend[3:]))
 
+    elif userSend == '{}'.format(userSend):
+        message = TextSendMessage(text=showRouteResult(int(userSend)))
+
         
 
     elif userSend == '匯率':
