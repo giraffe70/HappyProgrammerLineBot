@@ -67,7 +67,7 @@ def handle_message(event):
                     ),
                     MessageAction(
                         label='查詢人民幣匯率',
-                        text=''
+                        text='CNY'
                     ),
                     MessageAction(
                         label='查詢其他匯率',
