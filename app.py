@@ -82,7 +82,7 @@ def handle_message(event):
         )
     elif userSend == '匯率清單':
         message = TextSendMessage(text=currency)
-    elif userSend in currencyList:
+    elif userSend.upper() in currencyList:
         message = TextSendMessage(text=currencySearch(userSend.upper()))
     # PTT
     elif userSend == 'NBA':
