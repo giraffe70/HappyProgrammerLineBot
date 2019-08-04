@@ -51,12 +51,39 @@ def handle_message(event):
     if userSend in sayHelloList:
         message = TextSendMessage(text='Hello, ' + userId)
     elif userSend == '功能':
-        message = TextSendMessage(text='目前的功能有：匯率、音樂、天氣、批踢踢、新聞、排行榜、公車')
+        message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、排行榜')
     # 匯率
+    elif userSend == '匯率':
+        message = TemplateSendMessage(
+            alt_text='匯率清單',   
+            template=ButtonsTemplate(
+                thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
+                title='匯率查詢',
+                text='請選擇動作',
+                actions=[
+                    MessageAction(
+                        label='查詢美金匯率',
+                        text='USD'
+                    ),
+                    MessageAction(
+                        label='查詢人民幣匯率',
+                        text=''
+                    ),
+                    MessageAction(
+                        label='查詢其他匯率',
+                        text='匯率清單'
+                    ),
+                    URIAction(
+                        label='連結網址',
+                        uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
+                    )
+                ]
+            )
+        )
     elif userSend == '匯率清單':
         message = TextSendMessage(text=currency)
     elif userSend in currencyList:
-        message = TextSendMessage(text=currencySearch(userSend))
+        message = TextSendMessage(text=currencySearch(userSend.upper()))
     # PTT
     elif userSend == 'NBA':
         url = 'https://www.ptt.cc/bbs/NBA/index.html'
@@ -98,34 +125,9 @@ def handle_message(event):
     elif userSend == '排行榜':
         url = 'https://spotifycharts.com/regional'
         message = TextSendMessage(text=spotifyTop30(url))
-
-    elif userSend == '匯率':
-        message = TemplateSendMessage(
-            alt_text='匯率清單',   
-            template=ButtonsTemplate(
-                thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
-                title='匯率查詢',
-                text='請選擇動作',
-                actions=[
-                    MessageAction(
-                        label='查詢美金匯率',
-                        text='USD'
-                    ),
-                    MessageAction(
-                        label='查詢日幣匯率',
-                        text='JPY'
-                    ),
-                    MessageAction(
-                        label='查詢其他匯率',
-                        text='匯率清單'
-                    ),
-                    URIAction(
-                        label='連結網址',
-                        uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
-                    )
-                ]
-            )
-        )
+    # 天氣
+    elif userSend == '天氣':
+        message = TextSendMessage(text='請傳入座標位置')
 
     elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
         message = TemplateSendMessage(
