@@ -19,7 +19,8 @@ creds = ServiceAccountCredentials.from_json_keyfile_name('HappyProgrammer.json',
 client = gspread.authorize(creds)
 
 LineBotSheet = client.open('happy programmer')
-usersSheet = LineBotSheet.worksheet('users')
+userStatusSheet = LineBotSheet.worksheet('userStatus')
+userInfoSheet = LineBotSheet.worksheet('userInfo')
 
 app = Flask(__name__)
 
@@ -53,184 +54,192 @@ def handle_message(event):
     userSend = event.message.text
     userId = event.source.user_id
     try:
-        cell = usersSheet.find(userID)
+        cell = userStatusSheet.find(userID)
         userRow = cell.row
         userCol = cell.col
-        status = usersSheet.cell(cell,row,2).value
+        status = userStatusSheet.cell(cell.row,2).value
     except:
-        usersSheet.append_row([userId])
-        cell = usersSheet.find(userID) 
+        userStatusSheet.append_row([userID])
+        userInfoSheet.append_row([userID])
+        cell = userStatusSheet.find(userID)
         userRow = cell.row
         userCol = cell.col
         status = ''
+    if status == '':
+        message = TextSendMessage(text='請輸入姓名，讓我認識你！')
+        userStatusSheet.update_cell(userRow, 2, '註冊中')
+    elif status == '註冊中':
+        userInfoSheet.update_cell(userRow, 2, userSend)
+        userStatusSheet.update_cell(userRow, 2, '已註冊')
+        message = TextSendMessage(text='Hi,{}'.format(userSend))
+    elif status == '已註冊':
+        currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
+        byeList = ['goodbye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
+        currency = '請輸入你要查詢的匯率：\n1.USD 2.HKD 3.GBP 4.AUD\n 5.CAD 6.SGD 7.CHF 8.JPY\n 9.ZAR  10.SEK 11.NZD 12.THB\n 13.PHP 14.IDR 15.EUR 16.KRW\n 17.VND 18.MYR 19.CNY\n'
+        sayHelloList = ['hello', 'Hello', 'Hey', 'hey', 'Hi','hi','哈囉','你好']
 
-    currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
-    byeList = ['goodbye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
-    currency = '請輸入你要查詢的匯率：\n1.USD 2.HKD 3.GBP 4.AUD\n 5.CAD 6.SGD 7.CHF 8.JPY\n 9.ZAR  10.SEK 11.NZD 12.THB\n 13.PHP 14.IDR 15.EUR 16.KRW\n 17.VND 18.MYR 19.CNY\n'
-    sayHelloList = ['hello', 'Hello', 'Hey', 'hey', 'Hi','hi','哈囉','你好']
-
-    if userSend in sayHelloList:
-        message = TextSendMessage(text='Hello, ' + userId)
-    elif userSend == '功能':
-        message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、排行榜')
-    # 匯率
-    elif userSend == '匯率':
-        message = TemplateSendMessage(
-            alt_text='匯率清單',   
-            template=ButtonsTemplate(
-                thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
-                title='匯率查詢',
-                text='請選擇動作',
-                actions=[
-                    MessageAction(
-                        label='查詢美金匯率',
-                        text='USD'
-                    ),
-                    MessageAction(
-                        label='查詢人民幣匯率',
-                        text='CNY'
-                    ),
-                    MessageAction(
-                        label='查詢其他匯率',
-                        text='匯率清單'
-                    ),
-                    URIAction(
-                        label='連結網址',
-                        uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
-                    )
-                ]
+        if userSend in sayHelloList:
+            message = TextSendMessage(text='Hello, ' + userId)
+        elif userSend == '功能':
+            message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、排行榜')
+        # 匯率
+        elif userSend == '匯率':
+            message = TemplateSendMessage(
+                alt_text='匯率清單',   
+                template=ButtonsTemplate(
+                    thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
+                    title='匯率查詢',
+                    text='請選擇動作',
+                    actions=[
+                        MessageAction(
+                            label='查詢美金匯率',
+                            text='USD'
+                        ),
+                        MessageAction(
+                            label='查詢人民幣匯率',
+                            text='CNY'
+                        ),
+                        MessageAction(
+                            label='查詢其他匯率',
+                            text='匯率清單'
+                        ),
+                        URIAction(
+                            label='連結網址',
+                            uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
+                        )
+                    ]
+                )
             )
-        )
-    elif userSend == '匯率清單':
-        message = TextSendMessage(text=currency)
-    elif userSend.upper() in currencyList:
-        message = TextSendMessage(text=currencySearch(userSend.upper()))
-    # PTT
-    elif userSend == 'NBA':
-        url = 'https://www.ptt.cc/bbs/NBA/index.html'
-        message = TextSendMessage(text=pttSearch(url))
-    elif userSend == 'Badminton':
-        url = 'https://www.ptt.cc/bbs/Badminton/index.html'
-        message = TextSendMessage(text=pttSearch(url))
-    elif userSend == 'Gossiping':
-        url = 'https://www.ptt.cc/bbs/Gossiping/index.html'
-        message = TextSendMessage(text=pttSearch(url))
-    elif userSend == 'HatePolitics':
-        url = 'https://www.ptt.cc/bbs/HatePolitics/index.html'
-        message = TextSendMessage(text=pttSearch(url))
-    # 科技新報
-    elif userSend == 'TechNews':
-        url = 'https://technews.tw/tn-rss/'
-        message = TextSendMessage(text=rssTechNews(url, 10))
-    # 籃球圈
-    elif userSend == 'bballman':
-        url = 'http://www.bballman.com/category/news'
-        message = TextSendMessage(text=bballman_news(url, 10))
-    # 三立新聞
-    elif userSend == 'ltnAll':
-        url = 'https://news.ltn.com.tw/rss/all.xml'
-        message = TextSendMessage(text=rssNewsLtn(url, 10))
-    elif userSend == 'ltnWorld':
-        url = 'https://news.ltn.com.tw/rss/world.xml'
-        message = TextSendMessage(text=rssNewsLtn(url, 10))
-    elif userSend == 'ltnSports':
-        url = 'https://news.ltn.com.tw/rss/sports.xml'
-        message = TextSendMessage(text=rssNewsLtn(url, 10))
-    elif userSend == 'ltnPolitics':
-        url = 'https://news.ltn.com.tw/rss/politics.xml'
-        message = TextSendMessage(text=rssNewsLtn(url, 10))
-    # 再見
-    elif userSend in byeList:
-        message = StickerSendMessage(package_id='11537',sticker_id='52002758')
-    # 排行榜
-    elif userSend == '排行榜':
-        url = 'https://spotifycharts.com/regional'
-        message = TextSendMessage(text=spotifyTop30(url))
-    # 天氣
-    elif userSend == '天氣':
-        # message = TextSendMessage(text='請傳入座標位置')
-        usersSheet.update_cell(userRow, 2, '天氣查詢')
-        message = TextSendMessage(text="請傳送你的座標")
+        elif userSend == '匯率清單':
+            message = TextSendMessage(text=currency)
+        elif userSend.upper() in currencyList:
+            message = TextSendMessage(text=currencySearch(userSend.upper()))
+        # PTT
+        elif userSend == 'NBA':
+            url = 'https://www.ptt.cc/bbs/NBA/index.html'
+            message = TextSendMessage(text=pttSearch(url))
+        elif userSend == 'Badminton':
+            url = 'https://www.ptt.cc/bbs/Badminton/index.html'
+            message = TextSendMessage(text=pttSearch(url))
+        elif userSend == 'Gossiping':
+            url = 'https://www.ptt.cc/bbs/Gossiping/index.html'
+            message = TextSendMessage(text=pttSearch(url))
+        elif userSend == 'HatePolitics':
+            url = 'https://www.ptt.cc/bbs/HatePolitics/index.html'
+            message = TextSendMessage(text=pttSearch(url))
+        # 科技新報
+        elif userSend == 'TechNews':
+            url = 'https://technews.tw/tn-rss/'
+            message = TextSendMessage(text=rssTechNews(url, 10))
+        # 籃球圈
+        elif userSend == 'bballman':
+            url = 'http://www.bballman.com/category/news'
+            message = TextSendMessage(text=bballman_news(url, 10))
+        # 三立新聞
+        elif userSend == 'ltnAll':
+            url = 'https://news.ltn.com.tw/rss/all.xml'
+            message = TextSendMessage(text=rssNewsLtn(url, 10))
+        elif userSend == 'ltnWorld':
+            url = 'https://news.ltn.com.tw/rss/world.xml'
+            message = TextSendMessage(text=rssNewsLtn(url, 10))
+        elif userSend == 'ltnSports':
+            url = 'https://news.ltn.com.tw/rss/sports.xml'
+            message = TextSendMessage(text=rssNewsLtn(url, 10))
+        elif userSend == 'ltnPolitics':
+            url = 'https://news.ltn.com.tw/rss/politics.xml'
+            message = TextSendMessage(text=rssNewsLtn(url, 10))
+        # 再見
+        elif userSend in byeList:
+            message = StickerSendMessage(package_id='11537',sticker_id='52002758')
+        # 排行榜
+        elif userSend == '排行榜':
+            url = 'https://spotifycharts.com/regional'
+            message = TextSendMessage(text=spotifyTop30(url))
+        # 天氣
+        elif userSend == '天氣':
+            # message = TextSendMessage(text='請傳入座標位置')
+            usersSheet.update_cell(userRow, 2, '天氣查詢')
+            message = TextSendMessage(text="請傳送你的座標")
 
-    elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
-        message = TemplateSendMessage(
-            alt_text='PTT清單',   
-            template=ButtonsTemplate(
-                thumbnail_image_url='https://static.newmobilelife.com/wp-content/uploads/2018/09/Shortcuts-PTT.jpg',
-                title='PTT',
-                text='請選擇看版',
-                actions=[
-                    MessageAction(
-                        label='NBA',
-                        text='NBA'
-                    ),
-                    MessageAction(
-                        label='Badminton',
-                        text='Badminton'
-                    ),
-                    MessageAction(
-                        label='Gossiping',
-                        text='Gossiping'
-                    ),
-                    MessageAction(
-                        label='HatePolitics',
-                        text='HatePolitics'
-                    )
-                ]
+        elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
+            message = TemplateSendMessage(
+                alt_text='PTT清單',   
+                template=ButtonsTemplate(
+                    thumbnail_image_url='https://static.newmobilelife.com/wp-content/uploads/2018/09/Shortcuts-PTT.jpg',
+                    title='PTT',
+                    text='請選擇看版',
+                    actions=[
+                        MessageAction(
+                            label='NBA',
+                            text='NBA'
+                        ),
+                        MessageAction(
+                            label='Badminton',
+                            text='Badminton'
+                        ),
+                        MessageAction(
+                            label='Gossiping',
+                            text='Gossiping'
+                        ),
+                        MessageAction(
+                            label='HatePolitics',
+                            text='HatePolitics'
+                        )
+                    ]
+                )
             )
-        )
 
-    elif userSend in ['新聞', 'news', 'News']:
-        message = TemplateSendMessage(
-            alt_text='新聞清單',   
-            template=ButtonsTemplate(
-                thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
-                title='新聞網',
-                text='請選擇新聞網',
-                actions=[
-                    MessageAction(
-                        label='科技新報',
-                        text='TechNews'
-                    ),
-                    MessageAction(
-                        label='籃球圈',
-                        text='bballman'
-                    ),
-                    MessageAction(
-                        label='三立新聞',
-                        text='NewsLtn'
-                    )
-                ]
+        elif userSend in ['新聞', 'news', 'News']:
+            message = TemplateSendMessage(
+                alt_text='新聞清單',   
+                template=ButtonsTemplate(
+                    thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
+                    title='新聞網',
+                    text='請選擇新聞網',
+                    actions=[
+                        MessageAction(
+                            label='科技新報',
+                            text='TechNews'
+                        ),
+                        MessageAction(
+                            label='籃球圈',
+                            text='bballman'
+                        ),
+                        MessageAction(
+                            label='三立新聞',
+                            text='NewsLtn'
+                        )
+                    ]
+                )
             )
-        )
 
-    elif userSend == 'NewsLtn':
-        message = TemplateSendMessage(
-            alt_text='三立新聞清單',   
-            template=ButtonsTemplate(
-                thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
-                title='三立新聞',
-                text='請選擇新聞',
-                actions=[
-                    MessageAction(
-                        label='即時',
-                        text='ltnAll'
-                    ),
-                    MessageAction(
-                        label='國際',
-                        text='ltnWorld'
-                    ),
-                    MessageAction(
-                        label='體育',
-                        text='ltnSports'
-                    ),
-                    MessageAction(
-                        label='政治',
-                        text='ltnPolitics'
-                    )
-                ]
+        elif userSend == 'NewsLtn':
+            message = TemplateSendMessage(
+                alt_text='三立新聞清單',   
+                template=ButtonsTemplate(
+                    thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
+                    title='三立新聞',
+                    text='請選擇新聞',
+                    actions=[
+                        MessageAction(
+                            label='即時',
+                            text='ltnAll'
+                        ),
+                        MessageAction(
+                            label='國際',
+                            text='ltnWorld'
+                        ),
+                        MessageAction(
+                            label='體育',
+                            text='ltnSports'
+                        ),
+                        MessageAction(
+                            label='政治',
+                            text='ltnPolitics'
+                        )
+                    ]
+                )
             )
-        )
 
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
         columnReply, textReply = scrapSpotify()
