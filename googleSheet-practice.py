@@ -5,7 +5,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name('HappyProgrammer.json',
 
 client = gspread.authorize(creds)
 
-LineBotSheet = client.open('HappyProgrammerLineBot')
+LineBotSheet = client.open('happy programmer')
 usersSheet = LineBotSheet.worksheet('users')
 
 #寫入
@@ -14,7 +14,7 @@ usersSheet.update_cell(1, 1, 'Roy')
 usersSheet.update_cell(2, 1, 'Audio')
 
 #讀值
-print(usersSheet.cell(1,3).value)
+print(usersSheet.cell(1,1).value)
 
 #搜尋
 cell = usersSheet.find('Audio')

@@ -10,6 +10,16 @@ from engine.AQI import AQImonitor
 from engine.gamma import gammamonitor
 from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import *
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+scope=['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+creds = ServiceAccountCredentials.from_json_keyfile_name('HappyProgrammer.json',scope)
+
+client = gspread.authorize(creds)
+
+LineBotSheet = client.open('happy programmer')
+usersSheet = LineBotSheet.worksheet('users')
 
 app = Flask(__name__)
 
@@ -42,6 +52,17 @@ def handle_message(event):
 
     userSend = event.message.text
     userId = event.source.user_id
+    try:
+        cell = usersSheet.find(userID)
+        userRow = cell.row
+        userCol = cell.col
+        status = usersSheet.cell(cell,row,2).value
+    except:
+        usersSheet.append_row([userId])
+        cell = usersSheet.find(userID) 
+        userRow = cell.row
+        userCol = cell.col
+        status = ''
 
     currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
     byeList = ['goodbye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
@@ -127,7 +148,9 @@ def handle_message(event):
         message = TextSendMessage(text=spotifyTop30(url))
     # 天氣
     elif userSend == '天氣':
-        message = TextSendMessage(text='請傳入座標位置')
+        # message = TextSendMessage(text='請傳入座標位置')
+        usersSheet.update_cell(userRow, 2, '天氣查詢')
+        message = TextSendMessage(text="請傳送你的座標")
 
     elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
         message = TemplateSendMessage(
@@ -228,15 +251,31 @@ def handle_message(event):
 
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_message(event):
-    userAdd = event.message.address
-    userLat = event.message.latitude
-    userLon = event.message.longitude
-    
-    weatherResult = OWMLonLatsearch(userLon,userLat)
-    AQIResult = AQImonitor(userLon,userLat)
-    gammaResult = gammamonitor(userLon,userLat)
-    # message = TextSendMessage(text='地址：{}\n緯度：{}\n經度：{}\n'.format(userAdd,userLat,userLon))
-    message = TextSendMessage(text='⛅天氣狀況：\n{}\n☁空氣品質：\n{}\n☀輻射值：\n{}\n'.format(weatherResult, AQIResult, gammaResult))
+    userId = event.source.user_id
+    try:
+        cell = usersSheet.find(userID)
+        userRow = cell.row
+        userCol = cell.col
+        status = usersSheet.cell(cell,row,2).value
+    except:
+        usersSheet.append_row([userId])
+        cell = usersSheet.find(userID) 
+        userRow = cell.row
+        userCol = cell.col
+        status = ''
+    if status == "天氣查詢":   
+        userAdd = event.message.address
+        userLat = event.message.latitude
+        userLon = event.message.longitude
+        
+        weatherResult = OWMLonLatsearch(userLon,userLat)
+        AQIResult = AQImonitor(userLon,userLat)
+        gammaResult = gammamonitor(userLon,userLat)
+        usersSheet.update_cell(userRow, 2, '')
+        # message = TextSendMessage(text='地址：{}\n緯度：{}\n經度：{}\n'.format(userAdd,userLat,userLon))
+        message = TextSendMessage(text='⛅天氣狀況：\n{}\n☁空氣品質：\n{}\n☀輻射值：\n{}\n'.format(weatherResult, AQIResult, gammaResult))
+    else:
+        message = TextSendMessage(text='傳地址幹嘛?')
     line_bot_api.reply_message(event.reply_token, message)
 
 import os
