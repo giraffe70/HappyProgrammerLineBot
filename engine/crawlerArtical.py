@@ -20,8 +20,7 @@ def pttSearch(url, count=0, result=''):
 			if push.isdigit() and int(push) > 50 or push=='爆':
 				link = artical.select('.title a')[0]['href']
 				count += 1
-				result += '{}https://www.ptt.cc{}\t{}\n\n'.format(title, link, date)
-				# result += '\n------------------------------------------------------------\n'
+				result += '{}https://www.ptt.cc{}\t{}\n'.format(title, link, date)
 
 	if count < 10:
 		paging = soup.select('div .btn-group-paging a')
@@ -42,7 +41,6 @@ def bballman_news(url, articleNumber):
 		if row.a != None:
 			result += row.select('a')[0]['title'] + '\n'
 			result += row.select('a')[0]['href'] + '\n\n'
-			# result += '\n-----------------------------------------------------------------\n'
 		if index == articleNumber-1:
 			break
 	return result
@@ -65,7 +63,6 @@ def spotifyTop30(url):
 		# result += '歌手：{}\n圖片連結：{}\n'.format(player, imgLink)
 		result += '歌手：{}\n'.format(player)
 		# result += '歌曲連結：{}\n'.format(imgLink_big)
-		# result += '-------------------------------------------------------\n'
 		# 下載圖片
 		# download(bigImgLink(imgLink_big), clearName(songName))
 		
@@ -82,7 +79,6 @@ def rssTechNews(url, articleNumber):
 		result += news.find('title').text + '\n'
 		result += news.find('link').text + '\n\n'
 		# result += news.find('pubDate').text + '\n'
-		# result += '------------------------------------------------------------\n'
 		if index == articleNumber-1:
 			break
 	return result
@@ -96,8 +92,6 @@ def rssNewsLtn(url, articleNumber):
 		result += news.find('title').text + '\n'
 		result += news.find('link').text + '\n\n'
 		# result += news.find('pubDate').text + '\n'
-		# result += '------------------------------------------------------------\n'
-
 		if index == articleNumber-1:
 			break
 	return result
