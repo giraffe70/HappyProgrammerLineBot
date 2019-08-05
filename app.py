@@ -158,8 +158,8 @@ def handle_message(event):
         # 天氣
         elif userSend == '天氣':
             # message = TextSendMessage(text='請傳入座標位置')
-            usersSheet.update_cell(userRow, 2, '天氣查詢')
-            message = TextSendMessage(text="請傳送你的座標")
+            userStatusSheet.update_cell(userRow, 2, '天氣查詢')
+            message = TextSendMessage(text='請傳送你的座標')
 
         elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
             message = TemplateSendMessage(
@@ -280,7 +280,7 @@ def handle_message(event):
         weatherResult = OWMLonLatsearch(userLon,userLat)
         AQIResult = AQImonitor(userLon,userLat)
         gammaResult = gammamonitor(userLon,userLat)
-        usersSheet.update_cell(userRow, 2, '')
+        usersSheet.update_cell(userRow, 2, '已註冊')
         # message = TextSendMessage(text='地址：{}\n緯度：{}\n經度：{}\n'.format(userAdd,userLat,userLon))
         message = TextSendMessage(text='⛅天氣狀況：\n{}\n☁空氣品質：\n{}\n☀輻射值：\n{}\n'.format(weatherResult, AQIResult, gammaResult))
     else:
