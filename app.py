@@ -52,7 +52,7 @@ def callback():
 def handle_message(event):
 
     userSend = event.message.text
-    userId = event.source.user_id
+    userID = event.source.user_id
     try:
         cell = userStatusSheet.find(userID)
         userRow = cell.row
@@ -262,13 +262,13 @@ def handle_message(event):
 def handle_message(event):
     userId = event.source.user_id
     try:
-        cell = usersSheet.find(userID)
+        cell = userStatusSheet.find(userID)
         userRow = cell.row
         userCol = cell.col
-        status = usersSheet.cell(cell,row,2).value
+        status = userStatusSheet.cell(cell.row,2).value
     except:
-        usersSheet.append_row([userId])
-        cell = usersSheet.find(userID) 
+        userStatusSheet.append_row([userID])
+        cell = userStatusSheet.find(userID)
         userRow = cell.row
         userCol = cell.col
         status = ''
