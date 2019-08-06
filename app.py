@@ -76,6 +76,14 @@ def handle_message(event):
         userStatusSheet.update_cell(userRow, 2, '已註冊')
         message = TextSendMessage(text='Hi,{}'.format(userSend))
 
+    elif status == '旅遊查詢':
+        place = readJsonFilter(userSend)
+        if len(showList(place)) <= 2000:
+            message = TextSendMessage(text=showList(place))
+            userStatusSheet.update_cell(userRow, 3, '')
+        elif len(showList(place)) > 2000:
+            message = TextSendMessage(text="請輸入小一點的範圍")
+            
     elif member == '已註冊':
         currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
         byeList = ['goodbye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
@@ -250,14 +258,6 @@ def handle_message(event):
                     ]
                 )
             )
-
-    elif status == '旅遊查詢':
-        place = readJsonFilter(userSend)
-        if len(showList(place)) <= 2000:
-            message = TextSendMessage(text=showList(place))
-            userStatusSheet.update_cell(userRow, 3, '')
-        elif len(showList(place)) > 2000:
-            message = TextSendMessage(text="請輸入小一點的範圍")
 
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
         columnReply, textReply = scrapSpotify()
