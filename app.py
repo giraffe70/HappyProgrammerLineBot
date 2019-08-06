@@ -81,8 +81,9 @@ def handle_message(event):
             message = TextSendMessage(text=showList(place))
         elif len(showList(place)) > 2000:
             message = TextSendMessage(text="請輸入小一點的範圍")
-        else:
+        elif userSend not in showList(place):
             message = TextSendMessage(text="沒有這個地點")
+        userStatusSheet.update_cell(userRow, 3, '')
 
         
 
