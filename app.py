@@ -258,7 +258,6 @@ def handle_message(event):
             userStatusSheet.update_cell(userRow, 3, '')
         elif len(showList(place)) > 2000:
             message = TextSendMessage(text="請輸入小一點的範圍")
-        message = TextSendMessage(text="找不到這個地方")
 
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
         columnReply, textReply = scrapSpotify()
