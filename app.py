@@ -92,7 +92,7 @@ def handle_message(event):
         if userSend in ['hello', 'Hello', 'Hey', 'hey', 'Hi','hi','哈囉','你好']:
             userName = userInfoSheet.cell(cell.row,2).value
             message = TextSendMessage(text='Hello, ' + userName)
-        elif userSend == '功能':
+        elif userSend in ['功能', '安安', '能做甚麼', '能幹嘛', '可以幹嘛']:
             message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、排行榜、旅遊')
         # 匯率
         elif userSend == '匯率':
