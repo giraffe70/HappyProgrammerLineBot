@@ -76,8 +76,6 @@ def handle_message(event):
         userStatusSheet.update_cell(userRow, 2, '已註冊')
         message = TextSendMessage(text='Hi,{}'.format(userSend))
 
-        
-
     elif member == '已註冊':
         currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
         byeList = ['goodbye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
@@ -88,6 +86,9 @@ def handle_message(event):
             message = TextSendMessage(text='Hello, ' + userName)
         elif userSend in ['功能', '安安', '能做甚麼', '能幹嘛', '可以幹嘛']:
             message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、排行榜、旅遊')
+        elif userSend in ['狀態清空', '清空']:
+            message = TextSendMessage(text='狀態已清空！')
+            userStatusSheet.update_cell(userRow, 3, '')
         # 匯率
         elif userSend == '匯率':
             message = TemplateSendMessage(
@@ -257,8 +258,7 @@ def handle_message(event):
             userStatusSheet.update_cell(userRow, 3, '')
         elif len(showList(place)) > 2000:
             message = TextSendMessage(text="請輸入小一點的範圍")
-        else:
-            message = TextSendMessage(text="找不到，請重新輸入")
+        message = TextSendMessage(text="找不到這個地方")
 
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
         columnReply, textReply = scrapSpotify()
