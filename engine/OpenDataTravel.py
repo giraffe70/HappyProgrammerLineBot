@@ -1,8 +1,8 @@
 import requests
 import json
-from OpenWeatherMap import OWMLonLatsearch
-from gamma import gammamonitor
-from AQI import AQImonitor
+# from OpenWeatherMap import OWMLonLatsearch
+# from gamma import gammamonitor
+# from AQI import AQImonitor
 
 # 景點 - 觀光資訊資料庫
 # https://data.gov.tw/dataset/7777
@@ -69,8 +69,8 @@ def showResult(userSelect):
 	return result
 
 
-filterDict = readJsonFilter(input('請輸入旅遊縣市：'))
-print(showList(filterDict))
-print(len(showList(filterDict)))
-userSelect = int(input('請輸入選項：'))
-print(showResult(userSelect))
+# filterDict = readJsonFilter(input('請輸入旅遊縣市：'))
+# print(showList(filterDict))
+# print(len(showList(filterDict)))
+# userSelect = int(input('請輸入選項：'))
+# print(showResult(userSelect))
