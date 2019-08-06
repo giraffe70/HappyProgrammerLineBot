@@ -76,7 +76,8 @@ def handle_message(event):
         userStatusSheet.update_cell(userRow, 2, '已註冊')
         message = TextSendMessage(text='Hi,{}'.format(userSend))
     elif status == '旅遊查詢':
-        message = TextSendMessage(text=showList(readJsonFilter(userSend)))
+        place = readJsonFilter(userSend)
+        message = TextSendMessage(text=showList(place))
     elif member == '已註冊':
         currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
         byeList = ['goodbye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
