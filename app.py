@@ -75,15 +75,7 @@ def handle_message(event):
         userInfoSheet.update_cell(userRow, 2, userSend)
         userStatusSheet.update_cell(userRow, 2, '已註冊')
         message = TextSendMessage(text='Hi,{}'.format(userSend))
-    elif status == '旅遊查詢':
-        place = readJsonFilter(userSend)
-        if len(showList(place)) <= 2000:
-            message = TextSendMessage(text=showList(place))
-            userStatusSheet.update_cell(userRow, 3, '')
-        elif len(showList(place)) > 2000:
-            message = TextSendMessage(text="請輸入小一點的範圍")
-        else:
-            message = TextSendMessage(text="找不到，請重新輸入")
+
         
 
     elif member == '已註冊':
@@ -257,6 +249,17 @@ def handle_message(event):
                     ]
                 )
             )
+
+    elif status == '旅遊查詢':
+        place = readJsonFilter(userSend)
+        if len(showList(place)) <= 2000:
+            message = TextSendMessage(text=showList(place))
+            userStatusSheet.update_cell(userRow, 3, '')
+        elif len(showList(place)) > 2000:
+            message = TextSendMessage(text="請輸入小一點的範圍")
+        else:
+            message = TextSendMessage(text="找不到，請重新輸入")
+
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
         columnReply, textReply = scrapSpotify()
         message = TemplateSendMessage(
