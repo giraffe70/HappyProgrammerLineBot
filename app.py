@@ -77,7 +77,12 @@ def handle_message(event):
         message = TextSendMessage(text='Hi,{}'.format(userSend))
     elif status == '旅遊查詢':
         place = readJsonFilter(userSend)
-        message = TextSendMessage(text=showList(place))
+        try:
+            message = TextSendMessage(text=showList(place))
+        except:
+            message = TextSendMessage(text='請縮小範圍或者找不到此地點')
+        userStatusSheet.update_cell(userRow, 3, '')
+        
     elif member == '已註冊':
         currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
         byeList = ['goodbye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
