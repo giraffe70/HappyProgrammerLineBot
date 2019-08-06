@@ -70,6 +70,6 @@ def showResult(userSelect):
 
 # filterDict = readJsonFilter(input('請輸入旅遊縣市：'))
 # print(showList(filterDict))
+# print(len(showList(filterDict)))
 # userSelect = int(input('請輸入選項：'))
 # print(showResult(userSelect))
-

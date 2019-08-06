@@ -77,8 +77,13 @@ def handle_message(event):
         message = TextSendMessage(text='Hi,{}'.format(userSend))
     elif status == '旅遊查詢':
         place = readJsonFilter(userSend)
-        userStatusSheet.update_cell(userRow, 4, userSend)
-        message = TextSendMessage(text=showList(place))
+        if len(showList(place)) <= 2000:
+            message = TextSendMessage(text=showList(place))
+        elif len(showList(place)) > 2000:
+            message = TextSendMessage(text="請輸入小一點的範圍")
+        else:
+            message = TextSendMessage(text="沒有這個地點")
+
         
 
     elif member == '已註冊':
