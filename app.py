@@ -58,22 +58,23 @@ def handle_message(event):
         cell = userStatusSheet.find(userID)
         userRow = cell.row
         userCol = cell.col
-        status = userStatusSheet.cell(cell.row,2).value
+        member = userStatusSheet.cell(cell.row,2).value
+        status = userStatusSheet.cell(cell.row,3).value
     except:
         userStatusSheet.append_row([userID])
         userInfoSheet.append_row([userID])
         cell = userStatusSheet.find(userID)
         userRow = cell.row
         userCol = cell.col
-        status = ''
-    if status == '':
+        member = ''
+    if member == '':
         message = TextSendMessage(text='請輸入姓名，讓我認識你！')
         userStatusSheet.update_cell(userRow, 2, '註冊中')
-    elif status == '註冊中':
+    elif member == '註冊中':
         userInfoSheet.update_cell(userRow, 2, userSend)
         userStatusSheet.update_cell(userRow, 2, '已註冊')
         message = TextSendMessage(text='Hi,{}'.format(userSend))
-    elif status == '已註冊':
+    elif member == '已註冊':
         currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
         byeList = ['goodbye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
         currency = '請輸入你要查詢的匯率：\n1.USD 2.HKD 3.GBP 4.AUD\n 5.CAD 6.SGD 7.CHF 8.JPY\n 9.ZAR  10.SEK 11.NZD 12.THB\n 13.PHP 14.IDR 15.EUR 16.KRW\n 17.VND 18.MYR 19.CNY\n'
