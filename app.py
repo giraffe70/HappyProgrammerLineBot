@@ -247,7 +247,7 @@ def handle_message(event):
                 )
             )
     elif status == '旅遊查詢':
-        message = TextSendMessage(text=showList(userSend))
+        message = TextSendMessage(text=showList(readJsonFilter(userSend))
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
         columnReply, textReply = scrapSpotify()
         message = TemplateSendMessage(
