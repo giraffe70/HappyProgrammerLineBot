@@ -165,6 +165,8 @@ def handle_message(event):
         elif userSend == '旅遊':
             userStatusSheet.update_cell(userRow, 3, '旅遊查詢')
             message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
+        elif userSend == '旅遊-{}'.format(userSend.split('-')[1]):
+            message = TextSendMessage(text=showList(filterDict))
 
         elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
             message = TemplateSendMessage(
