@@ -82,6 +82,8 @@ def handle_message(event):
             userStatusSheet.update_cell(userRow, 3, '')
         elif len(showList(place)) > 2000:
             message = TextSendMessage(text="請輸入小一點的範圍")
+        else:
+            message = TextSendMessage(text="找不到，請重新輸入")
         
 
     elif member == '已註冊':
