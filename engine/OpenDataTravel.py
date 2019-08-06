@@ -52,9 +52,10 @@ def readJsonFilter(userInput):
 
 def showList(filterDict):
 	result = ''
-	if len(result) < 2000:
-		for index,place in enumerate(filterDict):
-			result += '{}. {}\n'.format(index+1,place['景點名稱'])
+	for index,place in enumerate(filterDict):
+		result += '{}. {}\n'.format(index+1,place['景點名稱'])
+		if len(result) > 1999:
+			break
 	return result
 
 def showResult(userSelect):
