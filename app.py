@@ -181,7 +181,7 @@ def handle_message(event):
         # 列表
         elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
             message = TemplateSendMessage(
-                alt_text='PTT清單',   
+                alt_text='PTT List',   
                 template=ButtonsTemplate(
                     thumbnail_image_url='https://static.newmobilelife.com/wp-content/uploads/2018/09/Shortcuts-PTT.jpg',
                     title='PTT',
@@ -203,17 +203,18 @@ def handle_message(event):
                             label='HatePolitics',
                             text='HatePolitics'
                         )
+
                     ]
                 )
             )
 
         elif userSend in ['新聞', 'news', 'News']:
             message = TemplateSendMessage(
-                alt_text='新聞清單',   
+                alt_text='News List',   
                 template=ButtonsTemplate(
                     thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
-                    title='新聞網',
-                    text='請選擇新聞網',
+                    title='News',
+                    text='請選擇新聞',
                     actions=[
                         MessageAction(
                             label='科技新報',
@@ -226,6 +227,10 @@ def handle_message(event):
                         MessageAction(
                             label='三立新聞',
                             text='set'
+                        ),
+                        MessageAction(
+                            label='批踢踢',
+                            text='PTT'
                         )
                     ]
                 )
@@ -233,7 +238,7 @@ def handle_message(event):
 
         elif userSend in ['set', 'Set', 'SET', '三立', '三立新聞']:
             message = TemplateSendMessage(
-                alt_text='三立新聞清單',   
+                alt_text='Set List',   
                 template=ButtonsTemplate(
                     thumbnail_image_url='https://img.vpnclub.cc/content/zh/2018/09/SET-News-Logo.jpg',
                     title='set三立新聞',
@@ -262,7 +267,7 @@ def handle_message(event):
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
         columnReply, textReply = scrapSpotify()
         message = TemplateSendMessage(
-        alt_text='歌曲清單',
+        alt_text='Music List',
         template=ImageCarouselTemplate(
             columns=columnReply
             )
