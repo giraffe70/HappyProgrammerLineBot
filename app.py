@@ -67,6 +67,7 @@ def handle_message(event):
         userRow = cell.row
         userCol = cell.col
         member = ''
+        status = ''
     if member == '':
         message = TextSendMessage(text='請輸入姓名，讓我認識你！')
         userStatusSheet.update_cell(userRow, 2, '註冊中')
@@ -165,9 +166,7 @@ def handle_message(event):
         elif userSend == '旅遊':
             userStatusSheet.update_cell(userRow, 3, '旅遊查詢')
             message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
-        elif userSend == '旅遊-{}'.format(userSend.split('-')[1]):
-            message = TextSendMessage(text=showList(userSend.format(userSend.split('-')[1])))
-
+        # 列表
         elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
             message = TemplateSendMessage(
                 alt_text='PTT清單',   
@@ -247,7 +246,8 @@ def handle_message(event):
                     ]
                 )
             )
-
+    elif status == '旅遊查詢':
+        message = TextSendMessage(text=showList(userSend))
     elif userSend in ['Spotify', 'spotify', 'music','音樂']:
         columnReply, textReply = scrapSpotify()
         message = TemplateSendMessage(
