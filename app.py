@@ -231,12 +231,12 @@ def handle_message(event):
                 )
             )
 
-        elif userSend in ['set','三立新聞', '三立', 'Set', 'SET']:
+        elif userSend in ['set', 'Set', 'SET', '三立', '三立新聞']:
             message = TemplateSendMessage(
                 alt_text='三立新聞清單',   
                 template=ButtonsTemplate(
-                    thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
-                    title='set',
+                    thumbnail_image_url='https://img.vpnclub.cc/content/zh/2018/09/SET-News-Logo.jpg',
+                    title='set三立新聞',
                     text='請選擇新聞',
                     actions=[
                         MessageAction(
