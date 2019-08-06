@@ -83,7 +83,7 @@ def handle_message(event):
             userStatusSheet.update_cell(userRow, 3, '')
         elif len(showList(place)) > 2000:
             message = TextSendMessage(text="請輸入小一點的範圍")
-            
+
     elif member == '已註冊':
         currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
         byeList = ['goodbye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
@@ -94,7 +94,7 @@ def handle_message(event):
             message = TextSendMessage(text='Hello, ' + userName)
         elif userSend in ['功能', '安安', '能做甚麼', '能幹嘛', '可以幹嘛']:
             message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、排行榜、旅遊')
-        elif userSend in ['狀態清空', '清空']:
+        elif userSend in ['狀態清空', '清空', 'clean']:
             message = TextSendMessage(text='狀態已清空！')
             userStatusSheet.update_cell(userRow, 3, '')
         # 匯率
@@ -225,18 +225,18 @@ def handle_message(event):
                         ),
                         MessageAction(
                             label='三立新聞',
-                            text='NewsLtn'
+                            text='set'
                         )
                     ]
                 )
             )
 
-        elif userSend == 'NewsLtn':
+        elif userSend in ['set','三立新聞', '三立', 'Set', 'SET']:
             message = TemplateSendMessage(
                 alt_text='三立新聞清單',   
                 template=ButtonsTemplate(
                     thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
-                    title='三立新聞',
+                    title='set',
                     text='請選擇新聞',
                     actions=[
                         MessageAction(
