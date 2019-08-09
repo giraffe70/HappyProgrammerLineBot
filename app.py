@@ -269,7 +269,7 @@ def handle_message(event):
                 )
             )
 
-    elif userSend in ['Music','music','音樂']:
+        elif userSend in ['Music','music','音樂']:
         columnReply, textReply = scrapSpotify()
         message = TemplateSendMessage(
         alt_text='Music List',
