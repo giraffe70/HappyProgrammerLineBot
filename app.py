@@ -269,14 +269,14 @@ def handle_message(event):
                 )
             )
 
-    elif userSend in ['Music','music','音樂']:
-        columnReply, textReply = scrapSpotify()
-        message = TemplateSendMessage(
-            alt_text='Music List',
-            template=ImageCarouselTemplate(
-                columns=columnReply
+        elif userSend in ['Music','music','音樂']:
+            columnReply, textReply = scrapSpotify()
+            message = TemplateSendMessage(
+                alt_text='Music List',
+                template=ImageCarouselTemplate(
+                    columns=columnReply
+                )
             )
-        )
     else:
         message = TextSendMessage(text=userSend)
     line_bot_api.reply_message(event.reply_token, message)
