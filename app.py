@@ -10,6 +10,7 @@ from engine.AQI import AQImonitor
 from engine.gamma import gammamonitor
 from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import *
+from engine.crawlerAcgGamer import acgGamer
 from engine.OpenDataTravel import *
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -93,7 +94,7 @@ def handle_message(event):
             userName = userInfoSheet.cell(cell.row,2).value
             message = TextSendMessage(text='Hello, ' + userName)
         elif userSend in ['功能', '安安', '能做甚麼', '能幹嘛', '可以幹嘛']:
-            message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、排行榜、旅遊')
+            message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、旅遊景點查詢、Spotify排行榜、PC人氣排行榜-巴哈母特')
         elif userSend in ['狀態清空', '清空', 'clean']:
             message = TextSendMessage(text='狀態已清空！')
             userStatusSheet.update_cell(userRow, 3, '')
@@ -168,6 +169,10 @@ def handle_message(event):
             message = StickerSendMessage(package_id='11537',sticker_id='52002758')
         # 排行榜
         elif userSend == '排行榜':
+            url = 'https://acg.gamer.com.tw/billboard.php?t=2&p=PC'
+            message = TextSendMessage(text=acgGamer(url))
+        # 巴哈姆特
+        elif userSend in ['acg', 'Acg', 'ACG', '巴哈姆特' ,'巴哈']:
             url = 'https://spotifycharts.com/regional'
             message = TextSendMessage(text=spotifyTop30(url))
         # 天氣
