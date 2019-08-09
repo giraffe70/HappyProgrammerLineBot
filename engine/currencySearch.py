@@ -8,7 +8,7 @@ def currencySearch(search):
 	# return text
 	
 	dollorTuple = twder.now_all()[search]
-	reply = '日期：{}\n即期賣出價：{}\n即期買入：{}'.format(dollorTuple[0], dollorTuple[4], dollorTuple[3])
+	reply = '日期：{}\n即期賣出：{}\n即期買入：{}'.format(dollorTuple[0], dollorTuple[4], dollorTuple[3])
 	return reply
 
 
