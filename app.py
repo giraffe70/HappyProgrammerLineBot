@@ -168,13 +168,13 @@ def handle_message(event):
         elif userSend in byeList:
             message = StickerSendMessage(package_id='11537',sticker_id='52002758')
         # 排行榜
-        elif userSend == '排行榜':
+        elif userSend == ['spotify','Spotify','排行榜']:
             url = 'https://acg.gamer.com.tw/billboard.php?t=2&p=PC'
-            message = TextSendMessage(text=acgGamer(url))
-        # 巴哈姆特
-        elif userSend in ['acg', 'Acg', 'ACG', '巴哈姆特' ,'巴哈']:
-            url = 'https://spotifycharts.com/regional'
             message = TextSendMessage(text=spotifyTop30(url))
+        # 巴哈姆特
+        elif userSend in ['acg', 'Acg', 'ACG', '巴哈姆特' ,'巴哈', 'PC人氣排行']:
+            url = 'https://spotifycharts.com/regional'
+            message = TextSendMessage(text=acgGamer(url))
         # 天氣
         elif userSend == '天氣':
             # message = TextSendMessage(text='請傳入座標位置')
@@ -269,7 +269,7 @@ def handle_message(event):
                 )
             )
 
-    elif userSend in ['Spotify', 'spotify', 'music','音樂']:
+    elif userSend in ['Music','music','音樂']:
         columnReply, textReply = scrapSpotify()
         message = TemplateSendMessage(
         alt_text='Music List',
