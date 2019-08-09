@@ -169,11 +169,11 @@ def handle_message(event):
             message = StickerSendMessage(package_id='11537',sticker_id='52002758')
         # 排行榜
         elif userSend in ['spotify','Spotify','排行榜']:
-            url = 'https://acg.gamer.com.tw/billboard.php?t=2&p=PC'
+            url = 'https://spotifycharts.com/regional'
             message = TextSendMessage(text=spotifyTop30(url))
         # 巴哈姆特
         elif userSend in ['acg', 'Acg', 'ACG', '巴哈姆特' ,'巴哈', 'PC人氣排行']:
-            url = 'https://spotifycharts.com/regional'
+            url = 'https://acg.gamer.com.tw/billboard.php?t=2&p=PC'
             message = TextSendMessage(text=acgGamer(url))
         # 天氣
         elif userSend == '天氣':
