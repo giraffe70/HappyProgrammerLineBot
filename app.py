@@ -168,9 +168,18 @@ def handle_message(event):
         elif userSend in byeList:
             message = StickerSendMessage(package_id='11537',sticker_id='52002758')
         # 排行榜
-        elif userSend in ['spotify','Spotify','排行榜']:
-            url = 'https://spotifycharts.com/regional'
-            message = TextSendMessage(text=spotifyTop30(url))
+        # elif userSend in ['spotify','Spotify','排行榜']:
+        #     url = 'https://spotifycharts.com/regional'
+        #     message = TextSendMessage(text=Spotify_GLOBAL(url))
+        elif userSend == 'Spotify_global':
+            url = 'https://spotifycharts.com/regional/global/daily/latest'
+            message = TextSendMessage(text=Spotify_TOP30(url))
+        elif userSend == 'Spotify_tw':
+            url = 'https://spotifycharts.com/regional/tw/daily/latest'
+            message = TextSendMessage(text=Spotify_TOP30(url))
+        elif userSend == 'Spotify_us':
+            url = 'https://spotifycharts.com/regional/us/daily/latest'
+            message = TextSendMessage(text=Spotify_TOP30(url))
         # 巴哈姆特
         elif userSend in ['acg', 'Acg', 'ACG', '巴哈姆特' ,'巴哈', 'PC人氣排行']:
             url = 'https://acg.gamer.com.tw/billboard.php?t=2&p=PC'
@@ -268,6 +277,34 @@ def handle_message(event):
                     ]
                 )
             )
+        elif userSend in ['spotify','Spotify','排行榜']:
+            message = TemplateSendMessage(
+                alt_text='Spotify Charts',   
+                template=ButtonsTemplate(
+                    thumbnail_image_url='https://img.vpnclub.cc/content/zh/2018/09/SET-News-Logo.jpg',
+                    title='TOP 50',
+                    text='Filter by',
+                    actions=[
+                        MessageAction(
+                            label='GLOBAL',
+                            text='Spotify_global'
+                        ),
+                        MessageAction(
+                            label='TAIWAN',
+                            text='Spotify_tw'
+                        ),
+                        MessageAction(
+                            label='UNITED STATES',
+                            text='Spotify_us'
+                        ),
+                        MessageAction(
+                            label='UNITED KINGDOM',
+                            text='Spotify_UNITED KINGDOM'
+                        )
+                    ]
+                )
+            )
+
 
         elif userSend in ['Music','music','音樂']:
             columnReply, textReply = scrapSpotify()

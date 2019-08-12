@@ -45,9 +45,10 @@ def bballman_news(url, articleNumber):
 			break
 	return result
 
-# spotify
-def spotifyTop30(url):
+# spotify(GLOBAL)
+def Spotify_TOP30(url):
 	# url = 'https://spotifycharts.com/regional'
+	# url = 'https://spotifycharts.com/regional/global/daily/latest'
 	webContent = requests.get(url)
 	webContent.encoding ='utf-8'
 	soup = BeautifulSoup(webContent.text, 'html.parser')
@@ -63,6 +64,31 @@ def spotifyTop30(url):
 		# result += '歌手：{}\n圖片連結：{}\n'.format(player, imgLink)
 		result += '歌手：{}\n'.format(player)
 		# result += '歌曲連結：{}\n'.format(imgLink_big)
+		# 下載圖片
+		# download(bigImgLink(imgLink_big), clearName(songName))
+		
+		if index == 29:
+			break
+	return result
+
+# spotify(Taiwan)
+def Spotify_TAIWAN(url):
+	# url = 'https://spotifycharts.com/regional/tw/daily/latest'
+	webContent = requests.get(url)
+	webContent.encoding ='utf-8'
+	soup = BeautifulSoup(webContent.text, 'html.parser')
+	result = ''
+	for index,t in enumerate(soup.select('tbody tr')):
+		player = t.select('td')[3].text.split('by ')[1]
+		songName = t.select('td')[3].strong.text
+		imgLink = t.select('td img')[0]['src']
+		imgLink_big = t.select('.chart-table-image a')[0]['href']
+
+		result += '排名：{}\n'.format(t.select('td')[1].text)
+		result += '歌名：{}\n'.format(songName)
+		result += '歌手：{}\n圖片連結：{}\n'.format(player, imgLink)
+		result += '歌曲連結：{}\n'.format(imgLink_big)
+		result += '\n----------------------------------------------------------------------\n'
 		# 下載圖片
 		# download(bigImgLink(imgLink_big), clearName(songName))
 		
