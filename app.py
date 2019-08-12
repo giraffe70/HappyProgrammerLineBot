@@ -180,6 +180,9 @@ def handle_message(event):
         elif userSend == 'Spotify_us':
             url = 'https://spotifycharts.com/regional/us/daily/latest'
             message = TextSendMessage(text=Spotify_TOP30(url))
+        elif userSend == 'Spotify_gb':
+            url = 'https://spotifycharts.com/regional/gb/daily/latest'
+            message = TextSendMessage(text=Spotify_TOP30(url))
         # 巴哈姆特
         elif userSend in ['acg', 'Acg', 'ACG', '巴哈姆特' ,'巴哈', 'PC人氣排行']:
             url = 'https://acg.gamer.com.tw/billboard.php?t=2&p=PC'
@@ -281,7 +284,7 @@ def handle_message(event):
             message = TemplateSendMessage(
                 alt_text='Spotify Charts',   
                 template=ButtonsTemplate(
-                    thumbnail_image_url='https://img.vpnclub.cc/content/zh/2018/09/SET-News-Logo.jpg',
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Spotify_logo_horizontal_black.jpg/1280px-Spotify_logo_horizontal_black.jpg',
                     title='TOP 50',
                     text='Filter by',
                     actions=[
@@ -299,7 +302,7 @@ def handle_message(event):
                         ),
                         MessageAction(
                             label='UNITED KINGDOM',
-                            text='Spotify_UNITED KINGDOM'
+                            text='Spotify_gb'
                         )
                     ]
                 )
