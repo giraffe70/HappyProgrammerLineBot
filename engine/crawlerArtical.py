@@ -63,7 +63,7 @@ def Spotify_TOP30(url):
 		result += '歌名：{}\n'.format(songName)
 		# result += '歌手：{}\n圖片連結：{}\n'.format(player, imgLink)
 		result += '歌手：{}\n'.format(player)
-		# result += '歌曲連結：{}\n'.format(imgLink_big)
+		result += '歌曲連結：{}\n'.format(imgLink_big)
 		# 下載圖片
 		# download(bigImgLink(imgLink_big), clearName(songName))
 		
