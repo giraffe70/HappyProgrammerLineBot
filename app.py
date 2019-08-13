@@ -196,7 +196,7 @@ def handle_message(event):
             userStatusSheet.update_cell(userRow, 3, '旅遊查詢')
             message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
         elif userSend == '圖片':
-            image_message = ImageSendMessage(
+            message = ImageSendMessage(
 			original_content_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png',
 			preview_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png'
 )
