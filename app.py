@@ -195,6 +195,11 @@ def handle_message(event):
         elif userSend == '旅遊':
             userStatusSheet.update_cell(userRow, 3, '旅遊查詢')
             message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
+        elif userSend == '圖片':
+            image_message = ImageSendMessage(
+			original_content_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png',
+			preview_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png'
+)
         # 列表
         elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
             message = TemplateSendMessage(
@@ -285,7 +290,7 @@ def handle_message(event):
                 alt_text='Spotify Charts',   
                 template=ButtonsTemplate(
                     thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Spotify_logo_horizontal_black.jpg/1280px-Spotify_logo_horizontal_black.jpg',
-                    title='TOP 50',
+                    title='TOP 30',
                     text='Filter by',
                     actions=[
                         MessageAction(
