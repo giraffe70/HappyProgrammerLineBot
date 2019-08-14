@@ -331,7 +331,7 @@ def handle_message(event):
 				)
 			)
 		else:
-		message = TextSendMessage(text=userSend)
+			message = TextSendMessage(text=userSend)
 	
 	elif status == '購票1':
 		userStatusSheet.update_cell(userRow, 4, userSend)
