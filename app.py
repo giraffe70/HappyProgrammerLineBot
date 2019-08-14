@@ -85,6 +85,34 @@ def handle_message(event):
 			userStatusSheet.update_cell(userRow, 3, '')
 		elif len(showList(place)) > 2000:
 			message = TextSendMessage(text="請輸入小一點的範圍")
+	elif status == '購票0':
+		userStatusSheet.update_cell(userRow, 4, userSend)
+		userStatusSheet.update_cell(userRow, 3, '購票1')
+		message = TextSendMessage(text='請輸入觀看日期')
+	elif status == '購票1':
+		userStatusSheet.update_cell(userRow, 5, userSend)
+		userStatusSheet.update_cell(userRow, 3, '購票2')
+		message = TextSendMessage(text='請輸入座位')
+	elif status == '購票2':
+		userStatusSheet.update_cell(userRow, 6, userSend)
+		userStatusSheet.update_cell(userRow, 3, '購票3')
+		message = TextSendMessage(text='請稍後')
+		
+	elif status == '購票3':
+		# 產生門票，回傳給使用者
+		userStatusSheet.update_cell(userRow, 7, userSend)
+		name = userStatusSheet.cell(cell.row,4).value
+		time = userStatusSheet.cell(cell.row,5).value
+		seat = userStatusSheet.cell(cell.row,6).value
+		imgurl = booking(name,time,seat)
+		message = ImageSendMessage(
+			original_content_url=imgurl,
+			preview_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIkCpkbJ2dfrb3n3OJr_rYKy--UAs7VTFzeQJ0xL-i5rgUDmV9'
+			)
+		userStatusSheet.update_cell(userRow, 3, '')
+		userStatusSheet.update_cell(userRow, 4, '')
+		userStatusSheet.update_cell(userRow, 5, '')
+		userStatusSheet.update_cell(userRow, 6, '')
 
 	elif member == '已註冊':
 		currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
@@ -330,35 +358,7 @@ def handle_message(event):
 			)
 		else:
 			message = TextSendMessage(text=userSend)
-	elif status == '購票0':
-		
-		userStatusSheet.update_cell(userRow, 4, userSend)
-		userStatusSheet.update_cell(userRow, 3, '購票1')
-		message = TextSendMessage(text='請輸入觀看日期')
-	elif status == '購票1':
-		userStatusSheet.update_cell(userRow, 5, userSend)
-		userStatusSheet.update_cell(userRow, 3, '購票2')
-		message = TextSendMessage(text='請輸入座位')
-	elif status == '購票2':
-		userStatusSheet.update_cell(userRow, 6, userSend)
-		userStatusSheet.update_cell(userRow, 3, '購票3')
-		message = TextSendMessage(text='請稍後')
-		
-	elif status == '購票3':
-		# 產生門票，回傳給使用者
-		userStatusSheet.update_cell(userRow, 7, userSend)
-		name = userStatusSheet.cell(cell.row,4).value
-		time = userStatusSheet.cell(cell.row,5).value
-		seat = userStatusSheet.cell(cell.row,6).value
-		imgurl = booking(name,time,seat)
-		message = ImageSendMessage(
-			original_content_url=imgurl,
-			preview_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIkCpkbJ2dfrb3n3OJr_rYKy--UAs7VTFzeQJ0xL-i5rgUDmV9'
-			)
-		userStatusSheet.update_cell(userRow, 3, '')
-		userStatusSheet.update_cell(userRow, 4, '')
-		userStatusSheet.update_cell(userRow, 5, '')
-		userStatusSheet.update_cell(userRow, 6, '')
+	
 	
 	line_bot_api.reply_message(event.reply_token, message)
 
