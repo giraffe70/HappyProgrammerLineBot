@@ -197,7 +197,7 @@ def handle_message(event):
             userStatusSheet.update_cell(userRow, 3, '旅遊查詢')
             message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
         elif userSend == '購票':
-			userStatusSheet.update_cell(userRow, 3, '購票-1')
+			userStatusSheet.update_cell(userRow, 3, '購票1')
 			message = TextSendMessage(text='請輸入購票者姓名')
         elif userSend == '圖片':
             message = ImageSendMessage(
@@ -329,7 +329,7 @@ def handle_message(event):
             )
     	else:
         	message = TextSendMessage(text=userSend)
-    elif status = '購票-1':
+    elif status = '購票1':
     	userStatusSheet.update_cell(userRow, 4, userSend)
     	userStatusSheet.update_cell(userRow, 3, '購票-2')
 		message = TextSendMessage(text='請輸入觀看日期')
