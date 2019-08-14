@@ -331,14 +331,14 @@ def handle_message(event):
                 )
             )
     
-    elif status = '購票1':
+    elif status == '購票1':
     	userStatusSheet.update_cell(userRow, 4, userSend)
     	userStatusSheet.update_cell(userRow, 3, '購票-2')
 		message = TextSendMessage(text='請輸入觀看日期')
-	elif status = '購票-2':
+	elif status == '購票-2':
 		userStatusSheet.update_cell(userRow, 5, userSend)
 		message = TextSendMessage(text='請輸入座位')
-	elif status = '購票-3':
+	elif status == '購票-3':
     	# 產生門票，回傳給使用者
     	userStatusSheet.update_cell(userRow, 6, userSend)
     	name = userStatusSheet.cell(cell.row,4).value
