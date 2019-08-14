@@ -12,7 +12,7 @@ from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import *
 from engine.crawlerAcgGamer import acgGamer
 from engine.OpenDataTravel import *
-from engine.cardTojpg import booking
+from engine.cardTojpg import *
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -100,7 +100,7 @@ def handle_message(event):
 		
 	elif status == '購票3':
 		# 產生門票，回傳給使用者
-		userStatusSheet.update_cell(userRow, 7, userSend)
+		
 		name = userStatusSheet.cell(cell.row,4).value
 		time = userStatusSheet.cell(cell.row,5).value
 		seat = userStatusSheet.cell(cell.row,6).value
