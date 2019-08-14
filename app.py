@@ -330,8 +330,7 @@ def handle_message(event):
                     columns=columnReply
                 )
             )
-    	else:
-        	message = TextSendMessage(text=userSend)
+    
     elif status = '購票1':
     	userStatusSheet.update_cell(userRow, 4, userSend)
     	userStatusSheet.update_cell(userRow, 3, '購票-2')
@@ -354,7 +353,8 @@ def handle_message(event):
 		userStatusSheet.update_cell(userRow, 4, '')
 		userStatusSheet.update_cell(userRow, 5, '')
 		userStatusSheet.update_cell(userRow, 6, '')
-
+	else:
+        message = TextSendMessage(text=userSend)
     line_bot_api.reply_message(event.reply_token, message)
 
 @handler.add(MessageEvent, message=StickerMessage)
