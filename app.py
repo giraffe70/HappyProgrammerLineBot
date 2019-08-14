@@ -196,14 +196,15 @@ def handle_message(event):
         elif userSend == '旅遊':
             userStatusSheet.update_cell(userRow, 3, '旅遊查詢')
             message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
+        elif userSend == '購票':
+			userStatusSheet.update_cell(userRow, 3, '購票-1')
+			message = TextSendMessage(text='請輸入購票者姓名')
         elif userSend == '圖片':
             message = ImageSendMessage(
 			original_content_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png',
 			preview_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png'
 			)
-		elif userSend == '購票':
-			userStatusSheet.update_cell(userRow, 3, '購票-1')
-			message = TextSendMessage(text='請輸入購票者姓名')
+		
         # 列表
         elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
             message = TemplateSendMessage(
