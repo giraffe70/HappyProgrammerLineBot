@@ -198,10 +198,8 @@ def handle_message(event):
 			message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
 		elif userSend == '購票':
 			userStatusSheet.update_cell(userRow, 3, '購票1')
-			# message = TextSendMessage(text='請輸入購票者姓名')
-	  #   elif userSend == '購票':
-			# userStatusSheet.update_cell(userRow, 3, '購票1')
-			# message = TextSendMessage(text='請輸入購票者姓名')
+			message = TextSendMessage(text='請輸入購票者姓名')
+		
 		elif userSend == '圖片':
 			message = ImageSendMessage(
 			original_content_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png',
@@ -333,21 +331,15 @@ def handle_message(event):
 		else:
 			message = TextSendMessage(text=userSend)
 	elif status == '購票1':
-		message = TextSendMessage(text='請輸入購票者姓名')
 		userStatusSheet.update_cell(userRow, 4, userSend)
-		userStatusSheet.update_cell(userRow, 3, '購票-2')
-		# message = TextSendMessage(text='請輸入購票者姓名')
-	elif status == '購票-2':
+		userStatusSheet.update_cell(userRow, 3, '購票2')
 		message = TextSendMessage(text='請輸入觀看日期')
+	elif status == '購票2':
 		userStatusSheet.update_cell(userRow, 5, userSend)
-		userStatusSheet.update_cell(userRow, 3, '購票-3')
-		
-	elif status == '購票-3':
+		userStatusSheet.update_cell(userRow, 3, '購票3')
 		message = TextSendMessage(text='請輸入座位')
-		userStatusSheet.update_cell(userRow, 6, userSend)
-		userStatusSheet.update_cell(userRow, 3, '購票-4')
 		
-	elif status == '購票-4':
+	elif status == '購票3':
 		# 產生門票，回傳給使用者
 		userStatusSheet.update_cell(userRow, 6, userSend)
 		name = userStatusSheet.cell(cell.row,4).value
