@@ -185,9 +185,9 @@ def handle_message(event):
             url = 'https://spotifycharts.com/regional/gb/daily/latest'
             message = TextSendMessage(text=Spotify_TOP30(url))
         # 巴哈姆特
-        elif userSend in ['acg', 'Acg', 'ACG', '巴哈姆特' ,'巴哈', 'PC人氣排行']:
-            url = 'https://acg.gamer.com.tw/billboard.php?t=2&p=PC'
-			message = TextSendMessage(text=acgGamer(url))
+   #      elif userSend in ['acg', 'Acg', 'ACG', '巴哈姆特' ,'巴哈', 'PC人氣排行']:
+   #          url = 'https://acg.gamer.com.tw/billboard.php?t=2&p=PC'
+			# message = TextSendMessage(text=acgGamer(url))
         # 天氣
         elif userSend == '天氣':
             # message = TextSendMessage(text='請傳入座標位置')
