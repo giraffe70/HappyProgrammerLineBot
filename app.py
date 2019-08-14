@@ -198,7 +198,7 @@ def handle_message(event):
 			message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
 		elif userSend == '購票':
 			userStatusSheet.update_cell(userRow, 3, '購票1')
-			message = TextSendMessage(text='請輸入購票者姓名')
+			# message = TextSendMessage(text='請輸入購票者姓名')
 	  #   elif userSend == '購票':
 			# userStatusSheet.update_cell(userRow, 3, '購票1')
 			# message = TextSendMessage(text='請輸入購票者姓名')
@@ -332,15 +332,22 @@ def handle_message(event):
 			)
 		else:
 			message = TextSendMessage(text=userSend)
-	
 	elif status == '購票1':
+		message = TextSendMessage(text='請輸入購票者姓名')
 		userStatusSheet.update_cell(userRow, 4, userSend)
 		userStatusSheet.update_cell(userRow, 3, '購票-2')
-		message = TextSendMessage(text='請輸入觀看日期')
+		# message = TextSendMessage(text='請輸入購票者姓名')
 	elif status == '購票-2':
+		message = TextSendMessage(text='請輸入觀看日期')
 		userStatusSheet.update_cell(userRow, 5, userSend)
-		message = TextSendMessage(text='請輸入座位')
+		userStatusSheet.update_cell(userRow, 3, '購票-3')
+		
 	elif status == '購票-3':
+		message = TextSendMessage(text='請輸入座位')
+		userStatusSheet.update_cell(userRow, 6, userSend)
+		userStatusSheet.update_cell(userRow, 3, '購票-4')
+		
+	elif status == '購票-4':
 		# 產生門票，回傳給使用者
 		userStatusSheet.update_cell(userRow, 6, userSend)
 		name = userStatusSheet.cell(cell.row,4).value
