@@ -12,6 +12,7 @@ from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import *
 from engine.crawlerAcgGamer import acgGamer
 from engine.OpenDataTravel import *
+from engine.cardTojpg import booking
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -94,7 +95,7 @@ def handle_message(event):
             userName = userInfoSheet.cell(cell.row,2).value
             message = TextSendMessage(text='Hello, ' + userName)
         elif userSend in ['功能', '安安', '能做甚麼', '能幹嘛', '可以幹嘛']:
-            message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、旅遊景點查詢、Spotify排行榜、PC人氣排行榜-巴哈母特')
+            message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、圖片、旅遊景點查詢、Spotify排行榜、PC人氣排行榜-巴哈母特')
         elif userSend in ['狀態清空', '清空', 'clean']:
             message = TextSendMessage(text='狀態已清空！')
             userStatusSheet.update_cell(userRow, 3, '')
@@ -186,7 +187,7 @@ def handle_message(event):
         # 巴哈姆特
         elif userSend in ['acg', 'Acg', 'ACG', '巴哈姆特' ,'巴哈', 'PC人氣排行']:
             url = 'https://acg.gamer.com.tw/billboard.php?t=2&p=PC'
-            message = TextSendMessage(text=acgGamer(url))
+			message = TextSendMessage(text=acgGamer(url))
         # 天氣
         elif userSend == '天氣':
             # message = TextSendMessage(text='請傳入座標位置')
@@ -199,7 +200,10 @@ def handle_message(event):
             message = ImageSendMessage(
 			original_content_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png',
 			preview_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png'
-)
+			)
+		elif userSend == '購票':
+			userStatusSheet.update_cell(userRow, 3, '購票-1')
+			message = TextSendMessage(text='請輸入購票者姓名')
         # 列表
         elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
             message = TemplateSendMessage(
@@ -322,8 +326,31 @@ def handle_message(event):
                     columns=columnReply
                 )
             )
-    else:
-        message = TextSendMessage(text=userSend)
+    	else:
+        	message = TextSendMessage(text=userSend)
+    elif status = '購票-1':
+    	userStatusSheet.update_cell(userRow, 4, userSend)
+    	userStatusSheet.update_cell(userRow, 3, '購票-2')
+		message = TextSendMessage(text='請輸入觀看日期')
+	elif status = '購票-2':
+		userStatusSheet.update_cell(userRow, 5, userSend)
+		message = TextSendMessage(text='請輸入座位')
+	elif status = '購票-3':
+    	# 產生門票，回傳給使用者
+    	userStatusSheet.update_cell(userRow, 6, userSend)
+    	name = userStatusSheet.cell(cell.row,4).value
+    	time = userStatusSheet.cell(cell.row,5).value
+    	seat = userStatusSheet.cell(cell.row,6).value
+    	imgurl = booking(name,time,seat)
+    	message = ImageSendMessage(
+			original_content_url=imgurl,
+			preview_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIkCpkbJ2dfrb3n3OJr_rYKy--UAs7VTFzeQJ0xL-i5rgUDmV9'
+			)
+		userStatusSheet.update_cell(userRow, 3, '')
+		userStatusSheet.update_cell(userRow, 4, '')
+		userStatusSheet.update_cell(userRow, 5, '')
+		userStatusSheet.update_cell(userRow, 6, '')
+
     line_bot_api.reply_message(event.reply_token, message)
 
 @handler.add(MessageEvent, message=StickerMessage)

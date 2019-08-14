@@ -7,3 +7,7 @@ bs4
 geopy
 gspread
 oauth2client
+imgkit
+qrcode
+pillow
+cloudinary
