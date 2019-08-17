@@ -11,6 +11,7 @@ from engine.gamma import gammamonitor
 from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import *
 from engine.OpenDataTravel import *
+from engine.pchome import pchome
 from engine.cardTojpg import *
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -84,34 +85,11 @@ def handle_message(event):
 			userStatusSheet.update_cell(userRow, 3, '')
 		elif len(showList(place)) > 2000:
 			message = TextSendMessage(text="請輸入小一點的範圍")
-	elif status == '購票0':
-		userStatusSheet.update_cell(userRow, 4, userSend)
-		userStatusSheet.update_cell(userRow, 3, '購票1')
-		message = TextSendMessage(text='請輸入觀看日期')
-	elif status == '購票1':
-		userStatusSheet.update_cell(userRow, 5, userSend)
-		userStatusSheet.update_cell(userRow, 3, '購票2')
-		message = TextSendMessage(text='請輸入座位')
-	elif status == '購票2':
-		userStatusSheet.update_cell(userRow, 6, userSend)
-		userStatusSheet.update_cell(userRow, 3, '購票3')
-		message = TextSendMessage(text='請稍後')
-		
-	elif status == '購票3':
-		# 產生門票，回傳給使用者
-		
-		name = userStatusSheet.cell(cell.row,4).value
-		time = userStatusSheet.cell(cell.row,5).value
-		seat = userStatusSheet.cell(cell.row,6).value
-		imgurl = booking(name,time,seat)
-		message = ImageSendMessage(
-			original_content_url=imgurl,
-			preview_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIkCpkbJ2dfrb3n3OJr_rYKy--UAs7VTFzeQJ0xL-i5rgUDmV9'
-			)
+	elif status == 'PChome':
+		userInfoSheet.update_cell(userRow, 4, userSend)
+		url = 'https://ecshweb.pchome.com.tw/search/v3.3/all/results?q={}&page=1&sort=sale/dc'.format(userSend)
+		message = TextSendMessage(text=pchome(url))
 		userStatusSheet.update_cell(userRow, 3, '')
-		userStatusSheet.update_cell(userRow, 4, '')
-		userStatusSheet.update_cell(userRow, 5, '')
-		userStatusSheet.update_cell(userRow, 6, '')
 
 	elif member == '已註冊':
 		currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
@@ -220,9 +198,12 @@ def handle_message(event):
 		elif userSend == '旅遊':
 			userStatusSheet.update_cell(userRow, 3, '旅遊查詢')
 			message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
-		elif userSend == '購票':
-			userStatusSheet.update_cell(userRow, 3, '購票0')
-			message = TextSendMessage(text='請輸入姓名')
+		elif userSend in ['pchome', 'PChome', 'PCHOME']:
+			userStatusSheet.update_cell(userRow, 3, 'PChome')
+			message = TextSendMessage(text='請輸入要搜尋的商品')
+		# elif userSend == '購票':
+		# 	userStatusSheet.update_cell(userRow, 3, '購票0')
+		# 	message = TextSendMessage(text='請輸入姓名')
 		
 		elif userSend == '圖片':
 			message = ImageSendMessage(
