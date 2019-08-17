@@ -97,7 +97,7 @@ def handle_message(event):
 	elif status == '公車查詢1':
 		userStatusSheet.update_cell(userRow, 5, userSend)
 		userSearch = userStatusSheet.cell(userRow,4).value
-		message = TextSendMessage(text=showRouteResult(userSearch,userSend))
+		message = TextSendMessage(text=showRouteResult(userSearch,int(userSend)))
 		userStatusSheet.update_cell(userRow, 3, '')
 		userStatusSheet.update_cell(userRow, 4, '')
 		userStatusSheet.update_cell(userRow, 5, '')
