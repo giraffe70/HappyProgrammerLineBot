@@ -91,11 +91,11 @@ def handle_message(event):
 		message = TextSendMessage(text=pchome(url))
 		userStatusSheet.update_cell(userRow, 3, '')
 	elif status == '公車查詢0':
-		userInfoSheet.update_cell(userRow, 4, userSend)
+		userStatusSheet.update_cell(userRow, 4, userSend)
 		message = TextSendMessage(text=showRouteList(userSend))
 		userStatusSheet.update_cell(userRow, 3, '公車查詢1')
 	elif status == '公車查詢1':
-		userInfoSheet.update_cell(userRow, 5, userSend)
+		userStatusSheet.update_cell(userRow, 5, userSend)
 		message = TextSendMessage(text=showRouteResult(userStatusSheet.cell(cell.row,4).value,userSend))
 		userStatusSheet.update_cell(userRow, 3, '')
 		userStatusSheet.update_cell(userRow, 4, '')
