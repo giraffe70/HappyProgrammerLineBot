@@ -12,7 +12,6 @@ from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import *
 from engine.OpenDataTravel import *
 from engine.pchome import pchome
-from engine.cardTojpg import *
 from engine.ibus import *
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -209,7 +208,7 @@ def handle_message(event):
 		elif userSend == '旅遊':
 			userStatusSheet.update_cell(userRow, 3, '旅遊查詢')
 			message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
-		elif userSend in ['pchome', 'PChome', 'PCHOME']:
+		elif userSend in ['pchome', 'PChome', 'PCHOME', 'Pchome']:
 			userStatusSheet.update_cell(userRow, 3, 'PChome')
 			message = TextSendMessage(text='請輸入要搜尋的商品')
 		elif userSend in ['bus', 'Bus', 'BUS', '公車']:
