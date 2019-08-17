@@ -111,7 +111,7 @@ def handle_message(event):
 			userName = userInfoSheet.cell(cell.row,2).value
 			message = TextSendMessage(text='Hello, ' + userName)
 		elif userSend in ['功能', '安安', '能做甚麼', '能幹嘛', '可以幹嘛']:
-			message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、圖片、旅遊景點查詢、Spotify排行榜')
+			message = TextSendMessage(text='目前的功能有：天氣、匯率、音樂、新聞、批踢踢、圖片、旅遊景點查詢、公車路線查詢、PChome商品查詢、Spotify排行榜')
 		elif userSend in ['狀態清空', '清空', 'clean']:
 			message = TextSendMessage(text='狀態已清空！')
 			userStatusSheet.update_cell(userRow, 3, '')
