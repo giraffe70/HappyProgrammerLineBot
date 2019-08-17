@@ -90,6 +90,7 @@ def handle_message(event):
 		url = 'https://ecshweb.pchome.com.tw/search/v3.3/all/results?q={}&page=1&sort=sale/dc'.format(userSend)
 		message = TextSendMessage(text=pchome(url))
 		userStatusSheet.update_cell(userRow, 3, '')
+		userStatusSheet.update_cell(userRow, 4, '')
 	elif status == '公車查詢0':
 		userStatusSheet.update_cell(userRow, 4, userSend)
 		message = TextSendMessage(text=showRouteList(userSend))
@@ -117,34 +118,7 @@ def handle_message(event):
 			userStatusSheet.update_cell(userRow, 3, '')
 			userStatusSheet.update_cell(userRow, 4, '')
 			userStatusSheet.update_cell(userRow, 5, '')
-		# # 匯率
-		# elif userSend == '匯率':
-		# 	message = TemplateSendMessage(
-		# 		alt_text='匯率清單',   
-		# 		template=ButtonsTemplate(
-		# 			thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
-		# 			title='匯率查詢',
-		# 			text='請選擇動作',
-		# 			actions=[
-		# 				MessageAction(
-		# 					label='查詢美金匯率',
-		# 					text='USD'
-		# 				),
-		# 				MessageAction(
-		# 					label='查詢人民幣匯率',
-		# 					text='CNY'
-		# 				),
-		# 				MessageAction(
-		# 					label='查詢其他匯率',
-		# 					text='匯率清單'
-		# 				),
-		# 				URIAction(
-		# 					label='連結網址',
-		# 					uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
-		# 				)
-		# 			]
-		# 		)
-		# 	)
+		
 		elif userSend == '匯率清單':
 			message = TextSendMessage(text=currency)
 		elif userSend.upper() in currencyList:
