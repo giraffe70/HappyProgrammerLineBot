@@ -74,7 +74,7 @@ def showRouteList(userSearch):
     elif len(routeList) > 1:
         for index, route in enumerate(routeList):
             result += '{}. {}\n'.format(index+1,route['name'])
-        return result
+        return result + '------------------------------\n請輸入選項編號'
     else:
         result += '沒有這個路線'
         return result

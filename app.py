@@ -13,6 +13,7 @@ from engine.crawlerArtical import *
 from engine.OpenDataTravel import *
 from engine.pchome import pchome
 from engine.cardTojpg import *
+from engine.ibus import *
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -90,6 +91,16 @@ def handle_message(event):
 		url = 'https://ecshweb.pchome.com.tw/search/v3.3/all/results?q={}&page=1&sort=sale/dc'.format(userSend)
 		message = TextSendMessage(text=pchome(url))
 		userStatusSheet.update_cell(userRow, 3, '')
+	elif status == '公車查詢0':
+		userInfoSheet.update_cell(userRow, 4, userSend)
+		message = TextSendMessage(text=showRouteList(userSend))
+		userStatusSheet.update_cell(userRow, 3, '公車查詢1')
+	elif status == '公車查詢1':
+		userInfoSheet.update_cell(userRow, 5, userSend)
+		message = TextSendMessage(text=showRouteResult(userSend))
+		userStatusSheet.update_cell(userRow, 3, '')
+		userStatusSheet.update_cell(userRow, 4, '')
+		userStatusSheet.update_cell(userRow, 5, '')
 
 	elif member == '已註冊':
 		currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
@@ -201,6 +212,9 @@ def handle_message(event):
 		elif userSend in ['pchome', 'PChome', 'PCHOME']:
 			userStatusSheet.update_cell(userRow, 3, 'PChome')
 			message = TextSendMessage(text='請輸入要搜尋的商品')
+		elif userSend in ['bus', 'Bus', 'BUS', '公車']:
+			userStatusSheet.update_cell(userRow, 3, '公車查詢0')
+			message = TextSendMessage(text='請問要搜尋幾號公車')
 		# elif userSend == '購票':
 		# 	userStatusSheet.update_cell(userRow, 3, '購票0')
 		# 	message = TextSendMessage(text='請輸入姓名')
