@@ -12,6 +12,8 @@ from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import *
 from engine.OpenDataTravel import *
 from engine.pchome import pchome
+from engine.yahooNews import crawerYahoo
+from engine.ETtoday import crawerETtoday
 from engine.ibus import *
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -141,7 +143,7 @@ def handle_message(event):
 			url = 'https://technews.tw/tn-rss/'
 			message = TextSendMessage(text=rssTechNews(url, 10))
 		# 籃球圈
-		elif userSend == 'bballman':
+		elif userSend in ['bballman', '籃球圈' , '籃球']:
 			url = 'http://www.bballman.com/category/news'
 			message = TextSendMessage(text=bballman_news(url, 10))
 		# 三立新聞
@@ -157,6 +159,14 @@ def handle_message(event):
 		elif userSend == 'ltnPolitics':
 			url = 'https://news.ltn.com.tw/rss/politics.xml'
 			message = TextSendMessage(text=rssNewsLtn(url, 10))
+		# yahoo新聞
+		elif userSend == 'yahooNews':
+			url = 'https://tw.yahoo.com/'
+			message = TextSendMessage(text=crawerYahoo(url))
+		# ETtoday
+		elif userSend == 'ETtoday':
+			url = 'https://www.ettoday.net/'
+			message = TextSendMessage(text=crawerETtoday(url))
 		# 再見
 		elif userSend in byeList:
 			message = StickerSendMessage(package_id='11537',sticker_id='52002758')
@@ -272,17 +282,17 @@ def handle_message(event):
 							text='TechNews'
 						),
 						MessageAction(
-							label='籃球圈',
-							text='bballman'
-						),
-						MessageAction(
 							label='三立新聞',
 							text='set'
 						),
 						MessageAction(
-							label='批踢踢',
-							text='PTT'
-						)
+							label='yahoo新聞',
+							text='yahooNews'
+						),
+						MessageAction(
+							label='ETtoday',
+							text='ETtoday'
+						),
 					]
 				)
 			)
