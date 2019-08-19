@@ -13,7 +13,6 @@ from engine.crawlerArtical import *
 from engine.OpenDataTravel import *
 from engine.pchome import pchome
 from engine.yahooNews import crawerYahoo
-from engine.ETtoday import crawerETtoday
 from engine.ibus import *
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -161,10 +160,6 @@ def handle_message(event):
 		elif userSend == 'yahooNews':
 			url = 'https://tw.yahoo.com/'
 			message = TextSendMessage(text=crawerYahoo(url))
-		# ETtoday
-		elif userSend == 'ETtoday':
-			url = 'https://www.ettoday.net/'
-			message = TextSendMessage(text=crawerETtoday(url))
 		# 再見
 		elif userSend in byeList:
 			message = StickerSendMessage(package_id='11537',sticker_id='52002758')
@@ -288,8 +283,8 @@ def handle_message(event):
 							text='yahooNews'
 						),
 						MessageAction(
-							label='ETtoday',
-							text='ETtoday'
+							label='籃球圈',
+							text='bballman'
 						),
 					]
 				)
