@@ -97,6 +97,18 @@ def rssNewsLtn(url, articleNumber):
 			break
 	return result
 
+# yahoo新聞
+def crawerYahoo(url):
+	res = requests.get(url)
+	soup = BeautifulSoup(res.text, "html.parser")
+	result = ''
+	for s in soup.select(".Story-Item"):
+		if s.find('span',class_='Va-tt') != None:
+			if len(result) < 1900:
+				result += '{}\n{}\n\n'.format(s.find('span',class_='Va-tt').text, s.find('a')['href'])
+			# result += s.find('a')['href']
+	return result
+
 
 # webOption = int(input('[1].PTT  [2].籃球圈  [3].Spotify  [4].TechNews [5].三立新聞\n想要看什麼：'))
 # if webOption == 1:
