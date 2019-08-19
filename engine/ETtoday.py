@@ -9,9 +9,8 @@ def crawerETtoday(url):
 	for s in soup.select('.focus-news'):
 		for focus in s.select('.box_2 h3'):
 			if focus.find('a') != None:
-				if len(result) < 1900:
-					result += '{}\n'.format(focus.find('a').text)
-					result += 'https://www.ettoday.net{}\n\n'.format(focus.find('a')['href'])
+				result += '{}\n'.format(focus.find('a').text)
+				result += 'https://www.ettoday.net{}\n\n'.format(focus.find('a')['href'])
 	# # result += '------------------------------\n\n及時人氣：\n\n'
 	# for s in soup.select('.realtime-hot'):
 	# 	for realtime in s.select('.box_2 h3'):
