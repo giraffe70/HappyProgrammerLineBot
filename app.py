@@ -82,11 +82,9 @@ def handle_message(event):
 
 	elif status == '旅遊查詢':
 		place = readJsonFilter(userSend)
-		if len(showList(place)) <= 2000:
-			message = TextSendMessage(text=showList(place))
-			userStatusSheet.update_cell(userRow, 3, '')
-		elif len(showList(place)) > 2000:
-			message = TextSendMessage(text="請輸入小一點的範圍")
+		message = TextSendMessage(text=showList(place))
+		userStatusSheet.update_cell(userRow, 3, '')
+		
 	elif status == 'PChome':
 		userStatusSheet.update_cell(userRow, 4, userSend)
 		url = 'https://ecshweb.pchome.com.tw/search/v3.3/all/results?q={}&page=1&sort=sale/dc'.format(userSend)

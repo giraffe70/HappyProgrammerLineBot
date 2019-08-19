@@ -7,7 +7,8 @@ def crawerYahoo(url):
 	result = ''
 	for s in soup.select(".Story-Item"):
 		if s.find('span',class_='Va-tt') != None:
-			result += '{}\n{}\n\n'.format(s.find('span',class_='Va-tt').text, s.find('a')['href'])
+			if len(result) < 1990:
+				result += '{}\n{}\n\n'.format(s.find('span',class_='Va-tt').text, s.find('a')['href'])
 			# result += s.find('a')['href']
 	return result
 
