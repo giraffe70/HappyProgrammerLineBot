@@ -433,6 +433,35 @@ def handle_message(event):
 		    )
 		)
 
+		# Line 內部連結：可藉由選單按鈕，並設定為URIAction，直接開啟內部連結。
+		elif userSend == "內部連結":
+			message = TemplateSendMessage(
+				alt_text='這是個按鈕選單',
+				template=ButtonsTemplate(
+					thumbnail_image_url='https://w3.nknu.edu.tw/images/sampledata/imageshow/_20190102-4.jpg',
+					title='內部連結範例',
+					text='請選擇動作',
+					actions=[
+						URIAction(
+		                    label='傳送我的地點',
+		                    uri='line://nv/location'
+		                ),
+		                URIAction(
+		                    label='打開照相機',
+		                    uri='line://nv/camera/'
+		                ),
+		                URIAction(
+		                    label='傳送單張照片',
+		                    uri='line://nv/cameraRoll/single'
+		                ),
+		                URIAction(
+		                    label='傳送多張照片',
+		                    uri='line://nv/cameraRoll/multi'
+		                )
+		            ]
+		        )
+	    	)
+
 		# Image Carousel template：跟Carousel template很像，最多也是一次10則。大圖顯示，一則只會執行一個action
 		elif userSend in ['Music','music','音樂']:
 			columnReply, textReply = scrapSpotify()
