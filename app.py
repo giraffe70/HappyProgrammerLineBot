@@ -218,10 +218,7 @@ def handle_message(event):
 								label='yahoo新聞',
 								text='yahooNews'
 							),
-							MessageAction(
-								label='籃球圈',
-								text='bballman'
-							)
+							
 						]
 		            ),
 		            CarouselColumn(
@@ -232,10 +229,6 @@ def handle_message(event):
 							MessageAction(
 								label='NBA',
 								text='PTT_NBA'
-							),
-							MessageAction(
-								label='Badminton',
-								text='PTT_Badminton'
 							),
 							MessageAction(
 								label='Gossiping',
