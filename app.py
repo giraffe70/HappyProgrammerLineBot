@@ -78,11 +78,11 @@ def handle_message(event):
 		userStatusSheet.update_cell(userRow, 2, '已註冊')
 		message = TextSendMessage(text='Hi,{}'.format(userSend))
 
+	# Google 試算表上的 status
 	elif status == '旅遊查詢':
 		place = readJsonFilter(userSend)
 		message = TextSendMessage(text=showList(place))
 		userStatusSheet.update_cell(userRow, 3, '')
-		
 	elif status == 'PChome':
 		userStatusSheet.update_cell(userRow, 4, userSend)
 		url = 'https://ecshweb.pchome.com.tw/search/v3.3/all/results?q={}&page=1&sort=sale/dc'.format(userSend)
@@ -135,17 +135,14 @@ def handle_message(event):
 		elif userSend == 'PTT_HatePolitics':
 			url = 'https://www.ptt.cc/bbs/HatePolitics/index.html'
 			message = TextSendMessage(text=pttSearch(url))
-
 		# 科技新報
 		elif userSend in ['TechNews', '科技新報', '科技', 'tech', 'Tech']:
 			url = 'https://technews.tw/tn-rss/'
 			message = TextSendMessage(text=rssTechNews(url, 10))
-
 		# 籃球圈
 		elif userSend in ['bballman', '籃球圈' , '籃球']:
 			url = 'http://www.bballman.com/category/news'
 			message = TextSendMessage(text=bballman_news(url, 10))
-
 		# 三立新聞
 		elif userSend == 'ltnAll':
 			url = 'https://news.ltn.com.tw/rss/all.xml'
@@ -159,7 +156,6 @@ def handle_message(event):
 		elif userSend == 'ltnPolitics':
 			url = 'https://news.ltn.com.tw/rss/politics.xml'
 			message = TextSendMessage(text=rssNewsLtn(url, 10))
-
 		# yahoo新聞
 		elif userSend == 'yahooNews':
 			url = 'https://tw.yahoo.com/'
@@ -415,7 +411,7 @@ def handle_message(event):
 						]
 		            ),
 		            CarouselColumn(
-		                thumbnail_image_url='https://static.newmobilelife.com/wp-content/uploads/2018/09/Shortcuts-PTT.jpg',
+		                thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
 		                title='匯率查詢',
 		                text='請選擇幣別',
 		                actions=[
