@@ -346,6 +346,34 @@ def handle_message(event):
 				)
 			)
 
+		elif userSend == '查詢':
+			message = TemplateSendMessage(
+				alt_text='Spotify Charts',   
+				template=ButtonsTemplate(
+					thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Spotify_logo_horizontal_black.jpg/1280px-Spotify_logo_horizontal_black.jpg',
+					title='查詢',
+					text='請選擇動作',
+					actions=[
+						MessageAction(
+							label='旅遊景點查詢',
+							text='旅遊'
+						),
+						MessageAction(
+							label='公車查詢',
+							text='公車'
+						),
+						MessageAction(
+							label='PChome商品查詢',
+							text='PChome'
+						),
+						MessageAction(
+							label='天氣查詢',
+							text='天氣'
+						)
+					]
+				)
+			)
+
 		# Carousel template：就像很多個Buttons Template，一次最多可以有10則
 		elif userSend in ["安安", 'c', 'C']:
 			message = TemplateSendMessage(
