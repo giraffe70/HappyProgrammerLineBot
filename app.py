@@ -203,43 +203,49 @@ def handle_message(event):
 		        columns=[
 		            CarouselColumn(
 		                thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
-		                title='this is menu1',
-		                text='description1',
+		                title='News List',
+		                text='請選擇新聞',
 		                actions=[
-		                    PostbackAction(
-		                        label='postback1',
-		                        display_text='postback text1',
-		                        data='action=buy&itemid=1'
-		                    ),
-		                    MessageAction(
-		                        label='message1',
-		                        text='message text1'
-		                    ),
-		                    URIAction(
-		                        label='uri1',
-		                        uri='http://example.com/1'
-		                    )
-		                ]
+							MessageAction(
+								label='科技新報',
+								text='TechNews'
+							),
+							MessageAction(
+								label='三立新聞',
+								text='set'
+							),
+							MessageAction(
+								label='yahoo新聞',
+								text='yahooNews'
+							),
+							MessageAction(
+								label='籃球圈',
+								text='bballman'
+							)
+						]
 		            ),
 		            CarouselColumn(
 		                thumbnail_image_url='https://static.newmobilelife.com/wp-content/uploads/2018/09/Shortcuts-PTT.jpg',
-		                title='this is menu2',
-		                text='description2',
+		                title='PTT',
+		                text='請選擇看板',
 		                actions=[
-		                    PostbackAction(
-		                        label='postback2',
-		                        display_text='postback text2',
-		                        data='action=buy&itemid=2'
-		                    ),
-		                    MessageAction(
-		                        label='message2',
-		                        text='message text2'
-		                    ),
-		                    URIAction(
-		                        label='uri2',
-		                        uri='http://example.com/2'
-		                    )
-		                ]
+							MessageAction(
+								label='NBA',
+								text='PTT_NBA'
+							),
+							MessageAction(
+								label='Badminton',
+								text='PTT_Badminton'
+							),
+							MessageAction(
+								label='Gossiping',
+								text='PTT_Gossiping'
+							),
+							MessageAction(
+								label='HatePolitics',
+								text='PTT_HatePolitics'
+							)
+						]
 		            )
 		        ]
 		    )
@@ -332,7 +338,7 @@ def handle_message(event):
 						MessageAction(
 							label='籃球圈',
 							text='bballman'
-						),
+						)
 					]
 				)
 			)
