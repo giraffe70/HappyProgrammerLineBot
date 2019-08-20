@@ -197,7 +197,7 @@ def handle_message(event):
 		# 	userStatusSheet.update_cell(userRow, 3, '購票0')
 		# 	message = TextSendMessage(text='請輸入姓名')
 		elif userSend == "安安":
-			carousel_template_message = TemplateSendMessage(
+			message = TemplateSendMessage(
 		    alt_text='Carousel template',
 		    template=CarouselTemplate(
 		        columns=[
