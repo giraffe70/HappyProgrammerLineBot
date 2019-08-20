@@ -121,6 +121,7 @@ def handle_message(event):
 			message = TextSendMessage(text=currency)
 		elif userSend.upper() in currencyList:
 			message = TextSendMessage(text=currencySearch(userSend.upper()))
+
 		# PTT
 		elif userSend == 'PTT_NBA':
 			url = 'https://www.ptt.cc/bbs/NBA/index.html'
@@ -134,14 +135,17 @@ def handle_message(event):
 		elif userSend == 'PTT_HatePolitics':
 			url = 'https://www.ptt.cc/bbs/HatePolitics/index.html'
 			message = TextSendMessage(text=pttSearch(url))
+
 		# 科技新報
 		elif userSend in ['TechNews', '科技新報', '科技', 'tech', 'Tech']:
 			url = 'https://technews.tw/tn-rss/'
 			message = TextSendMessage(text=rssTechNews(url, 10))
+
 		# 籃球圈
 		elif userSend in ['bballman', '籃球圈' , '籃球']:
 			url = 'http://www.bballman.com/category/news'
 			message = TextSendMessage(text=bballman_news(url, 10))
+
 		# 三立新聞
 		elif userSend == 'ltnAll':
 			url = 'https://news.ltn.com.tw/rss/all.xml'
@@ -155,17 +159,17 @@ def handle_message(event):
 		elif userSend == 'ltnPolitics':
 			url = 'https://news.ltn.com.tw/rss/politics.xml'
 			message = TextSendMessage(text=rssNewsLtn(url, 10))
+
 		# yahoo新聞
 		elif userSend == 'yahooNews':
 			url = 'https://tw.yahoo.com/'
 			message = TextSendMessage(text=crawerYahoo(url))
-		# 再見
+
+		# 傳送貼圖
 		elif userSend in byeList:
 			message = StickerSendMessage(package_id='11537',sticker_id='52002758')
-		# 排行榜
-		# elif userSend in ['spotify','Spotify','排行榜']:
-		#     url = 'https://spotifycharts.com/regional'
-		#     message = TextSendMessage(text=Spotify_GLOBAL(url))
+
+		# Spotify 排行榜
 		elif userSend == 'Spotify_global':
 			url = 'https://spotifycharts.com/regional/global/daily/latest'
 			message = TextSendMessage(text=Spotify_TOP30(url))
@@ -179,20 +183,172 @@ def handle_message(event):
 			url = 'https://spotifycharts.com/regional/gb/daily/latest'
 			message = TextSendMessage(text=Spotify_TOP30(url))
 		
-		# 天氣
+		# 天氣查詢
 		elif userSend == '天氣':
 			# message = TextSendMessage(text='請傳入座標位置')
 			userStatusSheet.update_cell(userRow, 3, '天氣查詢')
 			message = TextSendMessage(text='請傳送你的座標')
+		# 旅遊景點查詢
 		elif userSend == '旅遊':
 			userStatusSheet.update_cell(userRow, 3, '旅遊查詢')
 			message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
+		# pchome 商品查詢
 		elif userSend in ['pchome', 'PChome', 'PCHOME', 'Pchome']:
 			userStatusSheet.update_cell(userRow, 3, 'PChome')
 			message = TextSendMessage(text='請輸入要搜尋的商品')
+		# 公車查詢
 		elif userSend in ['bus', 'Bus', 'BUS', '公車']:
 			userStatusSheet.update_cell(userRow, 3, '公車查詢0')
 			message = TextSendMessage(text='請問要搜尋幾號公車')
+
+		# 傳送圖片
+		elif userSend == '圖片':
+			message = ImageSendMessage(
+			original_content_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png',
+			preview_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png'
+			)
+		
+		# Buttons Template
+		elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
+			message = TemplateSendMessage(
+				alt_text='PTT List',   
+				template=ButtonsTemplate(
+					thumbnail_image_url='https://static.newmobilelife.com/wp-content/uploads/2018/09/Shortcuts-PTT.jpg',
+					title='PTT',
+					text='請選擇看版',
+					actions=[
+						MessageAction(
+							label='NBA',
+							text='PTT_NBA'
+						),
+						MessageAction(
+							label='Badminton',
+							text='PTT_Badminton'
+						),
+						MessageAction(
+							label='Gossiping',
+							text='PTT_Gossiping'
+						),
+						MessageAction(
+							label='HatePolitics',
+							text='PTT_HatePolitics'
+						)
+
+					]
+				)
+			)
+		
+		elif userSend == '匯率':
+			message = TemplateSendMessage(
+				alt_text='匯率清單',   
+				template=ButtonsTemplate(
+					thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
+					title='匯率查詢',
+					text='請選擇幣別',
+					actions=[
+						MessageAction(
+							label='查詢美金匯率',
+							text='USD'
+						),
+						MessageAction(
+							label='查詢人民幣匯率',
+							text='CNY'
+						),
+						MessageAction(
+							label='查詢其他匯率',
+							text='匯率清單'
+						),
+						URIAction(
+							label='連結網址',
+							uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
+						)
+					]
+				)
+			)
+
+		elif userSend in ['新聞', 'news', 'News']:
+			message = TemplateSendMessage(
+				alt_text='News List',   
+				template=ButtonsTemplate(
+					thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
+					title='News',
+					text='請選擇新聞',
+					actions=[
+						MessageAction(
+							label='科技新報',
+							text='TechNews'
+						),
+						MessageAction(
+							label='三立新聞',
+							text='set'
+						),
+						MessageAction(
+							label='yahoo新聞',
+							text='yahooNews'
+						),
+						MessageAction(
+							label='籃球圈',
+							text='bballman'
+						)
+					]
+				)
+			)
+
+		elif userSend in ['set', 'Set', 'SET', '三立', '三立新聞']:
+			message = TemplateSendMessage(
+				alt_text='Set List',   
+				template=ButtonsTemplate(
+					thumbnail_image_url='https://img.vpnclub.cc/content/zh/2018/09/SET-News-Logo.jpg',
+					title='set三立新聞',
+					text='請選擇新聞',
+					actions=[
+						MessageAction(
+							label='即時',
+							text='ltnAll'
+						),
+						MessageAction(
+							label='國際',
+							text='ltnWorld'
+						),
+						MessageAction(
+							label='體育',
+							text='ltnSports'
+						),
+						MessageAction(
+							label='政治',
+							text='ltnPolitics'
+						)
+					]
+				)
+			)
+
+		elif userSend in ['spotify','Spotify','排行榜']:
+			message = TemplateSendMessage(
+				alt_text='Spotify Charts',   
+				template=ButtonsTemplate(
+					thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Spotify_logo_horizontal_black.jpg/1280px-Spotify_logo_horizontal_black.jpg',
+					title='TOP 30',
+					text='Filter by',
+					actions=[
+						MessageAction(
+							label='GLOBAL',
+							text='Spotify_global'
+						),
+						MessageAction(
+							label='TAIWAN',
+							text='Spotify_tw'
+						),
+						MessageAction(
+							label='UNITED STATES',
+							text='Spotify_us'
+						),
+						MessageAction(
+							label='UNITED KINGDOM',
+							text='Spotify_gb'
+						)
+					]
+				)
+			)
 
 		# Carousel template：就像很多個Buttons Template，一次最多可以有10則
 		elif userSend in ["安安", 'c', 'C']:
@@ -281,154 +437,7 @@ def handle_message(event):
 		    )
 		)
 
-		elif userSend == '圖片':
-			message = ImageSendMessage(
-			original_content_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png',
-			preview_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png'
-			)
-		
-		# 列表
-		elif userSend in ['ptt', 'Ptt', 'PTT', '批踢踢']:
-			message = TemplateSendMessage(
-				alt_text='PTT List',   
-				template=ButtonsTemplate(
-					thumbnail_image_url='https://static.newmobilelife.com/wp-content/uploads/2018/09/Shortcuts-PTT.jpg',
-					title='PTT',
-					text='請選擇看版',
-					actions=[
-						MessageAction(
-							label='NBA',
-							text='PTT_NBA'
-						),
-						MessageAction(
-							label='Badminton',
-							text='PTT_Badminton'
-						),
-						MessageAction(
-							label='Gossiping',
-							text='PTT_Gossiping'
-						),
-						MessageAction(
-							label='HatePolitics',
-							text='PTT_HatePolitics'
-						)
-
-					]
-				)
-			)
-		# 匯率
-		elif userSend == '匯率':
-			message = TemplateSendMessage(
-				alt_text='匯率清單',   
-				template=ButtonsTemplate(
-					thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
-					title='匯率查詢',
-					text='請選擇幣別',
-					actions=[
-						MessageAction(
-							label='查詢美金匯率',
-							text='USD'
-						),
-						MessageAction(
-							label='查詢人民幣匯率',
-							text='CNY'
-						),
-						MessageAction(
-							label='查詢其他匯率',
-							text='匯率清單'
-						),
-						URIAction(
-							label='連結網址',
-							uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
-						)
-					]
-				)
-			)
-
-		elif userSend in ['新聞', 'news', 'News']:
-			message = TemplateSendMessage(
-				alt_text='News List',   
-				template=ButtonsTemplate(
-					thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
-					title='News',
-					text='請選擇新聞',
-					actions=[
-						MessageAction(
-							label='科技新報',
-							text='TechNews'
-						),
-						MessageAction(
-							label='三立新聞',
-							text='set'
-						),
-						MessageAction(
-							label='yahoo新聞',
-							text='yahooNews'
-						),
-						MessageAction(
-							label='籃球圈',
-							text='bballman'
-						)
-					]
-				)
-			)
-
-		elif userSend in ['set', 'Set', 'SET', '三立', '三立新聞']:
-			message = TemplateSendMessage(
-				alt_text='Set List',   
-				template=ButtonsTemplate(
-					thumbnail_image_url='https://img.vpnclub.cc/content/zh/2018/09/SET-News-Logo.jpg',
-					title='set三立新聞',
-					text='請選擇新聞',
-					actions=[
-						MessageAction(
-							label='即時',
-							text='ltnAll'
-						),
-						MessageAction(
-							label='國際',
-							text='ltnWorld'
-						),
-						MessageAction(
-							label='體育',
-							text='ltnSports'
-						),
-						MessageAction(
-							label='政治',
-							text='ltnPolitics'
-						)
-					]
-				)
-			)
-		elif userSend in ['spotify','Spotify','排行榜']:
-			message = TemplateSendMessage(
-				alt_text='Spotify Charts',   
-				template=ButtonsTemplate(
-					thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Spotify_logo_horizontal_black.jpg/1280px-Spotify_logo_horizontal_black.jpg',
-					title='TOP 30',
-					text='Filter by',
-					actions=[
-						MessageAction(
-							label='GLOBAL',
-							text='Spotify_global'
-						),
-						MessageAction(
-							label='TAIWAN',
-							text='Spotify_tw'
-						),
-						MessageAction(
-							label='UNITED STATES',
-							text='Spotify_us'
-						),
-						MessageAction(
-							label='UNITED KINGDOM',
-							text='Spotify_gb'
-						)
-					]
-				)
-			)
-
-
+		# Image Carousel template：跟Carousel template很像，最多也是一次10則。大圖顯示，一則只會執行一個action
 		elif userSend in ['Music','music','音樂']:
 			columnReply, textReply = scrapSpotify()
 			message = TemplateSendMessage(
@@ -439,8 +448,7 @@ def handle_message(event):
 			)
 		else:
 			message = TextSendMessage(text=userSend)
-	
-	
+
 	line_bot_api.reply_message(event.reply_token, message)
 
 @handler.add(MessageEvent, message=StickerMessage)
