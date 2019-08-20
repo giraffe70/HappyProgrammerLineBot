@@ -193,10 +193,9 @@ def handle_message(event):
 		elif userSend in ['bus', 'Bus', 'BUS', '公車']:
 			userStatusSheet.update_cell(userRow, 3, '公車查詢0')
 			message = TextSendMessage(text='請問要搜尋幾號公車')
-		# elif userSend == '購票':
-		# 	userStatusSheet.update_cell(userRow, 3, '購票0')
-		# 	message = TextSendMessage(text='請輸入姓名')
-		elif userSend == "安安":
+
+		# Carousel template：就像很多個Buttons Template，一次最多可以有10則
+		elif userSend in ["安安", 'c', 'C']:
 			message = TemplateSendMessage(
 		    alt_text='Carousel template',
 		    template=CarouselTemplate(
@@ -237,6 +236,44 @@ def handle_message(event):
 							MessageAction(
 								label='HatePolitics',
 								text='PTT_HatePolitics'
+							)
+						]
+		            ),
+		            CarouselColumn(
+		                thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Spotify_logo_horizontal_black.jpg/1280px-Spotify_logo_horizontal_black.jpg',
+		                title='Spotify TOP 30',
+		                text='Filter by',
+		                actions=[
+							MessageAction(
+								label='GLOBAL',
+								text='Spotify_global'
+							),
+							MessageAction(
+								label='TAIWAN',
+								text='Spotify_tw'
+							),
+							MessageAction(
+								label='UNITED STATES',
+								text='Spotify_us'
+							)
+						]
+		            ),
+		            CarouselColumn(
+		                thumbnail_image_url='https://static.newmobilelife.com/wp-content/uploads/2018/09/Shortcuts-PTT.jpg',
+		                title='匯率查詢',
+		                text='請選擇幣別',
+		                actions=[
+							MessageAction(
+								label='查詢美金匯率',
+								text='USD'
+							),
+							MessageAction(
+								label='查詢人民幣匯率',
+								text='CNY'
+							),
+							MessageAction(
+								label='查詢其他匯率',
+								text='匯率清單'
 							)
 						]
 		            )
@@ -286,7 +323,7 @@ def handle_message(event):
 				template=ButtonsTemplate(
 					thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
 					title='匯率查詢',
-					text='請選擇動作',
+					text='請選擇幣別',
 					actions=[
 						MessageAction(
 							label='查詢美金匯率',
