@@ -196,7 +196,7 @@ def handle_message(event):
 		# elif userSend == '購票':
 		# 	userStatusSheet.update_cell(userRow, 3, '購票0')
 		# 	message = TextSendMessage(text='請輸入姓名')
-		elif event.message.text == "安安":
+		elif userSend == "安安":
 			carousel_template_message = TemplateSendMessage(
 		    alt_text='Carousel template',
 		    template=CarouselTemplate(
