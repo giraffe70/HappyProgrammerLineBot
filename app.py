@@ -12,7 +12,6 @@ from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import *
 from engine.OpenDataTravel import *
 from engine.pchome import pchome
-
 from engine.ibus import *
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -110,7 +109,7 @@ def handle_message(event):
 		if userSend in ['hello', 'Hello', 'Hey', 'hey', 'Hi','hi','哈囉','你好']:
 			userName = userInfoSheet.cell(cell.row,2).value
 			message = TextSendMessage(text='Hello, ' + userName)
-		elif userSend in ['功能', '安安', '能做甚麼', '能幹嘛', '可以幹嘛']:
+		elif userSend in ['功能', '能做甚麼', '能幹嘛', '可以幹嘛']:
 			message = TextSendMessage(text='目前的功能有：\n天氣、匯率、音樂、新聞、批踢踢、圖片、旅遊景點查詢、公車路線查詢、PChome商品查詢、Spotify排行榜')
 		elif userSend in ['狀態清空', '清空', 'clean']:
 			message = TextSendMessage(text='狀態已清空！')
@@ -123,20 +122,20 @@ def handle_message(event):
 		elif userSend.upper() in currencyList:
 			message = TextSendMessage(text=currencySearch(userSend.upper()))
 		# PTT
-		elif userSend == 'NBA':
+		elif userSend == 'PTT_NBA':
 			url = 'https://www.ptt.cc/bbs/NBA/index.html'
 			message = TextSendMessage(text=pttSearch(url))
-		elif userSend == 'Badminton':
+		elif userSend == 'PTT_Badminton':
 			url = 'https://www.ptt.cc/bbs/Badminton/index.html'
 			message = TextSendMessage(text=pttSearch(url))
-		elif userSend == 'Gossiping':
+		elif userSend == 'PTT_Gossiping':
 			url = 'https://www.ptt.cc/bbs/Gossiping/index.html'
 			message = TextSendMessage(text=pttSearch(url))
-		elif userSend == 'HatePolitics':
+		elif userSend == 'PTT_HatePolitics':
 			url = 'https://www.ptt.cc/bbs/HatePolitics/index.html'
 			message = TextSendMessage(text=pttSearch(url))
 		# 科技新報
-		elif userSend == 'TechNews':
+		elif userSend in ['TechNews', '科技新報', '科技', 'tech', 'Tech']:
 			url = 'https://technews.tw/tn-rss/'
 			message = TextSendMessage(text=rssTechNews(url, 10))
 		# 籃球圈
@@ -197,7 +196,55 @@ def handle_message(event):
 		# elif userSend == '購票':
 		# 	userStatusSheet.update_cell(userRow, 3, '購票0')
 		# 	message = TextSendMessage(text='請輸入姓名')
-		
+		elif event.message.text == "安安":
+			carousel_template_message = TemplateSendMessage(
+		    alt_text='Carousel template',
+		    template=CarouselTemplate(
+		        columns=[
+		            CarouselColumn(
+		                thumbnail_image_url='https://example.com/item1.jpg',
+		                title='this is menu1',
+		                text='description1',
+		                actions=[
+		                    PostbackAction(
+		                        label='postback1',
+		                        display_text='postback text1',
+		                        data='action=buy&itemid=1'
+		                    ),
+		                    MessageAction(
+		                        label='message1',
+		                        text='message text1'
+		                    ),
+		                    URIAction(
+		                        label='uri1',
+		                        uri='http://example.com/1'
+		                    )
+		                ]
+		            ),
+		            CarouselColumn(
+		                thumbnail_image_url='https://example.com/item2.jpg',
+		                title='this is menu2',
+		                text='description2',
+		                actions=[
+		                    PostbackAction(
+		                        label='postback2',
+		                        display_text='postback text2',
+		                        data='action=buy&itemid=2'
+		                    ),
+		                    MessageAction(
+		                        label='message2',
+		                        text='message text2'
+		                    ),
+		                    URIAction(
+		                        label='uri2',
+		                        uri='http://example.com/2'
+		                    )
+		                ]
+		            )
+		        ]
+		    )
+		)
+
 		elif userSend == '圖片':
 			message = ImageSendMessage(
 			original_content_url='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/220px-Google_Chrome_icon_%28September_2014%29.svg.png',
@@ -215,19 +262,19 @@ def handle_message(event):
 					actions=[
 						MessageAction(
 							label='NBA',
-							text='NBA'
+							text='PTT_NBA'
 						),
 						MessageAction(
 							label='Badminton',
-							text='Badminton'
+							text='PTT_Badminton'
 						),
 						MessageAction(
 							label='Gossiping',
-							text='Gossiping'
+							text='PTT_Gossiping'
 						),
 						MessageAction(
 							label='HatePolitics',
-							text='HatePolitics'
+							text='PTT_HatePolitics'
 						)
 
 					]
