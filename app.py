@@ -428,6 +428,25 @@ def handle_message(event):
 								text='匯率清單'
 							)
 						]
+		            ),
+		            CarouselColumn(
+		                thumbnail_image_url='https://w3.nknu.edu.tw/images/sampledata/imageshow/_20190102-4.jpg',
+		                title='內部連結範例',
+		                text='請選擇動作',
+		                actions=[
+							URIAction(
+			                    label='傳送我的地點',
+			                    uri='line://nv/location'
+			                ),
+			                URIAction(
+			                    label='打開照相機',
+			                    uri='line://nv/camera/'
+			                ),
+			                URIAction(
+			                    label='傳送單張照片',
+			                    uri='line://nv/cameraRoll/single'
+			                )
+						]
 		            )
 		        ]
 		    )
