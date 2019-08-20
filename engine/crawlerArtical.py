@@ -104,7 +104,7 @@ def crawerYahoo(url):
 	result = ''
 	for s in soup.select(".Story-Item"):
 		if s.find('span',class_='Va-tt') != None:
-			if len(result) < 1900:
+			if len(result) < 1850:
 				result += '{}\n{}\n\n'.format(s.find('span',class_='Va-tt').text, s.find('a')['href'])
 			# result += s.find('a')['href']
 	return result
@@ -133,4 +133,5 @@ def crawerYahoo(url):
 # 	print(rssNewsLtn('https://news.ltn.com.tw/rss/{}.xml'.format(SectionList[SectionInput-1]), numberInput))
 # else:
 # 	print('請輸入數字')
+
 
