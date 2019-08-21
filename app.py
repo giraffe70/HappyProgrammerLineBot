@@ -13,6 +13,7 @@ from engine.crawlerArtical import *
 from engine.OpenDataTravel import *
 from engine.pchome import pchome
 from engine.ibus import *
+from engine.GoogleMapsURL import *
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
