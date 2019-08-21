@@ -253,12 +253,12 @@ def handle_message(event):
 							text='CNY'
 						),
 						MessageAction(
-							label='查詢其他匯率',
-							text='匯率清單'
-						),
-						MessageAction(
 							label='查詢全部匯率',
 							text='全部匯率'
+						),
+						URIAction(
+							label='連結網址',
+							uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
 						)
 					]
 				)
@@ -348,8 +348,8 @@ def handle_message(event):
 			message = TemplateSendMessage(
 				alt_text='Spotify Charts',   
 				template=ButtonsTemplate(
-					thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Spotify_logo_horizontal_black.jpg/1280px-Spotify_logo_horizontal_black.jpg',
-					title='查詢',
+					thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
+					title='對話式查詢',
 					text='請選擇動作',
 					actions=[
 						MessageAction(
@@ -371,7 +371,35 @@ def handle_message(event):
 					]
 				)
 			)
-		# @ 查詢
+		# Line 內部連結：可藉由選單按鈕，並設定為URIAction，直接開啟內部連結。
+		elif userSend == "內部連結":
+			message = TemplateSendMessage(
+				alt_text='這是個按鈕選單',
+				template=ButtonsTemplate(
+					thumbnail_image_url='https://s.yimg.com/ny/api/res/1.2/uylrkl1acHE34LKR7QNV9Q--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAw/https://media.zenfs.com/zh-tw/nownews.com/c818263ea257c217bfcde6a924a1c3ca',
+					title='內部連結範例',
+					text='請選擇動作',
+					actions=[
+						URIAction(
+		                    label='傳送我的地點',
+		                    uri='line://nv/location'
+		                ),
+		                URIAction(
+		                    label='打開照相機',
+		                    uri='line://nv/camera/'
+		                ),
+		                URIAction(
+		                    label='傳送單張照片',
+		                    uri='line://nv/cameraRoll/single'
+		                ),
+		                URIAction(
+		                    label='傳送多張照片',
+		                    uri='line://nv/cameraRoll/multi'
+		                )
+		            ]
+		        )
+	    	)
+		
 		# Carousel template：就像很多個Buttons Template，一次最多可以有10則
 		elif userSend in ["安安", 'c', 'C']:
 			message = TemplateSendMessage(
@@ -457,7 +485,7 @@ def handle_message(event):
 		            ),
 		            CarouselColumn(
 		                thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
-		                title='查詢',
+		                title='對話式查詢',
 		                text='請選擇動作',
 		                actions=[
 							MessageAction(
@@ -475,7 +503,7 @@ def handle_message(event):
 						]
 		            ),
 		            CarouselColumn(
-		                thumbnail_image_url='https://w3.nknu.edu.tw/images/sampledata/imageshow/_20190102-4.jpg',
+		                thumbnail_image_url='https://s.yimg.com/ny/api/res/1.2/uylrkl1acHE34LKR7QNV9Q--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAw/https://media.zenfs.com/zh-tw/nownews.com/c818263ea257c217bfcde6a924a1c3ca',
 		                title='內部連結範例',
 		                text='請選擇動作',
 		                actions=[
@@ -497,34 +525,7 @@ def handle_message(event):
 		    )
 		)
 
-		# Line 內部連結：可藉由選單按鈕，並設定為URIAction，直接開啟內部連結。
-		elif userSend == "內部連結":
-			message = TemplateSendMessage(
-				alt_text='這是個按鈕選單',
-				template=ButtonsTemplate(
-					thumbnail_image_url='https://w3.nknu.edu.tw/images/sampledata/imageshow/_20190102-4.jpg',
-					title='內部連結範例',
-					text='請選擇動作',
-					actions=[
-						URIAction(
-		                    label='傳送我的地點',
-		                    uri='line://nv/location'
-		                ),
-		                URIAction(
-		                    label='打開照相機',
-		                    uri='line://nv/camera/'
-		                ),
-		                URIAction(
-		                    label='傳送單張照片',
-		                    uri='line://nv/cameraRoll/single'
-		                ),
-		                URIAction(
-		                    label='傳送多張照片',
-		                    uri='line://nv/cameraRoll/multi'
-		                )
-		            ]
-		        )
-	    	)
+		
 
 		# Image Carousel template：跟Carousel template很像，最多也是一次10則。大圖顯示，一則只會執行一個action
 		elif userSend in ['Music','music','音樂']:
