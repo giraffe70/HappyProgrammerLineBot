@@ -206,11 +206,11 @@ def handle_message(event):
 		elif userSend == '天氣':
 			userStatusSheet.update_cell(userRow, 3, '天氣查詢')
 			message = TemplateSendMessage(
-				alt_text='Spotify Charts',   
+				alt_text='天氣查詢',   
 				template=ButtonsTemplate(
 					thumbnail_image_url='https://www.bviddm.com/wp-content/uploads/2015/10/weather-forecast-370x280@2x.jpg',
 					title='天氣查詢',
-					text='請選擇查詢方式',
+					text='請傳送座標',
 					actions=[
 						URIAction(
 							label='傳送我的地點',
@@ -219,7 +219,7 @@ def handle_message(event):
 						MessageAction(
 							label='手動輸入其他地址',
 							text='請輸入你的地點'
-						),
+						)
 					]
 				)
 			)
@@ -578,10 +578,26 @@ def handle_message(event):
 								uri='line://nv/cameraRoll/single'
 							)
 						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://www.bviddm.com/wp-content/uploads/2015/10/weather-forecast-370x280@2x.jpg',
+						title='天氣查詢',
+						text='請傳送座標',
+						actions=[
+							URIAction(
+								label='傳送我的地點',
+								uri='line://nv/location'
+							),
+							MessageAction(
+								label='手動輸入其他地址',
+								text='請輸入你的地點'
+							)
+						]
 					)
 				]
 			)
 		)
+				
 
 		
 
