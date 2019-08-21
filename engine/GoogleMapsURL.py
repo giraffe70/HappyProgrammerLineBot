@@ -4,15 +4,22 @@ from bs4 import BeautifulSoup
 userAdress = '高雄市苓雅區和平一路116號'
 url = 'https://www.google.com/maps/search/?api=1&query={}'.format(userAdress)
 
-def googleMapsURL(url):
+def googleMapsLat(url):
 	webContent = requests.get(url)
 	soup = BeautifulSoup(webContent.text,'lxml')
 	coord = soup.findAll('meta',{'itemprop':'image'})[0]['content'].split('center=')[1].split('&')[0]
 	lat = coord.split('%2C')[0]
-	lon = coord.split('%2C')[1]
-	return lat + ' ' + lon
+	return lat
 
-print(googleMapsURL(url))
+def googleMapsLon(url):
+	webContent = requests.get(url)
+	soup = BeautifulSoup(webContent.text,'lxml')
+	coord = soup.findAll('meta',{'itemprop':'image'})[0]['content'].split('center=')[1].split('&')[0]
+	lon = coord.split('%2C')[1]
+	return lon
+
+# print(googleMapsLat(url))
+# print(googleMapsLon(url))
 
 
 # import requests
