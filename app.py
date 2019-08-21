@@ -192,7 +192,7 @@ def handle_message(event):
 		# 	userStatusSheet.update_cell(userRow, 3, '天氣查詢')
 		# 	message = TextSendMessage(text='請傳送你的座標')
 		elif userSend == "天氣":     
-	        Confirm_template = TemplateSendMessage(
+	        message = TemplateSendMessage(
 	        alt_text='目錄 template',
 	        template=ConfirmTemplate(
 	            title='這是ConfirmTemplate',
