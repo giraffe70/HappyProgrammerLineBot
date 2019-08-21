@@ -121,6 +121,9 @@ def handle_message(event):
 			message = TextSendMessage(text=currency)
 		elif userSend.upper() in currencyList:
 			message = TextSendMessage(text=currencySearch(userSend.upper()))
+		elif userSend == '全部匯率':
+			url = 'https://rate.bot.com.tw/xrt?Lang=zh-TW'
+			message = TextSendMessage(text=rateBot(url))
 
 		# PTT
 		elif userSend == 'PTT_NBA':
@@ -233,7 +236,6 @@ def handle_message(event):
 					]
 				)
 			)
-		
 		elif userSend == '匯率':
 			message = TemplateSendMessage(
 				alt_text='匯率清單',   
@@ -254,14 +256,13 @@ def handle_message(event):
 							label='查詢其他匯率',
 							text='匯率清單'
 						),
-						URIAction(
-							label='連結網址',
-							uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
+						MessageAction(
+							label='查詢全部匯率',
+							text='全部匯率'
 						)
 					]
 				)
 			)
-
 		elif userSend in ['新聞', 'news', 'News']:
 			message = TemplateSendMessage(
 				alt_text='News List',   
@@ -289,7 +290,6 @@ def handle_message(event):
 					]
 				)
 			)
-
 		elif userSend in ['set', 'Set', 'SET', '三立', '三立新聞']:
 			message = TemplateSendMessage(
 				alt_text='Set List',   
@@ -317,7 +317,6 @@ def handle_message(event):
 					]
 				)
 			)
-
 		elif userSend in ['spotify','Spotify','排行榜']:
 			message = TemplateSendMessage(
 				alt_text='Spotify Charts',   
@@ -345,7 +344,6 @@ def handle_message(event):
 					]
 				)
 			)
-
 		elif userSend == '查詢':
 			message = TemplateSendMessage(
 				alt_text='Spotify Charts',   
@@ -373,7 +371,7 @@ def handle_message(event):
 					]
 				)
 			)
-
+		# @ 查詢
 		# Carousel template：就像很多個Buttons Template，一次最多可以有10則
 		elif userSend in ["安安", 'c', 'C']:
 			message = TemplateSendMessage(
@@ -448,12 +446,12 @@ def handle_message(event):
 								text='USD'
 							),
 							MessageAction(
-								label='查詢人民幣匯率',
-								text='CNY'
+								label='查詢全部匯率',
+								text='全部匯率'
 							),
-							MessageAction(
-								label='查詢其他匯率',
-								text='匯率清單'
+							URIAction(
+								label='連結網址',
+								uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
 							)
 						]
 		            ),
