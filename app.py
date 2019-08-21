@@ -100,6 +100,10 @@ def handle_message(event):
 		userStatusSheet.update_cell(userRow, 3, '')
 		userStatusSheet.update_cell(userRow, 4, '')
 		userStatusSheet.update_cell(userRow, 5, '')
+	# elif status == '天氣查詢':
+	# 	userStatusSheet.update_cell(userRow, 4, userSend)
+	# 	message = TextSendMessage(text=showRouteList(userSend))
+		
 
 	elif member == '已註冊':
 		currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
@@ -110,7 +114,7 @@ def handle_message(event):
 			userName = userInfoSheet.cell(cell.row,2).value
 			message = TextSendMessage(text='Hello, ' + userName)
 		elif userSend in ['功能', '能做甚麼', '能幹嘛', '可以幹嘛']:
-			message = TextSendMessage(text='目前的功能有：\n天氣、匯率、音樂、新聞、批踢踢、圖片、旅遊景點查詢、公車路線查詢、PChome商品查詢、Spotify排行榜')
+			message = TextSendMessage(text='目前的功能有：\n天氣、匯率、音樂、新聞、批踢踢、圖片、旅遊景點查詢、公車路線查詢、PChome商品查詢、Spotify排行榜、Line內部連結')
 		elif userSend in ['狀態清空', '清空', 'clean']:
 			message = TextSendMessage(text='狀態已清空！')
 			userStatusSheet.update_cell(userRow, 3, '')
@@ -183,10 +187,30 @@ def handle_message(event):
 			message = TextSendMessage(text=Spotify_TOP30(url))
 		
 		# 天氣查詢
-		elif userSend == '天氣':
-			# message = TextSendMessage(text='請傳入座標位置')
-			userStatusSheet.update_cell(userRow, 3, '天氣查詢')
-			message = TextSendMessage(text='請傳送你的座標')
+		# elif userSend == '天氣':
+		# 	# message = TextSendMessage(text='請傳入座標位置')
+		# 	userStatusSheet.update_cell(userRow, 3, '天氣查詢')
+		# 	message = TextSendMessage(text='請傳送你的座標')
+		elif userSend == "天氣":     
+	        Confirm_template = TemplateSendMessage(
+	        alt_text='目錄 template',
+	        template=ConfirmTemplate(
+	            title='這是ConfirmTemplate',
+	            text='這就是ConfirmTemplate,用於兩種按鈕選擇',
+	            actions=[                              
+	                PostbackTemplateAction(
+	                    label='Y',
+	                    text='Y',
+	                    data='line://nv/location'
+	                ),
+	                MessageTemplateAction(
+	                    label='N',
+	                    text='N'
+	                )
+	            ]
+	        )
+	    )
+
 		# 旅遊景點查詢
 		elif userSend == '旅遊':
 			userStatusSheet.update_cell(userRow, 3, '旅遊查詢')
@@ -377,7 +401,7 @@ def handle_message(event):
 				alt_text='這是個按鈕選單',
 				template=ButtonsTemplate(
 					thumbnail_image_url='https://s.yimg.com/ny/api/res/1.2/uylrkl1acHE34LKR7QNV9Q--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAw/https://media.zenfs.com/zh-tw/nownews.com/c818263ea257c217bfcde6a924a1c3ca',
-					title='內部連結範例',
+					title='內部連結',
 					text='請選擇動作',
 					actions=[
 						URIAction(
