@@ -104,8 +104,9 @@ def handle_message(event):
 	elif status == '天氣查詢':
 		userStatusSheet.update_cell(userRow, 4, userSend)
 		userAdd = userStatusSheet.cell(userRow,4).value
-		userLat = googleMapsLat(userAdd)
-		userLon = googleMapsLon(userAdd)
+		url = 'https://www.google.com/maps/search/?api=1&query={}'.format(userAdd)
+		userLat = googleMapsLat(url)
+		userLon = googleMapsLon(url)
 		
 		weatherResult = OWMLonLatsearch(userLon,userLat)
 		AQIResult = AQImonitor(userLon,userLat)
