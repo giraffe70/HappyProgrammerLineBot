@@ -112,9 +112,10 @@ def handle_message(event):
 		AQIResult = AQImonitor(userLon,userLat)
 		gammaResult = gammamonitor(userLon,userLat)
 		userStatusSheet.update_cell(userRow, 3, '')
+		userStatusSheet.update_cell(userRow, 4, '')
 		# message = TextSendMessage(text='地址：{}\n緯度：{}\n經度：{}\n'.format(userAdd,userLat,userLon))
 		message = TextSendMessage(text='⛅天氣狀況：\n{}\n☁空氣品質：\n{}\n☀輻射值：\n{}\n'.format(weatherResult, AQIResult, gammaResult))
-		message = TextSendMessage(text=showRouteList(userSend))
+		# message = TextSendMessage(text=showRouteList(userSend))
 		
 
 	elif member == '已註冊':
