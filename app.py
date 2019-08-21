@@ -193,23 +193,23 @@ def handle_message(event):
 		# 	message = TextSendMessage(text='請傳送你的座標')
 		elif userSend == "天氣":     
 	        message = TemplateSendMessage(
-	        alt_text='目錄 template',
-	        template=ConfirmTemplate(
-	            title='這是ConfirmTemplate',
-	            text='這就是ConfirmTemplate,用於兩種按鈕選擇',
-	            actions=[                              
-	                PostbackTemplateAction(
-	                    label='Y',
-	                    text='Y',
-	                    data='line://nv/location'
-	                ),
-	                MessageTemplateAction(
-	                    label='N',
-	                    text='N'
-	                )
-	            ]
-	        )
-	    )
+		        alt_text='目錄 template',
+		        template=ConfirmTemplate(
+		            title='這是ConfirmTemplate',
+		            text='這就是ConfirmTemplate,用於兩種按鈕選擇',
+		            actions=[                              
+		                PostbackTemplateAction(
+		                    label='Y',
+		                    text='Y',
+		                    data='line://nv/location'
+		                ),
+		                MessageTemplateAction(
+		                    label='N',
+		                    text='N'
+		                )
+		            ]
+	        	)
+	    	)
 
 		# 旅遊景點查詢
 		elif userSend == '旅遊':
