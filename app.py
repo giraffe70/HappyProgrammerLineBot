@@ -191,7 +191,52 @@ def handle_message(event):
 		# 	# message = TextSendMessage(text='請傳入座標位置')
 		# 	userStatusSheet.update_cell(userRow, 3, '天氣查詢')
 		# 	message = TextSendMessage(text='請傳送你的座標')
-		elif userSend == "天氣":     
+
+		# 天氣查詢
+		elif userSend == '天氣':
+			userStatusSheet.update_cell(userRow, 3, '天氣查詢')
+			message = TemplateSendMessage(
+				alt_text='Spotify Charts',   
+				template=ButtonsTemplate(
+					thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
+					title='天氣查詢',
+					text='請選擇查詢方式',
+					actions=[
+						URIAction(
+							label='傳送我的地點',
+							uri='line://nv/location'
+						),
+						MessageAction(
+							label='手動輸入其他地址',
+							text='請輸入你的地點'
+						),
+					]
+				)
+			)
+			# message = TextSendMessage(text='請傳送你的座標')
+
+		# elif userSend == '天氣':
+		# 	message = TemplateSendMessage(
+		# 		alt_text='Spotify Charts',   
+		# 		template=ButtonsTemplate(
+		# 			thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
+		# 			title='天氣查詢',
+		# 			text='請選擇查詢方式',
+		# 			actions=[
+		# 				URIAction(
+		# 					label='傳送我的地點',
+		# 					uri='line://nv/location'
+		# 				),
+		# 				MessageAction(
+		# 					label='手動輸入其他地址',
+		# 					text='請輸入你的地點'
+		# 				),
+		# 			]
+		# 		)
+		# 	)
+
+		# Confirm Template
+		elif userSend == "Confirm template":     
 			message = TemplateSendMessage(
 				alt_text='目錄 template',
 				template=ConfirmTemplate(
@@ -201,7 +246,7 @@ def handle_message(event):
 						PostbackTemplateAction(
 							label='Y',
 							text='Y',
-							data='line://nv/location'
+							data='action=buy&itemid=1'
 						),
 						MessageTemplateAction(
 							label='N',
