@@ -192,24 +192,24 @@ def handle_message(event):
 		# 	userStatusSheet.update_cell(userRow, 3, '天氣查詢')
 		# 	message = TextSendMessage(text='請傳送你的座標')
 		elif userSend == "天氣":     
-	        message = TemplateSendMessage(
-		        alt_text='目錄 template',
-		        template=ConfirmTemplate(
-		            title='這是ConfirmTemplate',
-		            text='這就是ConfirmTemplate,用於兩種按鈕選擇',
-		            actions=[                              
-		                PostbackTemplateAction(
-		                    label='Y',
-		                    text='Y',
-		                    data='line://nv/location'
-		                ),
-		                MessageTemplateAction(
-		                    label='N',
-		                    text='N'
-		                )
-		            ]
-	        	)
-	    	)
+			message = TemplateSendMessage(
+				alt_text='目錄 template',
+				template=ConfirmTemplate(
+					title='這是ConfirmTemplate',
+					text='這就是ConfirmTemplate,用於兩種按鈕選擇',
+					actions=[                              
+						PostbackTemplateAction(
+							label='Y',
+							text='Y',
+							data='line://nv/location'
+						),
+						MessageTemplateAction(
+							label='N',
+							text='N'
+						)
+					]
+				)
+			)
 
 		# 旅遊景點查詢
 		elif userSend == '旅遊':
@@ -405,36 +405,36 @@ def handle_message(event):
 					text='請選擇動作',
 					actions=[
 						URIAction(
-		                    label='傳送我的地點',
-		                    uri='line://nv/location'
-		                ),
-		                URIAction(
-		                    label='打開照相機',
-		                    uri='line://nv/camera/'
-		                ),
-		                URIAction(
-		                    label='傳送單張照片',
-		                    uri='line://nv/cameraRoll/single'
-		                ),
-		                URIAction(
-		                    label='傳送多張照片',
-		                    uri='line://nv/cameraRoll/multi'
-		                )
-		            ]
-		        )
-	    	)
+							label='傳送我的地點',
+							uri='line://nv/location'
+						),
+						URIAction(
+							label='打開照相機',
+							uri='line://nv/camera/'
+						),
+						URIAction(
+							label='傳送單張照片',
+							uri='line://nv/cameraRoll/single'
+						),
+						URIAction(
+							label='傳送多張照片',
+							uri='line://nv/cameraRoll/multi'
+						)
+					]
+				)
+			)
 		
 		# Carousel template：就像很多個Buttons Template，一次最多可以有10則
 		elif userSend in ["安安", 'c', 'C']:
 			message = TemplateSendMessage(
-		    alt_text='Carousel template',
-		    template=CarouselTemplate(
-		        columns=[
-		            CarouselColumn(
-		                thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
-		                title='News List',
-		                text='請選擇新聞',
-		                actions=[
+			alt_text='Carousel template',
+			template=CarouselTemplate(
+				columns=[
+					CarouselColumn(
+						thumbnail_image_url='https://www.breakingbelizenews.com/wp-content/uploads/2018/01/bbn-breaking-news.jpg',
+						title='News List',
+						text='請選擇新聞',
+						actions=[
 							MessageAction(
 								label='科技新報',
 								text='TechNews'
@@ -449,12 +449,12 @@ def handle_message(event):
 							),
 							
 						]
-		            ),
-		            CarouselColumn(
-		                thumbnail_image_url='https://static.newmobilelife.com/wp-content/uploads/2018/09/Shortcuts-PTT.jpg',
-		                title='PTT',
-		                text='請選擇看板',
-		                actions=[
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://static.newmobilelife.com/wp-content/uploads/2018/09/Shortcuts-PTT.jpg',
+						title='PTT',
+						text='請選擇看板',
+						actions=[
 							MessageAction(
 								label='NBA',
 								text='PTT_NBA'
@@ -468,12 +468,12 @@ def handle_message(event):
 								text='PTT_HatePolitics'
 							)
 						]
-		            ),
-		            CarouselColumn(
-		                thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Spotify_logo_horizontal_black.jpg/1280px-Spotify_logo_horizontal_black.jpg',
-		                title='Spotify TOP 30',
-		                text='Filter by',
-		                actions=[
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Spotify_logo_horizontal_black.jpg/1280px-Spotify_logo_horizontal_black.jpg',
+						title='Spotify TOP 30',
+						text='Filter by',
+						actions=[
 							MessageAction(
 								label='GLOBAL',
 								text='Spotify_global'
@@ -487,12 +487,12 @@ def handle_message(event):
 								text='Spotify_us'
 							)
 						]
-		            ),
-		            CarouselColumn(
-		                thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
-		                title='匯率查詢',
-		                text='請選擇幣別',
-		                actions=[
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://image.pttnews.cc/2018/11/14/ad72e3ed08/9bcfb811bb4fd8307837daa245a65e19.jpg',
+						title='匯率查詢',
+						text='請選擇幣別',
+						actions=[
 							MessageAction(
 								label='查詢美金匯率',
 								text='USD'
@@ -506,12 +506,12 @@ def handle_message(event):
 								uri='https://rate.bot.com.tw/xrt?Lang=zh-TW'
 							)
 						]
-		            ),
-		            CarouselColumn(
-		                thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
-		                title='對話式查詢',
-		                text='請選擇動作',
-		                actions=[
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
+						title='對話式查詢',
+						text='請選擇動作',
+						actions=[
 							MessageAction(
 								label='旅遊景點查詢',
 								text='旅遊'
@@ -525,28 +525,28 @@ def handle_message(event):
 								text='PChome'
 							)
 						]
-		            ),
-		            CarouselColumn(
-		                thumbnail_image_url='https://s.yimg.com/ny/api/res/1.2/uylrkl1acHE34LKR7QNV9Q--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAw/https://media.zenfs.com/zh-tw/nownews.com/c818263ea257c217bfcde6a924a1c3ca',
-		                title='內部連結範例',
-		                text='請選擇動作',
-		                actions=[
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://s.yimg.com/ny/api/res/1.2/uylrkl1acHE34LKR7QNV9Q--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAw/https://media.zenfs.com/zh-tw/nownews.com/c818263ea257c217bfcde6a924a1c3ca',
+						title='內部連結範例',
+						text='請選擇動作',
+						actions=[
 							URIAction(
-			                    label='傳送我的地點',
-			                    uri='line://nv/location'
-			                ),
-			                URIAction(
-			                    label='打開照相機',
-			                    uri='line://nv/camera/'
-			                ),
-			                URIAction(
-			                    label='傳送單張照片',
-			                    uri='line://nv/cameraRoll/single'
-			                )
+								label='傳送我的地點',
+								uri='line://nv/location'
+							),
+							URIAction(
+								label='打開照相機',
+								uri='line://nv/camera/'
+							),
+							URIAction(
+								label='傳送單張照片',
+								uri='line://nv/cameraRoll/single'
+							)
 						]
-		            )
-		        ]
-		    )
+					)
+				]
+			)
 		)
 
 		
