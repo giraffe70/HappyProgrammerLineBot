@@ -1,5 +1,5 @@
 import twder
-
+import requests
 def currencySearch(search):
 	# result = twder.now(userInput)
 	# text = ''
@@ -30,7 +30,7 @@ def rateBot(url):
 			result += '即期買入：{}\n'.format(data2[n*2].text)
 			result += '即期賣出：{}\n\n'.format(data2[n*2+1].text)
 	return result
-	
+
 # print(twder.currencies())
 # userInput = input("請輸入幣別(大寫)：")
 # print(currencySearch(userInput))

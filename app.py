@@ -456,6 +456,25 @@ def handle_message(event):
 						]
 		            ),
 		            CarouselColumn(
+		                thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
+		                title='查詢',
+		                text='請選擇動作',
+		                actions=[
+							MessageAction(
+								label='旅遊景點查詢',
+								text='旅遊'
+							),
+							MessageAction(
+								label='公車查詢',
+								text='公車'
+							),
+							MessageAction(
+								label='PChome商品查詢',
+								text='PChome'
+							)
+						]
+		            ),
+		            CarouselColumn(
 		                thumbnail_image_url='https://w3.nknu.edu.tw/images/sampledata/imageshow/_20190102-4.jpg',
 		                title='內部連結範例',
 		                text='請選擇動作',
