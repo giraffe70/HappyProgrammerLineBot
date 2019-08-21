@@ -105,7 +105,7 @@ def handle_message(event):
 		userStatusSheet.update_cell(userRow, 4, userSend)
 		userAdd = userStatusSheet.cell(userRow,4).value
 		url = 'https://www.google.com/maps/search/?api=1&query={}'.format(userAdd)
-		userLat = googleMapsLat(url)
+		userLat = googleMapsLat(url) 
 		userLon = googleMapsLon(url)
 		
 		weatherResult = OWMLonLatsearch(userLon,userLat)
@@ -113,10 +113,7 @@ def handle_message(event):
 		gammaResult = gammamonitor(userLon,userLat)
 		userStatusSheet.update_cell(userRow, 3, '')
 		userStatusSheet.update_cell(userRow, 4, '')
-		# message = TextSendMessage(text='地址：{}\n緯度：{}\n經度：{}\n'.format(userAdd,userLat,userLon))
 		message = TextSendMessage(text='⛅天氣狀況：\n{}\n☁空氣品質：\n{}\n☀輻射值：\n{}\n'.format(weatherResult, AQIResult, gammaResult))
-		# message = TextSendMessage(text=showRouteList(userSend))
-		
 
 	elif member == '已註冊':
 		currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
@@ -211,7 +208,7 @@ def handle_message(event):
 			message = TemplateSendMessage(
 				alt_text='Spotify Charts',   
 				template=ButtonsTemplate(
-					thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
+					thumbnail_image_url='https://www.bviddm.com/wp-content/uploads/2015/10/weather-forecast-370x280@2x.jpg',
 					title='天氣查詢',
 					text='請選擇查詢方式',
 					actions=[
@@ -226,27 +223,6 @@ def handle_message(event):
 					]
 				)
 			)
-			# message = TextSendMessage(text='請傳送你的座標')
-
-		# elif userSend == '天氣':
-		# 	message = TemplateSendMessage(
-		# 		alt_text='Spotify Charts',   
-		# 		template=ButtonsTemplate(
-		# 			thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
-		# 			title='天氣查詢',
-		# 			text='請選擇查詢方式',
-		# 			actions=[
-		# 				URIAction(
-		# 					label='傳送我的地點',
-		# 					uri='line://nv/location'
-		# 				),
-		# 				MessageAction(
-		# 					label='手動輸入其他地址',
-		# 					text='請輸入你的地點'
-		# 				),
-		# 			]
-		# 		)
-		# 	)
 
 		# Confirm Template
 		elif userSend == "Confirm template":     
