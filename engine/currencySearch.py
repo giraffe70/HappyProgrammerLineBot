@@ -1,5 +1,6 @@
 import twder
 import requests
+from bs4 import BeautifulSoup
 def currencySearch(search):
 	# result = twder.now(userInput)
 	# text = ''
