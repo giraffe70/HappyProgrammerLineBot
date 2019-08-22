@@ -13,13 +13,16 @@ def crawler_shopee(keyword):
 	res = requests.get(url,headers=headers)
 	soup = BeautifulSoup(res.text, 'html.parser')
 
+	index = 1
 	result = ''
+
 	for s in soup.find_all("div", class_="col-xs-2-4 shopee-search-item-result__item"):  # _1Ewdcf
 		name = s.find_all("div", class_="_1NoI8_ _2gr36I")[0].text
 		price = s.find_all("div", class_="_1w9jLI _37ge-4 _2XtIUk")[0].text
 		link = s.find_all("a")[0]['href']
 		if len(result) < 1900:
-			result += '{}\n{}\n\n'.format(name, price)
+			result += '{}. {}\n{}\n\n'.format(index, name, price)
+			index += 1
 	return result
  
 # sortby = 'relevancy' # 綜合排名
