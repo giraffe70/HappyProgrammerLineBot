@@ -349,7 +349,7 @@ def handle_message(event):
 							text='set'
 						),
 						MessageAction(
-							label='yahoo新聞',
+							label='Yahoo新聞',
 							text='yahooNews'
 						),
 						MessageAction(
@@ -364,7 +364,7 @@ def handle_message(event):
 				alt_text='Set List',   
 				template=ButtonsTemplate(
 					thumbnail_image_url='https://img.vpnclub.cc/content/zh/2018/09/SET-News-Logo.jpg',
-					title='set三立新聞',
+					title='Set三立新聞',
 					text='請選擇新聞',
 					actions=[
 						MessageAction(
@@ -584,6 +584,25 @@ def handle_message(event):
 							MessageAction(
 								label='公車查詢',
 								text='公車'
+							),
+							MessageAction(
+								label='天氣查詢',
+								text='天氣'
+							)
+						]
+					),
+					CarouselColumn(
+						thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
+						title='購物查詢',
+						text='請選擇一個平台',
+						actions=[
+							MessageAction(
+								label='PChome',
+								text='pchome'
+							),
+							MessageAction(
+								label='蝦皮',
+								text='shopee'
 							),
 							MessageAction(
 								label='天氣查詢',
