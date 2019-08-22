@@ -613,9 +613,6 @@ def handle_message(event):
 				]
 			)
 		)
-				
-
-		
 
 		# Image Carousel template：跟Carousel template很像，最多也是一次10則。大圖顯示，一則只會執行一個action
 		elif userSend in ['Music','music','音樂']:
@@ -659,7 +656,6 @@ def handle_message(event):
 		AQIResult = AQImonitor(userLon,userLat)
 		gammaResult = gammamonitor(userLon,userLat)
 		userStatusSheet.update_cell(userRow, 3, '')
-		# message = TextSendMessage(text='地址：{}\n緯度：{}\n經度：{}\n'.format(userAdd,userLat,userLon))
 		message = TextSendMessage(text='⛅天氣狀況：\n{}\n☁空氣品質：\n{}\n☀輻射值：\n{}\n'.format(weatherResult, AQIResult, gammaResult))
 	else:
 		message = TextSendMessage(text='傳地址幹嘛?')
@@ -669,5 +665,4 @@ import os
 if __name__ == "__main__":
 	port = int(os.environ.get('PORT', 5000))
 	app.run(host='0.0.0.0', port=port)
-
 

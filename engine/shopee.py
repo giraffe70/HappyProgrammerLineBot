@@ -7,7 +7,8 @@ def crawler_shopee(keyword):
 	url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=sales'.format(keyword)  
 
 	headers = {
-		'User-Agent': 'Googlebot'
+		'User-Agent': 'Googlebot',
+		'From': '1061241239@nkust.edu.tw'
 	}
 		
 	res = requests.get(url,headers=headers)
