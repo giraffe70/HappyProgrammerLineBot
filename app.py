@@ -210,7 +210,7 @@ def handle_message(event):
 		# 	message = TextSendMessage(text='請傳送你的座標')
 
 		# 天氣查詢
-		elif userSend == '天氣':
+		elif userSend in ['天氣', 'weather', 'Weather']:
 			userStatusSheet.update_cell(userRow, 3, '天氣查詢')
 			message = TemplateSendMessage(
 				alt_text='天氣查詢',   
@@ -256,11 +256,11 @@ def handle_message(event):
 		elif userSend == '旅遊':
 			userStatusSheet.update_cell(userRow, 3, '旅遊查詢')
 			message = TextSendMessage(text='請輸入旅遊縣市(或地名)')
-		# pchome 商品查詢
+		# Pchome 商品查詢
 		elif userSend in ['pchome', 'PChome', 'PCHOME', 'Pchome']:
 			userStatusSheet.update_cell(userRow, 3, 'PChome')
 			message = TextSendMessage(text='請輸入要搜尋的商品')
-		# 蝦皮 商品查詢
+		# 蝦皮商品查詢
 		elif userSend in ['shopee', 'Shopee', 'SHOPEE', '蝦皮']:
 			userStatusSheet.update_cell(userRow, 3, 'Shopee')
 			message = TextSendMessage(text='請輸入要搜尋的商品')
@@ -440,6 +440,26 @@ def handle_message(event):
 					]
 				)
 			)
+		elif userSend in ['購物', 'shopping', 'Shopping', 'buy', 'Buy']:
+			message = TemplateSendMessage(
+				alt_text='Shop List',   
+				template=ButtonsTemplate(
+					thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
+					title='購物查詢',
+					text='請選擇一個平台',
+					actions=[
+						MessageAction(
+							label='PChome',
+							text='pchome'
+						),
+						MessageAction(
+							label='蝦皮',
+							text='shopee'
+						)
+					]
+				)
+			)
+
 		# Line 內部連結：可藉由選單按鈕，並設定為URIAction，直接開啟內部連結。
 		elif userSend == "內部連結":
 			message = TemplateSendMessage(
@@ -566,8 +586,8 @@ def handle_message(event):
 								text='公車'
 							),
 							MessageAction(
-								label='PChome商品查詢',
-								text='PChome'
+								label='天氣查詢',
+								text='天氣'
 							)
 						]
 					),
