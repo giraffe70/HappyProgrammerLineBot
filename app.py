@@ -580,7 +580,7 @@ def handle_message(event):
 						]
 					),
 					CarouselColumn(
-						thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
+						thumbnail_image_url='https://image.shutterstock.com/image-photo/image-250nw-1109880431.jpg',
 						title='天氣查詢',
 						text='請傳送你的座標',
 						actions=[
