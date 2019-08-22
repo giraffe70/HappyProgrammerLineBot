@@ -12,6 +12,7 @@ from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import *
 from engine.OpenDataTravel import *
 from engine.pchome import pchome
+from engine.shopee import crawler_shopee
 from engine.ibus import *
 from engine.GoogleMapsURL import *
 import gspread
@@ -88,6 +89,12 @@ def handle_message(event):
 		userStatusSheet.update_cell(userRow, 4, userSend)
 		url = 'https://ecshweb.pchome.com.tw/search/v3.3/all/results?q={}&page=1&sort=sale/dc'.format(userSend)
 		message = TextSendMessage(text=pchome(url))
+		userStatusSheet.update_cell(userRow, 3, '')
+		userStatusSheet.update_cell(userRow, 4, '')
+	elif status == 'Shopee':
+		userStatusSheet.update_cell(userRow, 4, userSend)
+		url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy'.format(userSend)
+		message = TextSendMessage(text=crawler_shopee(keyword))
 		userStatusSheet.update_cell(userRow, 3, '')
 		userStatusSheet.update_cell(userRow, 4, '')
 	elif status == '公車查詢0':
@@ -252,6 +259,10 @@ def handle_message(event):
 		# pchome 商品查詢
 		elif userSend in ['pchome', 'PChome', 'PCHOME', 'Pchome']:
 			userStatusSheet.update_cell(userRow, 3, 'PChome')
+			message = TextSendMessage(text='請輸入要搜尋的商品')
+		# 蝦皮 商品查詢
+		elif userSend in ['shopee', 'Shopee', 'SHOPEE', '蝦皮']:
+			userStatusSheet.update_cell(userRow, 3, 'Shopee')
 			message = TextSendMessage(text='請輸入要搜尋的商品')
 		# 公車查詢
 		elif userSend in ['bus', 'Bus', 'BUS', '公車']:
@@ -562,7 +573,7 @@ def handle_message(event):
 					),
 					CarouselColumn(
 						thumbnail_image_url='https://s.yimg.com/ny/api/res/1.2/uylrkl1acHE34LKR7QNV9Q--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAw/https://media.zenfs.com/zh-tw/nownews.com/c818263ea257c217bfcde6a924a1c3ca',
-						title='內部連結範例',
+						title='內部連結',
 						text='請選擇動作',
 						actions=[
 							URIAction(
@@ -578,23 +589,7 @@ def handle_message(event):
 								uri='line://nv/cameraRoll/single'
 							)
 						]
-					),
-					# CarouselColumn(
-					# 	thumbnail_image_url='https://image.shutterstock.com/image-photo/image-250nw-1109880431.jpg',
-					# 	title='天氣查詢',
-					# 	text='請傳送你的座標',
-					# 	actions=[
-					# 		URIAction(
-					# 			label='傳送我的地點',
-					# 			uri='line://nv/location'
-					# 		),
-					# 		MessageAction(
-					# 			label='手動輸入其他地址',
-					# 			text='請輸入你的地點'
-					# 		),
-					# 	]
-						
-					# )
+					)
 				]
 			)
 		)
