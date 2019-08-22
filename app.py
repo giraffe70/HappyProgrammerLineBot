@@ -444,7 +444,7 @@ def handle_message(event):
 			message = TemplateSendMessage(
 				alt_text='Shop List',   
 				template=ButtonsTemplate(
-					thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
+					thumbnail_image_url='https://www.stockvault.net//data/2015/11/14/181047/thumb16.jpg',
 					title='購物查詢',
 					text='請選擇一個平台',
 					actions=[
@@ -509,7 +509,7 @@ def handle_message(event):
 								text='set'
 							),
 							MessageAction(
-								label='yahoo新聞',
+								label='Yahoo新聞',
 								text='yahooNews'
 							),
 							
@@ -586,23 +586,8 @@ def handle_message(event):
 								text='公車'
 							),
 							MessageAction(
-								label='天氣查詢',
-								text='天氣'
-							)
-						]
-					),
-					CarouselColumn(
-						thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
-						title='購物查詢',
-						text='請選擇一個平台',
-						actions=[
-							MessageAction(
-								label='PChome',
-								text='pchome'
-							),
-							MessageAction(
-								label='蝦皮',
-								text='shopee'
+								label='購物查詢',
+								text='購物'
 							)
 						]
 					),
