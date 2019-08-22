@@ -579,22 +579,22 @@ def handle_message(event):
 							)
 						]
 					),
-					CarouselColumn(
-						thumbnail_image_url='https://image.shutterstock.com/image-photo/image-250nw-1109880431.jpg',
-						title='天氣查詢',
-						text='請傳送你的座標',
-						actions=[
-							URIAction(
-								label='傳送我的地點',
-								uri='line://nv/location'
-							),
-							MessageAction(
-								label='手動輸入其他地址',
-								text='請輸入你的地點'
-							),
-						]
+					# CarouselColumn(
+					# 	thumbnail_image_url='https://image.shutterstock.com/image-photo/image-250nw-1109880431.jpg',
+					# 	title='天氣查詢',
+					# 	text='請傳送你的座標',
+					# 	actions=[
+					# 		URIAction(
+					# 			label='傳送我的地點',
+					# 			uri='line://nv/location'
+					# 		),
+					# 		MessageAction(
+					# 			label='手動輸入其他地址',
+					# 			text='請輸入你的地點'
+					# 		),
+					# 	]
 						
-					)
+					# )
 				]
 			)
 		)
