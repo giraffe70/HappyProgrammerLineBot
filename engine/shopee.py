@@ -4,10 +4,10 @@ from bs4 import BeautifulSoup
 def crawler_shopee(keyword):
 	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy'.format(keyword) # 綜合排名
 	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=sales'.format(keyword)  # 最熱銷
-	url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy'.format(keyword)  
+	url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=sales'.format(keyword)  
 
 	headers = {
-		'User-Agent': 'Googlebot',	
+		'User-Agent': 'Googlebot'
 	}
 		
 	res = requests.get(url,headers=headers)
@@ -28,5 +28,6 @@ def crawler_shopee(keyword):
 # sortby = 'relevancy' # 綜合排名
 # sortby = 'ctime'   # 最新
 # sortby = 'sales'   # 最熱銷
-# keyword = 'UAG'
-# print(crawler_shopee(keyword))
+
+keyword = 'UAG'
+print(crawler_shopee(keyword))
