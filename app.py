@@ -131,7 +131,7 @@ def handle_message(event):
 			userName = userInfoSheet.cell(cell.row,2).value
 			message = TextSendMessage(text='Hello, ' + userName)
 		elif userSend in ['功能', '能做甚麼', '能幹嘛', '可以幹嘛']:
-			message = TextSendMessage(text='目前的功能有：\n天氣、匯率、音樂、新聞、批踢踢、圖片、旅遊景點查詢、公車路線查詢、PChome商品查詢、Spotify排行榜、Line內部連結')
+			message = TextSendMessage(text='目前的功能有：\n天氣、匯率、音樂、新聞、批踢踢、圖片、旅遊景點查詢、公車路線查詢、PChome/蝦皮商品查詢、Spotify排行榜、Line內部連結')
 		elif userSend in ['狀態清空', '清空', 'clean']:
 			message = TextSendMessage(text='狀態已清空！')
 			userStatusSheet.update_cell(userRow, 3, '')
@@ -226,7 +226,7 @@ def handle_message(event):
 						MessageAction(
 							label='手動輸入其他地址',
 							text='請輸入你的地點'
-						),
+						)
 					]
 				)
 			)
@@ -453,7 +453,7 @@ def handle_message(event):
 							text='pchome'
 						),
 						MessageAction(
-							label='蝦皮',
+							label='蝦皮購物',
 							text='shopee'
 						)
 					]
