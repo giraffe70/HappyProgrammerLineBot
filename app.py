@@ -603,10 +603,6 @@ def handle_message(event):
 							MessageAction(
 								label='蝦皮',
 								text='shopee'
-							),
-							MessageAction(
-								label='天氣查詢',
-								text='天氣'
 							)
 						]
 					),
