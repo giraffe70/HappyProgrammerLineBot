@@ -18,7 +18,7 @@ def crawler_shopee(keyword):
 		name = s.find_all("div", class_="_1NoI8_ _2gr36I")[0].text
 		price = s.find_all("div", class_="_1w9jLI _37ge-4 _2XtIUk")[0].text
 		link = s.find_all("a")[0]['href']
-		result += '{}\n{}\nhttps://shopee.tw/{}\n\n'.format(name, price, link)
+		result += '{}\n{}\n\n'.format(name, price)
 	return result
  
 # sortby = 'relevancy' # 綜合排名
