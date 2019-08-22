@@ -94,7 +94,7 @@ def handle_message(event):
 	elif status == 'Shopee':
 		userStatusSheet.update_cell(userRow, 4, userSend)
 		url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy'.format(userSend)
-		message = TextSendMessage(text=crawler_shopee(keyword))
+		message = TextSendMessage(text=crawler_shopee(userSend))
 		userStatusSheet.update_cell(userRow, 3, '')
 		userStatusSheet.update_cell(userRow, 4, '')
 	elif status == '公車查詢0':
