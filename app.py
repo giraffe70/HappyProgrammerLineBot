@@ -219,7 +219,7 @@ def handle_message(event):
 						MessageAction(
 							label='手動輸入其他地址',
 							text='請輸入你的地點'
-						)
+						),
 					]
 				)
 			)
@@ -580,9 +580,9 @@ def handle_message(event):
 						]
 					),
 					CarouselColumn(
-						thumbnail_image_url='https://www.bviddm.com/wp-content/uploads/2015/10/weather-forecast-370x280@2x.jpg',
+						thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9XvdKuBZwx5JXqpXZN60MW5wvEScm2kzzJW76v-h45L1nd0Tr',
 						title='天氣查詢',
-						text='請傳送座標',
+						text='請傳送你的座標',
 						actions=[
 							URIAction(
 								label='傳送我的地點',
@@ -591,8 +591,9 @@ def handle_message(event):
 							MessageAction(
 								label='手動輸入其他地址',
 								text='請輸入你的地點'
-							)
+							),
 						]
+						
 					)
 				]
 			)
