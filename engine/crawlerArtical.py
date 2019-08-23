@@ -104,6 +104,9 @@ def crawerYahoo(url):
 		if s.find('span',class_='Va-tt') != None:
 			if len(result) < 1850:
 				result += '{}\n{}\n\n'.format(s.find('span',class_='Va-tt').text, s.find('a')['href'])
+
+			else:
+				break;
 			# result += s.find('a')['href']
 	return result
 
