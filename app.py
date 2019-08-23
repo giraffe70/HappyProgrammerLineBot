@@ -2,19 +2,20 @@ from flask import Flask, request, abort
 
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
-from linebot.models import *
-
-from engine.currencySearch import *
+# vscode 有問題
+# from linebot.models import *
+from linebot.models import MessageEvent, TextSendMessage, TemplateSendMessage, TextMessage, ConfirmTemplate, StickerSendMessage, ButtonsTemplate, ImageSendMessage, MessageAction, CarouselTemplate, URIAction, PostbackAction, PostbackTemplateAction, MessageTemplateAction, CarouselColumn, ImageCarouselTemplate, StickerMessage, PostbackEvent, LocationMessage
+from engine.currencySearch import currencySearch, rateBot
 from engine.OpenWeatherMap import OWMLonLatsearch
 from engine.AQI import AQImonitor
 from engine.gamma import gammamonitor
 from engine.SpotifyScrap import scrapSpotify
-from engine.crawlerArtical import *
-from engine.OpenDataTravel import *
+from engine.crawlerArtical import pttSearch, bballman_news, Spotify_TOP30, rssTechNews, rssNewsLtn, crawerYahoo
+from engine.OpenDataTravel import readJsonFilter, showList
 from engine.pchome import pchome
 from engine.shopee import crawler_shopee
-from engine.ibus import *
-from engine.GoogleMapsURL import *
+from engine.ibus import getRoute, getRouteID, showRouteList, showRouteResult
+from engine.GoogleMapsURL import googleMapsLat, googleMapsLon
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -42,7 +43,8 @@ def callback():
 	signature = request.headers['X-Line-Signature']
 	# get request body as text
 	body = request.get_data(as_text=True)
-	app.logger.info("Request body: " + body)
+	# vscode 有問題
+	# app.logger.info("Request body: " + body)
 	# handle webhook body
 	try:
 		handler.handle(body, signature)
@@ -618,7 +620,7 @@ def handle_message(event):
 
 		# Image Carousel template：跟Carousel template很像，最多也是一次10則。大圖顯示，一則只會執行一個action
 		elif userSend in ['Music','music','音樂']:
-			columnReply, textReply = scrapSpotify()
+			columnReply = scrapSpotify()
 			message = TemplateSendMessage(
 				alt_text='Music List',
 				template=ImageCarouselTemplate(

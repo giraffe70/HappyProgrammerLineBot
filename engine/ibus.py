@@ -68,7 +68,7 @@ def showRouteList(userSearch):
     routeList = getRouteID(userSearch)
     result = ''
     if len(routeList) == 1:
-        routeID = routeList[0]['id']
+        # routeID = routeList[0]['id']
         result += routeList[0]['name']
         return result
     elif len(routeList) > 1:

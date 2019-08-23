@@ -54,8 +54,8 @@ def Spotify_TOP30(url):
 	for index,t in enumerate(soup.select('tbody tr')):
 		player = t.select('td')[3].text.split('by ')[1]
 		songName = t.select('td')[3].strong.text
-		imgLink = t.select('td img')[0]['src']   # 圖片連結
-		imgLink_big = t.select('.chart-table-image a')[0]['href']
+		# imgLink = t.select('td img')[0]['src']   # 圖片連結
+		# imgLink_big = t.select('.chart-table-image a')[0]['href']
 
 		result += '排名：{}\n'.format(t.select('td')[1].text)
 		result += '歌名：{}\n'.format(songName)
@@ -106,6 +106,6 @@ def crawerYahoo(url):
 				result += '{}. {}\n'.format(index, s.find('span',class_='Va-tt').text)
 				index += 1
 			else:
-				break;
+				break
 	return result
 

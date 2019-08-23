@@ -11,14 +11,10 @@ import json
 #使用Json模組來讀取檔案物件
 #load()讀取方法、dump()寫入方法
 def readJsonFilter(userInput):
-
 	file = open('scenic_spot_C_f.json',mode='r',encoding='utf-8-sig')
 	data = json.load(file) #把JSON檔轉成dictionary類別
-
 	# url = 'http://gis.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json'
 	# data = requests.get(url).json()
-	
-
 	filterList = []
 	filterDict = []
 
@@ -54,19 +50,18 @@ def showList(filterDict):
 	for index,place in enumerate(filterDict):
 		if len(result) < 1980:
 			result += '{}. {}\n'.format(index+1,place['景點名稱'])
-		
 	return result
 
-def showResult(userSelect):
-	result = ''
-	place = filterDict[userSelect-1]
-	weather = OWMLonLatsearch(place['經度'],place['緯度'])
-	gammaResult = gammamonitor(place['經度'],place['緯度'])
-	aqiResult = AQImonitor(place['經度'],place['緯度'])
-	result += '景點名稱：{}\n地址：{}\n電話：{}\n\n天氣狀況：\n{}\n'.format(place['景點名稱'],place['地址'],place['電話'],weather)
-	result += '輻射值：\n' + gammaResult + '\n'
-	result += '空氣品質：\n' + aqiResult
-	return result
+# def showResult(userSelect):
+# 	result = ''
+# 	place = filterDict[userSelect-1]
+# 	weather = OWMLonLatsearch(place['經度'],place['緯度'])
+# 	gammaResult = gammamonitor(place['經度'],place['緯度'])
+# 	aqiResult = AQImonitor(place['經度'],place['緯度'])
+# 	result += '景點名稱：{}\n地址：{}\n電話：{}\n\n天氣狀況：\n{}\n'.format(place['景點名稱'],place['地址'],place['電話'],weather)
+# 	result += '輻射值：\n' + gammaResult + '\n'
+# 	result += '空氣品質：\n' + aqiResult
+# 	return result
 
 
 # filterDict = readJsonFilter(input('請輸入旅遊縣市：'))
