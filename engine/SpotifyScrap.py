@@ -1,7 +1,7 @@
 import requests
 import random
 from bs4 import BeautifulSoup
-from linebot.models import *
+from linebot.models import TemplateSendMessage, ImageCarouselColumn, URIAction
 
 def bigImgLink(songlink):
 	songContent = requests.get(songlink)
@@ -21,7 +21,7 @@ def scrapSpotify():
 		artist = song.select('.chart-table-track span')[0].text[3:]
 		songName = song.select('.chart-table-track strong')[0].text
 		songlink = song.select('.chart-table-image a')[0]['href']
-		imglink = ''
+		# imglink = ''
 		songReplyList.append([artist,songName,songlink])
 
 		if index == 29:
@@ -29,7 +29,7 @@ def scrapSpotify():
 
 	random.shuffle(songReplyList)
 	columnReply = []
-	textReply = ''
+	# textReply = ''
 	for song in songReplyList[0:5]:
 		columnReply.append(
 			ImageCarouselColumn(
@@ -40,6 +40,7 @@ def scrapSpotify():
 				)
 			)
 		)
-		textReply += '⭐{} by {}\n💽{}\n'.format(song[1],song[0],song[2])
+		# textReply += '⭐{} by {}\n💽{}\n'.format(song[1],song[0],song[2])
 
-	return columnReply,textReply
+	# return columnReply,textReply
+	return columnReply
