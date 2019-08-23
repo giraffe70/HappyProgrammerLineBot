@@ -5,6 +5,7 @@ from linebot.exceptions import (InvalidSignatureError)
 # vscode 有問題
 # from linebot.models import *
 from linebot.models import MessageEvent, TextSendMessage, TemplateSendMessage, TextMessage, ConfirmTemplate, StickerSendMessage, ButtonsTemplate, ImageSendMessage, MessageAction, CarouselTemplate, URIAction, PostbackAction, PostbackTemplateAction, MessageTemplateAction, CarouselColumn, ImageCarouselTemplate, StickerMessage, PostbackEvent, LocationMessage
+
 from engine.currencySearch import currencySearch, rateBot
 from engine.OpenWeatherMap import OWMLonLatsearch
 from engine.AQI import AQImonitor
@@ -633,13 +634,13 @@ def handle_message(event):
 	line_bot_api.reply_message(event.reply_token, message)
 
 @handler.add(MessageEvent, message=StickerMessage)
-def handle_message(event):
+def handle_message_StickerMessage(event):
 	message = TextSendMessage(text='我看不懂貼圖')
 	line_bot_api.reply_message(event.reply_token, message)
 
 # Postback 回傳隱藏資訊
 @handler.add(PostbackEvent)
-def handle_message(event):
+def handle_message_PostbackEvent(event):
 	send = event.postback.data
 	userID = event.source.user_id
 	cell = userStatusSheet.find(userID)
@@ -652,7 +653,7 @@ def handle_message(event):
 	line_bot_api.reply_message(event.reply_token, message)
 
 @handler.add(MessageEvent, message=LocationMessage)
-def handle_message(event):
+def handle_message_LocationMessage(event):
 	userID = event.source.user_id
 	try:
 		cell = userStatusSheet.find(userID)
