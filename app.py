@@ -2,9 +2,11 @@ from flask import Flask, request, abort
 
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
-# vscode 有問題
-# from linebot.models import *
-from linebot.models import MessageEvent, TextSendMessage, TemplateSendMessage, TextMessage, ConfirmTemplate, StickerSendMessage, ButtonsTemplate, ImageSendMessage, MessageAction, CarouselTemplate, URIAction, PostbackAction, PostbackTemplateAction, MessageTemplateAction, CarouselColumn, ImageCarouselTemplate, StickerMessage, PostbackEvent, LocationMessage
+# from linebot.models import *   # vscode 有問題
+from linebot.models import MessageEvent, TextSendMessage, TemplateSendMessage, TextMessage, ConfirmTemplate
+from linebot.models import StickerSendMessage, ButtonsTemplate, ImageSendMessage, MessageAction, CarouselTemplate
+from linebot.models import URIAction, PostbackAction, PostbackTemplateAction, MessageTemplateAction, CarouselColumn
+from linebot.models import ImageCarouselTemplate, StickerMessage, PostbackEvent, LocationMessage
 
 from engine.currencySearch import currencySearch, rateBot
 from engine.OpenWeatherMap import OWMLonLatsearch
