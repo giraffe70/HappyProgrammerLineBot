@@ -43,7 +43,7 @@ def bballman_news(url, articleNumber):
 			break
 	return result
 
-# spotify(GLOBAL)
+# spotify
 def Spotify_TOP30(url):
 	# url = 'https://spotifycharts.com/regional'
 	# url = 'https://spotifycharts.com/regional/global/daily/latest'
@@ -54,16 +54,14 @@ def Spotify_TOP30(url):
 	for index,t in enumerate(soup.select('tbody tr')):
 		player = t.select('td')[3].text.split('by ')[1]
 		songName = t.select('td')[3].strong.text
-		imgLink = t.select('td img')[0]['src']
+		imgLink = t.select('td img')[0]['src']   # 圖片連結
 		imgLink_big = t.select('.chart-table-image a')[0]['href']
 
 		result += '排名：{}\n'.format(t.select('td')[1].text)
 		result += '歌名：{}\n'.format(songName)
-		# result += '歌手：{}\n圖片連結：{}\n'.format(player, imgLink)
 		result += '歌手：{}\n'.format(player)
 		# result += '歌曲連結：{}\n'.format(imgLink_big)
-		# 下載圖片
-		# download(bigImgLink(imgLink_big), clearName(songName))
+		# download(bigImgLink(imgLink_big), clearName(songName))   # 下載圖片
 		
 		if index == 29:
 			break
@@ -95,21 +93,21 @@ def rssNewsLtn(url, articleNumber):
 			break
 	return result
 
-# yahoo新聞
+# Yahoo新聞
 def crawerYahoo(url):
 	res = requests.get(url)
 	soup = BeautifulSoup(res.text, "html.parser")
 	result = ''
+	index = 1
 	for s in soup.select(".Story-Item"):
 		if s.find('span',class_='Va-tt') != None:
-			if len(result) < 1850:
-				result += '{}\n{}\n\n'.format(s.find('span',class_='Va-tt').text, s.find('a')['href'])
-
+			if len(result) < 1800 and index <= 30:
+				# result += '{}\n{}\n\n'.format(s.find('span',class_='Va-tt').text, s.find('a')['href'])
+				result += '{}. {}\n'.format(index, s.find('span',class_='Va-tt').text)
+				index += 1
 			else:
 				break;
-			# result += s.find('a')['href']
 	return result
-
 
 # webOption = int(input('[1].PTT  [2].籃球圈  [3].Spotify  [4].TechNews [5].三立新聞\n想要看什麼：'))
 # if webOption == 1:
