@@ -227,9 +227,9 @@ def handle_message(event):
 							label='手動輸入其他地址',
 							text='請輸入你的地點'
 						),
-						MessageAction(
-							label='取消查詢',
-							text='clean'
+						PostbackAction(
+							label='取消',
+							data='取消查詢'
 						)
 					]
 				)
@@ -425,20 +425,20 @@ def handle_message(event):
 					text='請選擇動作',
 					actions=[
 						MessageAction(
-							label='旅遊景點查詢',
-							text='旅遊'
+							label='天氣查詢',
+							text='天氣'
 						),
 						MessageAction(
 							label='公車查詢',
 							text='公車'
 						),
 						MessageAction(
-							label='PChome商品查詢',
-							text='PChome'
+							label='購物商品查詢',
+							text='購物'
 						),
 						MessageAction(
-							label='天氣查詢',
-							text='天氣'
+							label='旅遊景點查詢',
+							text='旅遊'
 						)
 					]
 				)
@@ -633,6 +633,14 @@ def handle_message(event):
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_message(event):
 	message = TextSendMessage(text='我看不懂貼圖')
+	line_bot_api.reply_message(event.reply_token, message)
+
+@handler.add(PostbackEvent)
+def handle_message(event):
+	send = event.postback.data
+	if send == '取消查詢':
+		reply = '已經取消查詢'
+		message = TextSendMessage(text=reply)
 	line_bot_api.reply_message(event.reply_token, message)
 
 @handler.add(MessageEvent, message=LocationMessage)
