@@ -12,7 +12,7 @@ def pttSearch(url, count=0, result=''):
 		mark = artical.select('.mark')[0].text
 		author = artical.select('.author')[0].text
 		push = artical.select('.nrec')[0].text
-		title = artical.select('.title')[0].text
+		title = artical.select('.title')[0].text.strip()
 		date = artical.select('.date')[0].text
 
 		# 非 "[公告] 板規v6.4" 以下的內容，且文章未被刪除
@@ -20,7 +20,7 @@ def pttSearch(url, count=0, result=''):
 			if push.isdigit() and int(push) > 50 or push=='爆':
 				link = artical.select('.title a')[0]['href']
 				count += 1
-				result += '{}https://www.ptt.cc{}\t{}\n'.format(title, link, date)
+				result += '{}\nhttps://www.ptt.cc{}\t{}\n\n'.format(title, link, date)
 
 	if count < 10:
 		paging = soup.select('div .btn-group-paging a')
@@ -28,9 +28,7 @@ def pttSearch(url, count=0, result=''):
 		return pttSearch(next_url, count, result)
 	
 	return result
-
 	
-
 # 籃球圈
 def bballman_news(url, articleNumber):
 	webContent = requests.get(url)
