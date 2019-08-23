@@ -644,6 +644,7 @@ def handle_message(event):
 	userRow = cell.row
 	if send == 'clean':
 		userStatusSheet.update_cell(userRow, 3, '')
+		userStatusSheet.update_cell(userRow, 4, '')
 		reply = '已經取消查詢'
 		message = TextSendMessage(text=reply)
 	line_bot_api.reply_message(event.reply_token, message)
