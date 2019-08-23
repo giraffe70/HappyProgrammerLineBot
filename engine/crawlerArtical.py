@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
-# ptt
+# PTT
 def pttSearch(url, count=0, result=''):
 	# webContent = requests.get(url)
 	# webContent = requests.get(url,cookies={'over18':'1'})
@@ -43,7 +43,7 @@ def bballman_news(url, articleNumber):
 			break
 	return result
 
-# spotify
+# Spotify
 def Spotify_TOP30(url):
 	# url = 'https://spotifycharts.com/regional'
 	# url = 'https://spotifycharts.com/regional/global/daily/latest'

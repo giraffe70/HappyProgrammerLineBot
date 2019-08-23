@@ -1,7 +1,5 @@
-
 import requests
 import json
-
 
 def pchome(url):
 	# url = 'https://ecshweb.pchome.com.tw/search/v3.3/all/results?q={}&page=1&sort=sale/dc'.format(userSearch) 
@@ -10,9 +8,9 @@ def pchome(url):
 	result = ''
 	webdatas = data['prods']
 	for index,product in enumerate(webdatas):
-		result += '{}. {}\n價錢：{}\n\n'.format(index+1, product['name'], product['price'])
+		result += '{}. {}\t${}\n'.format(index+1, product['name'], product['price'])
 	return result
 
-# userSearch = 'ssd'
-# url = 'https://ecshweb.pchome.com.tw/search/v3.3/all/results?q={}&page=1&sort=sale/dc'.format(userSearch)
-# print(pchome(url))
+userSearch = 'ssd'
+url = 'https://ecshweb.pchome.com.tw/search/v3.3/all/results?q={}&page=1&sort=sale/dc'.format(userSearch)
+print(pchome(url))
