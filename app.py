@@ -638,9 +638,10 @@ def handle_message(event):
 @handler.add(PostbackEvent)
 def handle_message(event):
 	send = event.postback.data
+	userID = event.source.user_id
+	cell = userStatusSheet.find(userID)
+	userRow = cell.row
 	if send == 'clean':
-		cell = userStatusSheet.find(userID)
-		userRow = cell.row
 		userStatusSheet.update_cell(userRow, 3, '')
 		reply = '已經取消查詢'
 		message = TextSendMessage(text=reply)
