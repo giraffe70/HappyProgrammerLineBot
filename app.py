@@ -61,7 +61,7 @@ def handle_message(event):
 	try:
 		cell = userStatusSheet.find(userID)
 		userRow = cell.row
-		userCol = cell.col
+		# userCol = cell.col
 		member = userStatusSheet.cell(cell.row,2).value
 		status = userStatusSheet.cell(cell.row,3).value
 	except:
@@ -69,7 +69,7 @@ def handle_message(event):
 		userInfoSheet.append_row([userID])
 		cell = userStatusSheet.find(userID)
 		userRow = cell.row
-		userCol = cell.col
+		# userCol = cell.col
 		member = ''
 		status = ''
 	if member == '':
@@ -655,16 +655,16 @@ def handle_message(event):
 	try:
 		cell = userStatusSheet.find(userID)
 		userRow = cell.row
-		userCol = cell.col
+		# userCol = cell.col
 		status = userStatusSheet.cell(cell.row,3).value
 	except:
 		userStatusSheet.append_row([userID])
 		cell = userStatusSheet.find(userID)
 		userRow = cell.row
-		userCol = cell.col
+		# userCol = cell.col
 		status = ''
 	if status == "天氣查詢":   
-		userAdd = event.message.address
+		# userAdd = event.message.address
 		userLat = event.message.latitude
 		userLon = event.message.longitude
 		

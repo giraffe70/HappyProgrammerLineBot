@@ -5,7 +5,7 @@ def crawler_shopee(keyword):
 	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy'.format(keyword) # 綜合排名
 	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=ctime'.format(keyword)     # 最新
 	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=sales'.format(keyword)     # 最熱銷
-	url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy'.format(keyword)  
+	url = "https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy".format(keyword)  
 
 	headers = {
 		'User-Agent': 'Googlebot',
@@ -21,7 +21,7 @@ def crawler_shopee(keyword):
 	for s in soup.find_all("div", class_="col-xs-2-4 shopee-search-item-result__item"):  # _1Ewdcf
 		name = s.find_all("div", class_="_1NoI8_ _2gr36I")[0].text
 		price = s.find_all("div", class_="_1w9jLI _37ge-4 _2XtIUk")[0].text
-		link = s.find_all("a")[0]['href']
+		# link = s.find_all("a")[0]['href']
 		if len(result) < 1900:
 			result += '{}. {}\t{}\n'.format(index, name, price)
 			index += 1
