@@ -23,7 +23,7 @@ def crawler_shopee(keyword):
 		price = s.find_all("div", class_="_1w9jLI _37ge-4 _2XtIUk")[0].text
 		link = s.find_all("a")[0]['href']
 		if len(result) < 1900:
-			result += '{}. {}\n{}\n\n'.format(index, name, price)
+			result += '{}. {}\t{}\n\n'.format(index, name, price)
 			index += 1
 	return result
 
