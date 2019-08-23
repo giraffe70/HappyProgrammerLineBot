@@ -245,7 +245,7 @@ def handle_message(event):
 					actions=[                              
 						PostbackTemplateAction(
 							label='Y',
-							text='Y',
+							text='Y',  # 會顯示，可以不寫 
 							data='action=buy&itemid=1'
 						),
 						MessageTemplateAction(
