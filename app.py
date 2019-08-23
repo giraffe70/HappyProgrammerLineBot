@@ -458,6 +458,10 @@ def handle_message(event):
 						MessageAction(
 							label='蝦皮購物',
 							text='shopee'
+						),
+						PostbackAction(
+							label='取消查詢',
+							data='clean'
 						)
 					]
 				)
@@ -634,7 +638,8 @@ def handle_message(event):
 def handle_message(event):
 	message = TextSendMessage(text='我看不懂貼圖')
 	line_bot_api.reply_message(event.reply_token, message)
-
+	
+# Postback 回傳隱藏資訊
 @handler.add(PostbackEvent)
 def handle_message(event):
 	send = event.postback.data
