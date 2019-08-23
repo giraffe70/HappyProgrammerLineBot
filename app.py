@@ -226,6 +226,10 @@ def handle_message(event):
 						MessageAction(
 							label='手動輸入其他地址',
 							text='請輸入你的地點'
+						),
+						MessageAction(
+							label='取消查詢',
+							text='clean'
 						)
 					]
 				)
@@ -576,16 +580,16 @@ def handle_message(event):
 						text='請選擇動作',
 						actions=[
 							MessageAction(
-								label='旅遊景點查詢',
-								text='旅遊'
+								label='購物查詢',
+								text='購物'
 							),
 							MessageAction(
 								label='公車查詢',
 								text='公車'
 							),
 							MessageAction(
-								label='購物查詢',
-								text='購物'
+								label='旅遊景點查詢',
+								text='旅遊'
 							)
 						]
 					),
