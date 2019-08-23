@@ -301,7 +301,6 @@ def handle_message(event):
 							label='HatePolitics',
 							text='PTT_HatePolitics'
 						)
-
 					]
 				)
 			)
@@ -512,7 +511,6 @@ def handle_message(event):
 								label='Yahoo新聞',
 								text='yahooNews'
 							),
-							
 						]
 					),
 					CarouselColumn(

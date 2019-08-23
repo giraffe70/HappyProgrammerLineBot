@@ -109,28 +109,3 @@ def crawerYahoo(url):
 				break;
 	return result
 
-# webOption = int(input('[1].PTT  [2].籃球圈  [3].Spotify  [4].TechNews [5].三立新聞\n想要看什麼：'))
-# if webOption == 1:
-# 	SectionInput = int(input("[1].NBA  [2].Badminton  [3].HatePolitics  [4].movie  [5].joke [6].Gossiping\n請輸入要搜尋的版："))
-# 	# numberInput = int(input("選擇要顯示的篇數："))
-# 	SectionList = ['NBA', 'Badminton', 'HatePolitics', 'movie', 'joke', 'Gossiping']
-# 	url = 'https://www.ptt.cc/bbs/{}/index.html'.format(SectionList[SectionInput-1])
-# 	print(pttSearch(url))
-# elif webOption == 2:
-# 	url = 'http://www.bballman.com/category/news'
-# 	print(bballman_news(url))
-# elif webOption == 3:
-# 	url = 'https://spotifycharts.com/regional'
-# 	print(spotify_top30(url))
-# elif webOption == 4:
-# 	url = 'https://technews.tw/tn-rss/'
-# 	print(rssTechNews(url))
-# elif webOption == 5:
-# 	SectionInput = int(input("[1].即時  [2].國際  [3].體育  [4].政治 [5].財經\n請輸入要搜尋的版："))
-# 	SectionList = ['all', 'world', 'sports', 'politics', 'business']
-# 	numberInput = int(input("選擇要顯示的篇數："))
-# 	print(rssNewsLtn('https://news.ltn.com.tw/rss/{}.xml'.format(SectionList[SectionInput-1]), numberInput))
-# else:
-# 	print('請輸入數字')
-
-

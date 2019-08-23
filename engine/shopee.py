@@ -3,8 +3,9 @@ from bs4 import BeautifulSoup
 
 def crawler_shopee(keyword):
 	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy'.format(keyword) # 綜合排名
-	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=sales'.format(keyword)  # 最熱銷
-	url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=sales'.format(keyword)  
+	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=ctime'.format(keyword)     # 最新
+	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=sales'.format(keyword)     # 最熱銷
+	url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy'.format(keyword)  
 
 	headers = {
 		'User-Agent': 'Googlebot',
@@ -25,10 +26,33 @@ def crawler_shopee(keyword):
 			result += '{}. {}\n{}\n\n'.format(index, name, price)
 			index += 1
 	return result
- 
-# sortby = 'relevancy' # 綜合排名
-# sortby = 'ctime'   # 最新
-# sortby = 'sales'   # 最熱銷
 
 keyword = 'UAG'
 print(crawler_shopee(keyword))
+
+
+
+# import time
+# import requests
+# import json
+
+# def shopeeAPI_Scraper(keyword, n_items):
+
+#     url1 = 'https://shopee.tw/api/v2/search_items/?by=relevancy&keyword={}&limit={}'.format(keyword,n_items)
+#     headers = {'User-Agent': 'Googlebot',}
+#     r = requests.get(url1,headers=headers)
+#     api1_data = json.loads(r.text)
+    
+#     for i in range(n_items):
+#         itemid = api1_data['items'][i]['itemid']
+#         shopid = api1_data['items'][i]['shopid']
+        
+#         url2 = 'https://shopee.tw/api/v2/item/get?itemid={}&shopid={}'.format(itemid, shopid)
+#         r = requests.get(url2,headers=headers)
+#         api2_data = json.loads(r.text)
+#         output = api1_data['items'][i]['name'].ljust(50) +': ' + str(api2_data['item']['price']//100000)
+#         print(output)
+#         time.sleep(0.2)
+    
+# shopeeAPI_Scraper(keyword = 'ssd', n_items = 10)
+
