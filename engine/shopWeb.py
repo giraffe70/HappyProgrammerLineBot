@@ -51,7 +51,7 @@ def momoshop(url):
 	for index, product in enumerate(soup.select('#itemizedStyle li')):
 		title = product.select('.prdName')[0].text
 		price = product.select('.price')[0].text
-		result += '{}. {}\t{}\n\n'.format(index+1, title, price)
+		result += '{}. {}\t${}\n\n'.format(index+1, title, price)
 		
 	return result
 
