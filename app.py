@@ -15,8 +15,9 @@ from engine.gamma import gammamonitor
 from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import pttSearch, bballman_news, Spotify_TOP30, rssTechNews, rssNewsLtn, crawerYahoo
 from engine.OpenDataTravel import readJsonFilter, showList
-from engine.pchome import pchome
-from engine.shopee import crawler_shopee
+# from engine.pchome import pchome
+# from engine.shopee import crawler_shopee
+from engine.shopWeb import pchome, shopee, momoshop
 from engine.ibus import getRoute, getRouteID, showRouteList, showRouteResult
 from engine.GoogleMapsURL import googleMapsLat, googleMapsLon
 import gspread
@@ -99,7 +100,13 @@ def handle_message(event):
 	elif status == 'Shopee':
 		userStatusSheet.update_cell(userRow, 4, userSend) 
 		url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy'.format(userSend)
-		message = TextSendMessage(text=crawler_shopee(userSend))
+		message = TextSendMessage(text=shopee(userSend))
+		userStatusSheet.update_cell(userRow, 3, '')
+		userStatusSheet.update_cell(userRow, 4, '')
+	elif status == 'momo':
+		userStatusSheet.update_cell(userRow, 4, userSend) 
+		url = 'https://m.momoshop.com.tw/mosearch/{}.html'.format(userSend)
+		message = TextSendMessage(text=momoshop(userSend))
 		userStatusSheet.update_cell(userRow, 3, '')
 		userStatusSheet.update_cell(userRow, 4, '')
 	elif status == '公車查詢0':
@@ -269,9 +276,13 @@ def handle_message(event):
 		elif userSend in ['pchome', 'PChome', 'PCHOME', 'Pchome']:
 			userStatusSheet.update_cell(userRow, 3, 'PChome')
 			message = TextSendMessage(text='請輸入要搜尋的商品')
-		# 蝦皮商品查詢
+		# 蝦皮 商品查詢
 		elif userSend in ['shopee', 'Shopee', 'SHOPEE', '蝦皮']:
 			userStatusSheet.update_cell(userRow, 3, 'Shopee')
+			message = TextSendMessage(text='請輸入要搜尋的商品')
+		# momo購物 商品查詢
+		elif userSend in ['momo', 'Momo', 'Momo',]:
+			userStatusSheet.update_cell(userRow, 3, 'momo')
 			message = TextSendMessage(text='請輸入要搜尋的商品')
 		# 公車查詢
 		elif userSend in ['bus', 'Bus', 'BUS', '公車']:
@@ -463,7 +474,12 @@ def handle_message(event):
 						MessageAction(
 							label='蝦皮購物',
 							text='shopee'
+						),
+						MessageAction(
+							label='momo購物',
+							text='momo'
 						)
+
 					]
 				)
 			)
