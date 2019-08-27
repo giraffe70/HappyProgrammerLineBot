@@ -9,7 +9,7 @@ def pchome(url):
 	result = ''
 	webdatas = data['prods']
 	for index,product in enumerate(webdatas):
-		result += '{}. {}\t${}\n'.format(index+1, product['name'], product['price'])
+		result += '{}. {}\t${}\n\n'.format(index+1, product['name'], product['price'])
 	return result
 
 def shopee(url):
@@ -34,7 +34,7 @@ def shopee(url):
 		price = s.find_all("div", class_="_1w9jLI _37ge-4 _2XtIUk")[0].text
 		# link = s.find_all("a")[0]['href']
 		if len(result) < 1900:
-			result += '{}. {}\t{}\n'.format(index, name, price)
+			result += '{}. {}\t{}\n\n'.format(index, name, price)
 			index += 1
 	return result
 
@@ -51,12 +51,12 @@ def momoshop(url):
 	for index, product in enumerate(soup.select('#itemizedStyle li')):
 		title = product.select('.prdName')[0].text
 		price = product.select('.price')[0].text
-		result += '{}{}\t{}\n'.format(index+1, title, price)
+		result += '{}. {}\t{}\n\n'.format(index+1, title, price)
 		
 	return result
 
 
-userSearch = 'ssd'
+# userSearch = 'ssd'
 
 # url = 'https://ecshweb.pchome.com.tw/search/v3.3/all/results?q={}&page=1&sort=sale/dc'.format(userSearch)
 # print(pchome(url))
@@ -65,5 +65,5 @@ userSearch = 'ssd'
 # url = "https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy".format(userSearch)  
 # print(shopee(url))
 
-url = 'https://m.momoshop.com.tw/mosearch/{}.html'.format(userSearch)
-print(momoshop(url))
+# url = 'https://m.momoshop.com.tw/mosearch/{}.html'.format(userSearch)
+# print(momoshop(url))
