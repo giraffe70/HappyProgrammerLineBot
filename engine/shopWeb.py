@@ -12,11 +12,11 @@ def pchome(url):
 		result += '{}. {}\t${}\n'.format(index+1, product['name'], product['price'])
 	return result
 
-def shopee(keyword):
+def shopee(url):
 	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy'.format(keyword) # 綜合排名
 	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=ctime'.format(keyword)     # 最新
 	# url = 'https://shopee.tw/search?keyword={}&page=0&sortBy=sales'.format(keyword)     # 最熱銷
-	url = "https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy".format(keyword)  
+	# url = "https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy".format(userSearch)  
 
 	headers = {
 		'User-Agent': 'Googlebot',
@@ -56,6 +56,14 @@ def momoshop(url):
 	return result
 
 
-# userSearch = 'ssd'
+userSearch = 'ssd'
+
 # url = 'https://ecshweb.pchome.com.tw/search/v3.3/all/results?q={}&page=1&sort=sale/dc'.format(userSearch)
 # print(pchome(url))
+
+
+# url = "https://shopee.tw/search?keyword={}&page=0&sortBy=relevancy".format(userSearch)  
+# print(shopee(url))
+
+url = 'https://m.momoshop.com.tw/mosearch/{}.html'.format(userSearch)
+print(momoshop(url))

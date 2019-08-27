@@ -15,8 +15,6 @@ from engine.gamma import gammamonitor
 from engine.SpotifyScrap import scrapSpotify
 from engine.crawlerArtical import pttSearch, bballman_news, Spotify_TOP30, rssTechNews, rssNewsLtn, crawerYahoo
 from engine.OpenDataTravel import readJsonFilter, showList
-# from engine.pchome import pchome
-# from engine.shopee import crawler_shopee
 from engine.shopWeb import pchome, shopee, momoshop
 from engine.ibus import getRoute, getRouteID, showRouteList, showRouteResult
 from engine.GoogleMapsURL import googleMapsLat, googleMapsLon
@@ -468,18 +466,17 @@ def handle_message(event):
 					text='請選擇一個平台',
 					actions=[
 						MessageAction(
-							label='PChome',
+							label='PChome線上購物',
 							text='pchome'
+						),
+						MessageAction(
+							label='MOMO購物網',
+							text='momo'
 						),
 						MessageAction(
 							label='蝦皮購物',
 							text='shopee'
-						),
-						MessageAction(
-							label='momo購物',
-							text='momo'
 						)
-
 					]
 				)
 			)
