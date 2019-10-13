@@ -118,21 +118,22 @@ def handle_message(event):
 		userStatusSheet.update_cell(userRow, 3, '')
 		userStatusSheet.update_cell(userRow, 4, '')
 		userStatusSheet.update_cell(userRow, 5, '')
-	'''
-	elif status == '天氣查詢':
-		userStatusSheet.update_cell(userRow, 4, userSend)
-		userAdd = userStatusSheet.cell(userRow,4).value
-		url = 'https://www.google.com/maps/search/?api=1&query={}'.format(userAdd)
-		userLat = googleMapsLat(url) 
-		userLon = googleMapsLon(url)
+	
+	# elif status == '天氣查詢':
+	# 	userStatusSheet.update_cell(userRow, 4, userSend)
+	# 	userAdd = userStatusSheet.cell(userRow,4).value
+	# 	url = 'https://www.google.com/maps/search/?api=1&query={}'.format(userAdd)
+	# 	userLat = googleMapsLat(url) 
+	# 	userLon = googleMapsLon(url)
 		
-		weatherResult = OWMLonLatsearch(userLon,userLat)
-		AQIResult = AQImonitor(userLon,userLat)
-		gammaResult = gammamonitor(userLon,userLat)
-		userStatusSheet.update_cell(userRow, 3, '')
-		userStatusSheet.update_cell(userRow, 4, '')
-		message = TextSendMessage(text='⛅天氣狀況：\n{}\n☁空氣品質：\n{}\n☀輻射值：\n{}\n'.format(weatherResult, AQIResult, gammaResult))
-	'''
+	# 	weatherResult = OWMLonLatsearch(userLon,userLat)
+	# 	AQIResult = AQImonitor(userLon,userLat)
+	# 	gammaResult = gammamonitor(userLon,userLat)
+	# 	userStatusSheet.update_cell(userRow, 3, '')
+	# 	userStatusSheet.update_cell(userRow, 4, '')
+	# 	message = TextSendMessage(text='⛅天氣狀況：\n{}\n☁空氣品質：\n{}\n☀輻射值：\n{}\n'.format(weatherResult, AQIResult, gammaResult))
+	
+
 	elif member == '已註冊':
 		currencyList = ['USD', 'HKD', 'GBP', 'AUD', 'CAD', 'SGD', 'CHF', 'JPY', 'ZAR', 'SEK', 'NZD', 'THB', 'PHP', 'IDR', 'EUR', 'KRW', 'VND', 'MYR', 'CNY']
 		byeList = ['goodbye', 'Goodbye', '掰掰','BYE', 'bye', 'Bye', '再見','byebye']
