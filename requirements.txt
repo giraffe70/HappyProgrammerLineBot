@@ -11,3 +11,4 @@ imgkit
 qrcode
 pillow
 cloudinary
+gunicorn
