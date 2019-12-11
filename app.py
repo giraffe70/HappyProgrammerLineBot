@@ -47,7 +47,7 @@ def callback():
 	body = request.get_data(as_text=True)
 	# vscode 有問題
 	# app.logger.info("Request body: " + body)
-	handle webhook body
+	# handle webhook body
 	try:
 		handler.handle(body, signature)
 	except InvalidSignatureError:
